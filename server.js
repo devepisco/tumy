@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const passport = require("passport");
 const morgan = require("morgan");
 const helmet = require("helmet");
@@ -19,17 +18,20 @@ if (process.env.NODE_ENV === "development") {
 
 // for parsing json
 app.use(
-  bodyParser.json({
+  express.json({
     limit: "20mb",
   })
 );
 // for parsing application/x-www-form-urlencoded
 app.use(
-  bodyParser.urlencoded({
+  express.urlencoded({
     limit: "20mb",
     extended: true,
   })
 );
+
+//middleware error
+app.use(errorMiddlewarer);
 
 // Init all other stuff
 app.use(cors());
@@ -55,8 +57,5 @@ app.listen(app.get("port"), () => {
 
 //Init MongoDB
 initMongodb()
-
-//middleware error
-app.use(errorMiddlewarer);
 
 module.exports = { app };
