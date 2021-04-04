@@ -4,7 +4,8 @@
   "description": "API for IEEE CS UTP Web",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -49,5 +50,8 @@
     "passport-local-mongoose": "^6.1.0",
     "trim-request": "^1.0.6",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
