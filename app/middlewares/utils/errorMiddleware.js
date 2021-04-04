@@ -11,6 +11,8 @@ const errorMiddlewarer = (error, req, res, next) => {
     message = error.message;
     status = 500;
   }
+  if(process.env.NODE_ENV == 'development')
+    console.error(error)
 
   return res.status(status).json({ error: { message } });
 };

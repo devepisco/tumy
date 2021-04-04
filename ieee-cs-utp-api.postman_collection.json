@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "27901eef-03dd-46ef-8e8d-e60e235ec3fd",
+		"name": "ieee-cs-utp-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Ieeecsutp123*\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/auth/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "admin_login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Ieeecsutp123*\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/auth/login",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "771"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"303-bWzNQYyqhPXh37IQVhBStI6FEgk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Apr 2021 22:24:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b78cf0461b433331f23bd8766f222961bafe0095f051bcf71669d84a7292f52640260fc535b3d780da5ed586163e5ce8dc5dfa7d8b8d896d63c1368d106ad85d9727e9da925964883d889f32980c96ddbc390b966402f27c96cda8f0c37572089a19081719bb878d69cb2c8873ea18ffd6\",\n    \"expired_in\": 1617576858000,\n    \"expired_date\": \"2021-04-04T22:54:18.000Z\",\n    \"user\": {\n        \"_id\": \"606a3bbb78c7e21e6cb97535\",\n        \"role\": \"admin\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"ADMIN DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-04T22:20:43.371Z\",\n        \"updatedAt\": \"2021-04-04T22:20:43.371Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+						},
+						{
+							"name": "user_login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"user@gmail.com\",\r\n    \"password\":\"Ieeecsutp123*\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/auth/login",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "771"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"303-dgsBrQGtm5JjCrZ2k/B62lNfk90\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Apr 2021 22:23:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b756edd21bd24f4950cbb4733215d4b97136bf8bf1f184805bb5a0425361db6a902342c0476851e1415eac8656bc9ed35eba474981094d0b8211166c0cea57c3af8f0c3225cfb6ae9cf960b13b757d9757b3923ad334863d3513191e1d4295c5335312ce69235f0c152d8ec69f5ea8f15a\",\n    \"expired_in\": 1617576832000,\n    \"expired_date\": \"2021-04-04T22:53:52.000Z\",\n    \"user\": {\n        \"_id\": \"606a3bbb78c7e21e6cb97534\",\n        \"role\": \"user\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"user@gmail.com\",\n        \"fullname\": \"USUARIO DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-04T22:20:43.371Z\",\n        \"updatedAt\": \"2021-04-04T22:20:43.371Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get_profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenAdmin}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/auth/profile",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get_profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenAdmin}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/auth/profile",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "300"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12c-h8HLjEjDFNrcFelDMsQfeu9HNJo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Apr 2021 22:36:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"_id\": \"606a3bbb78c7e21e6cb97535\",\n        \"role\": \"admin\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"ADMIN DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-04T22:20:43.371Z\",\n        \"updatedAt\": \"2021-04-04T22:20:43.371Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "refresh_token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/auth/refresh_token",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"auth",
+								"refresh_token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "refresh_token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/auth/refresh_token",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"auth",
+										"refresh_token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "771"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"303-N5brmpGQ4DS/r6R2M4FsazC6IRU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Apr 2021 22:36:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b756edd21bd24f4950cbb4733215d4b971edb700fcf6eba6eaded6ede11cc02bc51facfd2a64161a015150f70226c77d0fe1697b6f64bbb53e8a74e65d3b9a801930f9e5196f07f96e5244712f4bc7cf2bf71392491596ec7df25d482207c6b5deab9f7a842d367c4be4c688751346ba81\",\n    \"expired_in\": 1617577608000,\n    \"expired_date\": \"2021-04-04T23:06:48.000Z\",\n    \"user\": {\n        \"_id\": \"606a3bbb78c7e21e6cb97534\",\n        \"role\": \"user\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"user@gmail.com\",\n        \"fullname\": \"USUARIO DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-04T22:20:43.371Z\",\n        \"updatedAt\": \"2021-04-04T22:20:43.371Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:3000/api"
+		},
+		{
+			"key": "tokenUser",
+			"value": "Bearer 4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b756edd21bd24f4950cbb4733215d4b97136bf8bf1f184805bb5a0425361db6a90dc965a2532510f15e9c04606ce98db78e88ee50afef9878314d1e27d216459e00daddfed67416ca0485cc72ecc086f620c2011e66d8531da8668809af8e26ccc6cd4289d6f64a400f3e839ec8bcb9a25"
+		},
+		{
+			"key": "tokenAdmin",
+			"value": "Bearer 4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b78cf0461b433331f23bd8766f222961bafe0095f051bcf71669d84a7292f52640260fc535b3d780da5ed586163e5ce8dc5dfa7d8b8d896d63c1368d106ad85d9727e9da925964883d889f32980c96ddbc390b966402f27c96cda8f0c37572089a19081719bb878d69cb2c8873ea18ffd6"
+		}
+	]
+}

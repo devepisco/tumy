@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const initMongodb = require('./config/mongodb')
 const { errorMiddlewarer } = require('./app/middlewares/utils')
+const { seedDB } = require('./seed')
 
 // Setup express server port from ENV, default: 3000
 app.set("port", process.env.PORT || 3000);
@@ -30,14 +31,17 @@ app.use(
   })
 );
 
-//middleware error
-app.use(errorMiddlewarer);
-
 // Init all other stuff
 app.use(cors());
 app.use(passport.initialize());
 app.use(express.static("public"));
 app.use(helmet());
+
+//import routes
+app.use('/api',require('./app/routes'))
+
+//middleware error
+app.use(errorMiddlewarer);
 
 app.listen(app.get("port"), () => {
   if (process.env.NODE_ENV === "development") {
@@ -57,5 +61,8 @@ app.listen(app.get("port"), () => {
 
 //Init MongoDB
 initMongodb()
+
+//seed BD
+seedDB()
 
 module.exports = { app };
