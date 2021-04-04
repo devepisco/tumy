@@ -6,6 +6,7 @@ const passport = require("passport");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
+const initMongodb = require('./config/mongodb')
 const { errorMiddlewarer } = require('./app/middlewares/utils')
 
 // Setup express server port from ENV, default: 3000
@@ -51,6 +52,9 @@ app.listen(app.get("port"), () => {
     console.log(`Server listening on port ${process.env.PORT}`);
   }
 });
+
+//Init MongoDB
+initMongodb()
 
 //middleware error
 app.use(errorMiddlewarer);
