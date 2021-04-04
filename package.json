@@ -1,0 +1,30 @@
+{
+  "name": "ieee-cs-utp-api",
+  "version": "1.0.0",
+  "description": "API for IEEE CS UTP Web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IEEE-Computer-Society-UTP/IEEE-UTP-CS-API.git"
+  },
+  "keywords": [
+    "IEEE",
+    "Computer",
+    "Society",
+    "UTP",
+    "API",
+    "node",
+    "nodejs",
+    "mongoose",
+    "mongodb"
+  ],
+  "author": "IEEE Computer Society UTP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IEEE-Computer-Society-UTP/IEEE-UTP-CS-API/issues"
+  },
+  "homepage": "https://github.com/IEEE-Computer-Society-UTP/IEEE-UTP-CS-API#readme"
+}
