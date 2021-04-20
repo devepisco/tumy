@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "27901eef-03dd-46ef-8e8d-e60e235ec3fd",
+		"_postman_id": "999a1cd8-4769-4a50-82ec-91d12126547d",
 		"name": "tumi-courier-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Ieeecsutp123*\"\r\n}",
+							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -35,13 +35,13 @@
 					},
 					"response": [
 						{
-							"name": "admin_login",
+							"name": "login",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Ieeecsutp123*\"\r\n}",
+									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -117,11 +117,11 @@
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"303-bWzNQYyqhPXh37IQVhBStI6FEgk\""
+									"value": "W/\"303-aXwCv2wqnG0gmyrqJPHX0yMFF8A\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 04 Apr 2021 22:24:18 GMT"
+									"value": "Tue, 20 Apr 2021 15:46:08 GMT"
 								},
 								{
 									"key": "Connection",
@@ -133,108 +133,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"access_token\": \"4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b78cf0461b433331f23bd8766f222961bafe0095f051bcf71669d84a7292f52640260fc535b3d780da5ed586163e5ce8dc5dfa7d8b8d896d63c1368d106ad85d9727e9da925964883d889f32980c96ddbc390b966402f27c96cda8f0c37572089a19081719bb878d69cb2c8873ea18ffd6\",\n    \"expired_in\": 1617576858000,\n    \"expired_date\": \"2021-04-04T22:54:18.000Z\",\n    \"user\": {\n        \"_id\": \"606a3bbb78c7e21e6cb97535\",\n        \"role\": \"admin\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"ADMIN DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-04T22:20:43.371Z\",\n        \"updatedAt\": \"2021-04-04T22:20:43.371Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
-						},
-						{
-							"name": "user_login",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"user@gmail.com\",\r\n    \"password\":\"Ieeecsutp123*\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseURL}}/auth/login",
-									"host": [
-										"{{baseURL}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "771"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"303-dgsBrQGtm5JjCrZ2k/B62lNfk90\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 04 Apr 2021 22:23:52 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"access_token\": \"4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b756edd21bd24f4950cbb4733215d4b97136bf8bf1f184805bb5a0425361db6a902342c0476851e1415eac8656bc9ed35eba474981094d0b8211166c0cea57c3af8f0c3225cfb6ae9cf960b13b757d9757b3923ad334863d3513191e1d4295c5335312ce69235f0c152d8ec69f5ea8f15a\",\n    \"expired_in\": 1617576832000,\n    \"expired_date\": \"2021-04-04T22:53:52.000Z\",\n    \"user\": {\n        \"_id\": \"606a3bbb78c7e21e6cb97534\",\n        \"role\": \"user\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"user@gmail.com\",\n        \"fullname\": \"USUARIO DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-04T22:20:43.371Z\",\n        \"updatedAt\": \"2021-04-04T22:20:43.371Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+							"body": "{\n    \"access_token\": \"4cd6fe153b59e8c4fedc337df5ad07c7649256947a396484a4f6166bd9cd7ffe3881f75fb81d7c4fff447eba471ebbe69be7f7f06665a1e2465ca8d02d0e5df757f8b6313c4c8ad5e0040fc4b1cceb003c5c568ecdcaf3e86e56cf1b0867a82f02a35212d0c6ea4ef9cb9573fc51eda7257afa65f0534959c64182d3810890557da13c9717657d5b3cc44eb4e5899a4db6655c155c7723de545f04ada791904a9185142e76d699fd5a7914c5f3d37cdace3997a28699868bfd7c56930d2ba21e\",\n    \"expired_in\": 1618935368000,\n    \"expired_date\": \"2021-04-20T16:16:08.000Z\",\n    \"user\": {\n        \"_id\": \"607ef706e9c2d61ff45404ae\",\n        \"role\": \"admin\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"ADMIN DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-20T15:45:10.428Z\",\n        \"updatedAt\": \"2021-04-20T15:45:10.428Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
 						}
 					]
 				},
@@ -245,7 +144,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{tokenAdmin}}",
+								"value": "{{tokenUser}}",
 								"type": "text"
 							}
 						],
@@ -268,7 +167,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "{{tokenAdmin}}",
+										"value": "{{tokenUser}}",
 										"type": "text"
 									}
 								],
@@ -341,11 +240,11 @@
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"12c-h8HLjEjDFNrcFelDMsQfeu9HNJo\""
+									"value": "W/\"12c-tIOGXkV0D+V8mgbxh2vyqMLezJ0\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 04 Apr 2021 22:36:43 GMT"
+									"value": "Tue, 20 Apr 2021 15:47:34 GMT"
 								},
 								{
 									"key": "Connection",
@@ -357,7 +256,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"user\": {\n        \"_id\": \"606a3bbb78c7e21e6cb97535\",\n        \"role\": \"admin\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"ADMIN DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-04T22:20:43.371Z\",\n        \"updatedAt\": \"2021-04-04T22:20:43.371Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+							"body": "{\n    \"user\": {\n        \"_id\": \"607ef706e9c2d61ff45404ae\",\n        \"role\": \"admin\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"ADMIN DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-20T15:45:10.428Z\",\n        \"updatedAt\": \"2021-04-20T15:45:10.428Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
 						}
 					]
 				},
@@ -518,7 +417,8 @@
 		},
 		{
 			"key": "tokenAdmin",
-			"value": "Bearer 4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b78cf0461b433331f23bd8766f222961bafe0095f051bcf71669d84a7292f52640260fc535b3d780da5ed586163e5ce8dc5dfa7d8b8d896d63c1368d106ad85d9727e9da925964883d889f32980c96ddbc390b966402f27c96cda8f0c37572089a19081719bb878d69cb2c8873ea18ffd6"
+			"value": "Bearer 4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b78cf0461b433331f23bd8766f222961bafe0095f051bcf71669d84a7292f52640260fc535b3d780da5ed586163e5ce8dc5dfa7d8b8d896d63c1368d106ad85d9727e9da925964883d889f32980c96ddbc390b966402f27c96cda8f0c37572089a19081719bb878d69cb2c8873ea18ffd6",
+			"disabled": true
 		}
 	]
 }
