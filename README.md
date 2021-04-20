@@ -7,7 +7,7 @@
 1.  Clone the project from github. Change "myproject" to your project name.
 
 ```bash
-git clone https://github.com/IEEE-Computer-Society-UTP/IEEE-UTP-CS-API.git ./myproject
+git clone https://github.com/ZafraDev/tumi-courier-api ./myproject
 ```
 
 ### Using manual download ZIP
