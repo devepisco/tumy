@@ -3,7 +3,7 @@ const mongoosePaginateV2 = require("mongoose-paginate-v2");
 const bcrypt = require("bcrypt");
 const mongoose_delete = require("mongoose-delete");
 
-let userSchema = new Schema(
+let driverSchema = new Schema(
   {
     firstname: {
       type: String,
@@ -18,13 +18,15 @@ let userSchema = new Schema(
       uppercase: true
     },
     numID: {
-      type: String
+      type: String,
+      uppercase: true
     },
     numSOAT:{
       type: String
     },
     numPlaca:{
-      type: String
+      type: String,
+      uppercase: true
     },
     numTarjetaPropiedad:{
       type: String
@@ -41,10 +43,11 @@ let userSchema = new Schema(
       type: String,
       select: false,
     },
+    profilePicture:{
+    },
     role: {
       type: String,
-      enum: ["user", "driver" ,"admin"],
-      default: "user",
+      default: "driver",
     },
     isBlocked: {
       type: Boolean,
@@ -56,26 +59,26 @@ let userSchema = new Schema(
   }
 );
 
-const hash = function (user, salt, next) {
-  bcrypt.hash(user.password, salt, (error, newHash) => {
+const hash = function (driver, salt, next) {
+  bcrypt.hash(driver.password, salt, (error, newHash) => {
     if (error) {
       return next(error);
     }
-    user.password = newHash;
+    driver.password = newHash;
     return next();
   });
 };
 
-const genSalt = function (user, SALT_FACTOR, next) {
+const genSalt = function (driver, SALT_FACTOR, next) {
   bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
     if (err) {
       return next(err);
     }
-    return hash(user, salt, next);
+    return hash(driver, salt, next);
   });
 };
 
-userSchema.pre("save", function (next) {
+driverSchema.pre("save", function (next) {
   const that = this;
   const SALT_FACTOR = 5;
   if (!that.isModified("password")) {
@@ -84,12 +87,12 @@ userSchema.pre("save", function (next) {
   return genSalt(that, SALT_FACTOR, next);
 });
 
-userSchema.statics.comparePassword = async (password, recivedPasword) => {
+driverSchema.statics.comparePassword = async (password, recivedPasword) => {
   return await bcrypt.compare(password, recivedPasword);
 };
 
-userSchema.plugin(mongoosePaginateV2);
-userSchema.plugin(mongoose_delete, {
+driverSchema.plugin(mongoosePaginateV2);
+driverSchema.plugin(mongoose_delete, {
   deletedAt: true,
   overrideMethods: [
     "countDocuments",
@@ -101,4 +104,4 @@ userSchema.plugin(mongoose_delete, {
   ],
 });
 
-module.exports = model("User", userSchema);
+module.exports = model("driver", driverSchema);
