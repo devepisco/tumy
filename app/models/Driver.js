@@ -104,4 +104,4 @@ driverSchema.plugin(mongoose_delete, {
   ],
 });
 
-module.exports = model("driver", driverSchema);
+module.exports = model("Driver", driverSchema);

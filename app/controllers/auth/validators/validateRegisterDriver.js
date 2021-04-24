@@ -73,10 +73,10 @@ const validateRegisterDriver = [
         .withMessage('La contraseña es muy corta, debe ser de almenos 8 caracteres')
         .matches(passwordRegex)
         .withMessage("La contraseña debe contener almenos una letra y un número"),
-    check('profilePicture')
-        .not()
-        .isEmpty()
-        .withMessage('Debe ingresar una imagen de perfil del conductor'),
+    // check('profilePicture')
+    //     .not()
+    //     .isEmpty()
+    //     .withMessage('Debe ingresar una imagen de perfil del conductor'),
     (req, res, next) => {
       validateResult(req, res, next)
     }

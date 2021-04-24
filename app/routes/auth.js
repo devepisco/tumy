@@ -23,16 +23,18 @@ const {
   validateRegisterDriver
 } = require('../controllers/auth/validators')
 
-
 //define storage for images
 const storage = multer.diskStorage({
 //destination for files
   destination:function (request, file, callback){
-    callback(null, 'public/uploads/images');
+    callback(null, 'public/uploads/images/');
   },
 //add back the extension
   filename:function(request, file, callback){
-    const date = new Date().toDateString().split(" ").join("_");
+    const date = new Date()
+      .toDateString()
+      .split(" ")
+      .join("_");
     callback(null, date + file.originalname);
     },
 });
@@ -48,12 +50,20 @@ const upload = multer ({
 /*
  * Register User route
  */
-router.post('/register/user', validateRegisterUser, registerUser)
+router.post('/register/user',
+  validateRegisterUser,
+  registerUser
+)
 
 /*
  * Register Driver route
  */
-router.post('/register/driver', upload.single('profilePicture'), registerDriver)
+router.post('/register/driver', 
+  trimRequest.all,
+  upload.single('profilePicture'),
+  validateRegisterDriver,
+  registerDriver
+)
 
 
 /*
