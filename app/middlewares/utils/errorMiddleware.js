@@ -6,7 +6,7 @@ const errorMiddlewarer = (error, req, res, next) => {
   if (error instanceof Exceptions) {
     const _error = error.toJson();
     message = _error.message;
-    status = 500;
+    status = _error.status || 500;
   } else {
     message = error.message;
     status = 500;

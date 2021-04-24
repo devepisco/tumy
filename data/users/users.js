@@ -6,7 +6,7 @@ module.exports = [
     numID:"72230303",
     phone:"920903021",
     email:"test@user.com",
-    password:"1234",
+    password:"Admin1234",
     role: "user",
     isBlocked: false,
   },
@@ -17,7 +17,7 @@ module.exports = [
     numID:"70200302",
     phone:"967128349",
     email:"admin@user.com",
-    password:"1234",
+    password:"Admin1234",
     role: "admin",
     isBlocked: false,
   }

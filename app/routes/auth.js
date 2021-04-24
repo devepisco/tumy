@@ -1,94 +1,83 @@
-const express = require('express')
-const router = express.Router()
-require('../../config/passport')
-const passport = require('passport')
-const trimRequest = require('trim-request')
-const requireAuth = passport.authenticate('jwt', {
-  session: false
-})
+const express = require("express");
+const router = express.Router();
+require("../../config/passport");
+const passport = require("passport");
+const trimRequest = require("trim-request");
+const requireAuth = passport.authenticate("jwt", {
+  session: false,
+});
 
-const multer = require('multer')
+const multer = require("multer");
 
 const {
   login,
   registerUser,
   registerDriver,
   getProfile,
-  refreshToken, 
-} = require('../controllers/auth')
+  refreshToken,
+} = require("../controllers/auth");
 
 const {
   validateLogin,
   validateRegisterUser,
-  validateRegisterDriver
-} = require('../controllers/auth/validators')
+  validateRegisterDriver,
+} = require("../controllers/auth/validators");
 
 //define storage for images
 const storage = multer.diskStorage({
-//destination for files
-  destination:function (request, file, callback){
-    callback(null, 'public/uploads/images/');
+  //destination for files
+  destination: function (request, file, callback) {
+    callback(null, "public/uploads/images/");
   },
-//add back the extension
-  filename:function(request, file, callback){
-    const date = new Date()
-      .toDateString()
-      .split(" ")
-      .join("_");
-    callback(null, date + file.originalname);
-    },
+  //add back the extension
+  filename: function (request, file, callback) {
+    const date = new Date().toDateString().split(" ").join("_");
+    callback(null, date + file.originalname.split(" ").join("_"));
+  },
 });
 
 //Upload parameters for multer
-const upload = multer ({
-  storage:storage,
-  limits:{
+const upload = multer({
+  storage: storage,
+  limits: {
     fieldsize: 1024 * 1024 * 3,
-  }
+  },
 });
 
 /*
  * Register User route
  */
-router.post('/register/user',
+router.post(
+  "/register/user",
+  trimRequest.all,
   validateRegisterUser,
   registerUser
-)
+);
 
 /*
  * Register Driver route
  */
-router.post('/register/driver', 
+router.post(
+  "/register/driver",
   trimRequest.all,
-  upload.single('profilePicture'),
+  upload.single("profilePicture"),
   validateRegisterDriver,
   registerDriver
-)
-
+);
 
 /*
  * Login route
  */
-router.post('/login', trimRequest.all, validateLogin, login)
+router.post("/login", trimRequest.all, validateLogin, login);
 
 /*
  * Profile route
  */
-router.get(
-  '/profile', 
-  requireAuth,
-  trimRequest.all, 
-  getProfile
-)
+router.get("/profile", requireAuth, trimRequest.all, getProfile);
 
 /*
  * Refresh token route
  */
-router.get(
-  '/refresh_token', 
-  requireAuth,
-  trimRequest.all, 
-  refreshToken
-)
+router.get("/refresh_token", requireAuth, trimRequest.all, refreshToken);
 
-module.exports = router
+module.exports = router;

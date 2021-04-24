@@ -1,6 +1,14 @@
-const registerUserTemplate = require('../../models/User')
+const Exceptions = require('../../../errors/Exceptions');
+const registerUserTemplate = require('../../models/User'),
+{ structure } = require("../../middlewares/utils")
 
-const registerUser = (req , res)=> {
+const registerUser = structure(async (req , res)=> {
+    const findedUser = await registerUserTemplate.findOne({email: req.body.email})
+    if(findedUser) throw new Exceptions(400, "El correo ya fue registrado")
+
+    const findedUser2 = await registerUserTemplate.findOne({numID: req.body.numID})
+    if(findedUser2) throw new Exceptions(400, "El DNI ya fue registrado")
+
     const registeredUser = new registerUserTemplate({
         firstname:req.body.firstname,
         lastname:req.body.lastname,
@@ -8,15 +16,10 @@ const registerUser = (req , res)=> {
         numID:req.body.numID,
         phone:req.body.phone,
         email:req.body.email,
-        password:req.body.password        
+        password:req.body.password       
     })
-    registeredUser.save()
-        .then(data => {
-            res.json(data)
-        })
-        .catch(error => {
-            res.json(error)
-        })
-};
+    const data = await registeredUser.save()
+    return res.json(data)
+});
 
 module.exports = { registerUser }
