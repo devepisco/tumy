@@ -1,6 +1,14 @@
-const registerDriverTemplate = require('../../models/Driver')
+const Exceptions = require('../../../errors/Exceptions');
+const registerDriverTemplate = require('../../models/Driver');
+const { structure } = require('../../middlewares/utils');
 
-const registerDriver = (req , res)=> {
+const registerDriver = structure(async (req , res)=> {
+    const findedUser = await registerDriverTemplate.findOne({email: req.body.email})
+    if(findedUser) throw new Exceptions(400, "El correo ya fue registrado")
+
+    const findedUser2 = await registerDriverTemplate.findOne({numID: req.body.numID})
+    if(findedUser2) throw new Exceptions(400, "El DNI ya fue registrado")
+
     const registeredDriver = new registerDriverTemplate({
         firstname:req.body.firstname,
         lastname:req.body.lastname,
@@ -14,13 +22,8 @@ const registerDriver = (req , res)=> {
         password:req.body.password,
         profilePicture:req.file.filename,
     })
-    registeredDriver.save()
-        .then(data => {
-            res.json(data)
-        })
-        .catch(error => {
-            res.json(error)
-        })
-};
+    const data = await registeredDriver.save()
+    return res.json(data)
+});
 
 module.exports = { registerDriver }
