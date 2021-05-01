@@ -7,7 +7,7 @@ const forgotPassword = structure(async (req, res, next) => {
     //get user based on posted email
     const user = await registerUserTemplate.findOne({ email: req.body.email })
     if(!user){
-        return next(new Exceptions(404, 'No existe un usuario con ese correo'));
+        throw new Exceptions(404, 'No existe un usuario con ese correo');
     }
     //generate the random reset token
     const resetToken = user.createPasswordResetToken();

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c190bd08-e315-4d79-b546-36d483fd7aa5",
+		"_postman_id": "1da6ad23-4901-4116-9275-def8f9447e11",
 		"name": "tumi-courier-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1044,6 +1044,141 @@
 							"body": "{\n    \"access_token\": \"4cd6fe153b59e8c4fedc337df5ad07c7649256947a396484a4f6166bd9cd7ffe3881f75fb81d7c4fff447eba471ebbe663eddd6063817cc357e7cea3b52598acd7519e8cd14fd0e74b092cd42c6aeeded75ff12beed3ad1e764663e903863ffcbca7c1a7fe63e44d33e3b132b90dfcafc2f7c43c9131248c1019086f7b52441cc0d3409ef1a09d28ab6d9e1e530f0cfffd4c27736a8a8bc502d71c85f811401bbe0b123e1ce71999da3a01f97809e092adb05c1e03dc4b4a6f34cbadab114487\",\n    \"expired_in\": 1619486854000,\n    \"expired_date\": \"2021-04-27T01:27:34.000Z\",\n    \"user\": {\n        \"role\": \"driver\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"_id\": \"60822a3891fd4d1af4b88c45\",\n        \"firstname\": \"PRUEBA\",\n        \"lastname\": \"DRIVER\",\n        \"typeID\": \"DNI\",\n        \"numID\": \"90202929\",\n        \"numSOAT\": \"05-3ASD39322\",\n        \"numPlaca\": \"2334-5Z\",\n        \"numTarjetaPropiedad\": \"62APSE543\",\n        \"phone\": \"967128349\",\n        \"email\": \"jose@testmailer.io\",\n        \"createdAt\": \"2021-04-23T02:00:24.858Z\",\n        \"updatedAt\": \"2021-04-27T00:57:34.117Z\",\n        \"__v\": 0,\n        \"password\": \"$2b$05$8drshenwzMyQKIEm7rFO1eLrqvezC4tefm5WMAVdBjS4nvhBcJMIi\",\n        \"passwordChangedAt\": \"2021-04-27T00:57:33.117Z\"\n    }\n}"
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "update_userdata",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\":\"Josue\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/user/updateMe",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"user",
+						"updateMe"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "{{baseURL}}/user/updateMe",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Javier\",\r\n    \"lastname\":\"Perez\",\r\n    \"typeID\":\"DNI\",\r\n    \"numID\":\"00123092\",\r\n    \"phone\":\"992009034\",\r\n    \"email\":\"admin@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/updateMe",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"updateMe"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "326"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"146-JpI2jYUk/uGGHF5xIOHw9p91yZs\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 01 May 2021 09:27:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"role\": \"admin\",\n            \"isBlocked\": false,\n            \"deleted\": false,\n            \"_id\": \"608c9f0bca38023cfcd0a50e\",\n            \"firstname\": \"JAVIER\",\n            \"lastname\": \"PEREZ\",\n            \"typeID\": \"DNI\",\n            \"numID\": \"00123092\",\n            \"phone\": \"992009034\",\n            \"email\": \"admin@gmail.com\",\n            \"createdAt\": \"2021-05-01T00:21:31.747Z\",\n            \"updatedAt\": \"2021-05-01T09:27:36.436Z\",\n            \"__v\": 0\n        }\n    }\n}"
 				}
 			]
 		}
