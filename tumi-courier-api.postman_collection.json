@@ -1048,45 +1048,16 @@
 			]
 		},
 		{
-			"name": "update_userdata",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"firstname\":\"Josue\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/user/updateMe",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"user",
-						"updateMe"
-					]
-				}
-			},
-			"response": [
+			"name": "user",
+			"item": [
 				{
-					"name": "{{baseURL}}/user/updateMe",
-					"originalRequest": {
+					"name": "update_userdata",
+					"request": {
 						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\":\"Javier\",\r\n    \"lastname\":\"Perez\",\r\n    \"typeID\":\"DNI\",\r\n    \"numID\":\"00123092\",\r\n    \"phone\":\"992009034\",\r\n    \"email\":\"admin@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"firstname\":\"Josue\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1104,81 +1075,247 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
+					"response": [
 						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-						},
-						{
-							"key": "X-DNS-Prefetch-Control",
-							"value": "off"
-						},
-						{
-							"key": "Expect-CT",
-							"value": "max-age=0"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=15552000; includeSubDomains"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "no-referrer"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "326"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"146-JpI2jYUk/uGGHF5xIOHw9p91yZs\""
-						},
-						{
-							"key": "Date",
-							"value": "Sat, 01 May 2021 09:27:36 GMT"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5"
+							"name": "updateMe",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\":\"Javier\",\r\n    \"lastname\":\"Perez\",\r\n    \"typeID\":\"DNI\",\r\n    \"numID\":\"00123092\",\r\n    \"phone\":\"992009034\",\r\n    \"email\":\"admin@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/updateMe",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"updateMe"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"146-JpI2jYUk/uGGHF5xIOHw9p91yZs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 01 May 2021 09:27:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"role\": \"admin\",\n            \"isBlocked\": false,\n            \"deleted\": false,\n            \"_id\": \"608c9f0bca38023cfcd0a50e\",\n            \"firstname\": \"JAVIER\",\n            \"lastname\": \"PEREZ\",\n            \"typeID\": \"DNI\",\n            \"numID\": \"00123092\",\n            \"phone\": \"992009034\",\n            \"email\": \"admin@gmail.com\",\n            \"createdAt\": \"2021-05-01T00:21:31.747Z\",\n            \"updatedAt\": \"2021-05-01T09:27:36.436Z\",\n            \"__v\": 0\n        }\n    }\n}"
 						}
-					],
-					"cookie": [],
-					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"role\": \"admin\",\n            \"isBlocked\": false,\n            \"deleted\": false,\n            \"_id\": \"608c9f0bca38023cfcd0a50e\",\n            \"firstname\": \"JAVIER\",\n            \"lastname\": \"PEREZ\",\n            \"typeID\": \"DNI\",\n            \"numID\": \"00123092\",\n            \"phone\": \"992009034\",\n            \"email\": \"admin@gmail.com\",\n            \"createdAt\": \"2021-05-01T00:21:31.747Z\",\n            \"updatedAt\": \"2021-05-01T09:27:36.436Z\",\n            \"__v\": 0\n        }\n    }\n}"
+					]
+				},
+				{
+					"name": "get_price_ride",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047137, -77.026201\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/getPrice",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"getPrice"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get_price_ride",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"origin\":\"-12.064115,-77.035826\",\r\n    \"destination\":\"-12.047137,-77.026201\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/getPrice",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"getPrice"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "210"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d2-MWnARLuNT2PifFKsfykleEcXdiQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 May 2021 10:39:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"info\": {\n        \"origen\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\",\n        \"destino\": \"Av. Abancay 219, Cercado de Lima 15001, Peru\",\n        \"distancia\": \"2.9 km\",\n        \"duracion\": \"12 mins\",\n        \"costo\": \"10.15 soles\"\n    }\n}"
+						}
+					]
 				}
 			]
 		}

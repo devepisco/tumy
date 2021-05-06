@@ -7,13 +7,25 @@ const requireAuth = passport.authenticate("jwt", {
 });
 
 const {
-    updateMe
+    updateMe,
+    getPrice
   } = require("../controllers/users");
 
   const {
-    validateUpdatedUser
+    validateUpdatedUser,
+    validateSearchPrice
   } = require("../controllers/users/validators");
 
+/**
+ * Updating user data route
+ */
 router.patch("/updateMe", requireAuth, trimRequest.all, validateUpdatedUser, updateMe);
+
+/**
+ * getting the price for the ride route
+ */
+ router.get("/getPrice", trimRequest.all,validateSearchPrice, getPrice);
+
+
 
 module.exports = router;
