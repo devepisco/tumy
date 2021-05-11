@@ -8,17 +8,15 @@ const updateMe = structure(async (req, res) =>{
     
     let userId = getUserIdFromToken(req.headers.authorization.replace("Bearer ", "").trim())
 
-    console.log(userId);
+    //console.log(userId);
     // Actualizar los campos recibidos
     const updatedUser = await User.findByIdAndUpdate(userId, data, {
         new: true
     });
     
+    
     res.status(200).json({
-        status: 'success',
-        data:{
-            user: updatedUser
-        }
+        updatedUser
     });
 });
 

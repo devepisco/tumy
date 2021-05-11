@@ -1,7 +1,11 @@
 const { updateMe } = require('./updateMe')
-const { getPrice } = require('./getPrice');
+const { createService } = require('./createService');
+const { saveDetailsService } = require('./saveDetailsService');
+const { getPaymentMethods } = require('./getPaymentMethods');
 
 module.exports = {
     updateMe,
-    getPrice
+    createService,
+    saveDetailsService,
+    getPaymentMethods
 }

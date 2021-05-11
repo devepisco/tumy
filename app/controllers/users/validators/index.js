@@ -1,7 +1,9 @@
 const { validateUpdatedUser } = require('./validateUpdatedUser')
-const { validateSearchPrice } = require('./validateSearchPrice')
+const { validateCoordinates } = require('./validateCoordinates')
+const { validateDetailsfromService } = require('./validateDetailsfromService')
 
 module.exports = {
     validateUpdatedUser,
-    validateSearchPrice
+    validateCoordinates,
+    validateDetailsfromService
 }

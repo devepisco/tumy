@@ -8,12 +8,15 @@ const requireAuth = passport.authenticate("jwt", {
 
 const {
     updateMe,
-    getPrice
+    createService,
+    saveDetailsService,
+    getPaymentMethods
   } = require("../controllers/users");
 
   const {
     validateUpdatedUser,
-    validateSearchPrice
+    validateCoordinates,
+    validateDetailsfromService
   } = require("../controllers/users/validators");
 
 /**
@@ -22,10 +25,20 @@ const {
 router.patch("/updateMe", requireAuth, trimRequest.all, validateUpdatedUser, updateMe);
 
 /**
- * getting the price for the ride route
+ * Create a New Service
  */
- router.get("/getPrice", trimRequest.all,validateSearchPrice, getPrice);
+ router.get("/createService", requireAuth, trimRequest.all,validateCoordinates, createService);
 
+
+/**
+ * Save details from a created service
+ */
+router.post("/saveDetailsService", requireAuth, trimRequest.all, validateDetailsfromService, saveDetailsService);
+
+/**
+ * Get all the payment methods exists
+ */
+router.get("/getPaymentMethods", trimRequest.all, getPaymentMethods);
 
 
 module.exports = router;

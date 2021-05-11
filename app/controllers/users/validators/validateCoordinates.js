@@ -1,7 +1,7 @@
 const { validateResult } = require('../../../middlewares/utils')
 const { check } = require('express-validator')
 
-const validateSearchPrice = [
+const validateCoordinates = [
     check('origin')
         .not()
         .isEmpty()
@@ -15,4 +15,4 @@ const validateSearchPrice = [
     }
   ]
 
-module.exports = { validateSearchPrice }
+module.exports = { validateCoordinates }

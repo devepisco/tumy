@@ -5,7 +5,8 @@ const findPriceRate = async (nameId = "") => {
     nameId
   })
     .lean()
-    .select("price");
+    .select("price")
+    .select("minPrice");
   return pricerate;
 };
 

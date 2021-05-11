@@ -1053,6 +1053,16 @@
 				{
 					"name": "update_userdata",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -1186,16 +1196,26 @@
 					]
 				},
 				{
-					"name": "get_price_ride",
+					"name": "create_service",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenUser}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047137, -77.026201\"\r\n}",
+							"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047165, -77.026234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1203,25 +1223,31 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/user/getPrice",
+							"raw": "{{baseURL}}/user/createService",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"user",
-								"getPrice"
+								"createService"
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "get_price_ride",
+							"name": "create_service",
 							"originalRequest": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"origin\":\"-12.064115,-77.035826\",\r\n    \"destination\":\"-12.047137,-77.026201\"\r\n}",
+									"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047165, -77.026234\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1229,13 +1255,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseURL}}/user/getPrice",
+									"raw": "{{baseURL}}/user/createService",
 									"host": [
 										"{{baseURL}}"
 									],
 									"path": [
 										"user",
-										"getPrice"
+										"createService"
 									]
 								}
 							},
@@ -1293,15 +1319,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "210"
+									"value": "225"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"d2-MWnARLuNT2PifFKsfykleEcXdiQ\""
+									"value": "W/\"e1-WkZn/Hkgul8VAK5pH4CviIgMuzI\""
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 06 May 2021 10:39:59 GMT"
+									"value": "Tue, 11 May 2021 12:21:21 GMT"
 								},
 								{
 									"key": "Connection",
@@ -1313,7 +1339,341 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"info\": {\n        \"origen\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\",\n        \"destino\": \"Av. Abancay 219, Cercado de Lima 15001, Peru\",\n        \"distancia\": \"2.9 km\",\n        \"duracion\": \"12 mins\",\n        \"costo\": \"10.15 soles\"\n    }\n}"
+							"body": "{\n    \"idServicio\": \"609a76c11706440750fad6df\",\n    \"origen\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\",\n    \"destino\": \"Av. Abancay 219, Cercado de Lima 15001, Peru\",\n    \"distancia\": \"2.9 km\",\n    \"tiempoAprox\": \"12 mins\",\n    \"costo\": \"10.15 soles\"\n}"
+						}
+					]
+				},
+				{
+					"name": "saveDetailsService",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idServicio",
+									"value": "609a76c11706440750fad6df",
+									"type": "text"
+								},
+								{
+									"key": "nombreRemitente",
+									"value": "Nombre remitente Prueba",
+									"type": "text"
+								},
+								{
+									"key": "celularRemitente",
+									"value": "917450095",
+									"type": "text"
+								},
+								{
+									"key": "nombreDestinatario",
+									"value": "Nombre destrinatario Prueba",
+									"type": "text"
+								},
+								{
+									"key": "celularDestinatario",
+									"value": "995679039",
+									"type": "text"
+								},
+								{
+									"key": "esDestinatario",
+									"value": "true",
+									"description": "rellenar solo si es destinatario",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "repartidorCobra",
+									"value": "",
+									"description": "1 | si | true | rellenar solo si el repartidor cobra",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nameIdPago",
+									"value": "billetera_digital",
+									"description": "obtener nameId de /getPaymentMethods",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/saveDetailsService",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"saveDetailsService"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "saveDetailsService",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "idServicio",
+											"value": "609a76c11706440750fad6df",
+											"type": "text"
+										},
+										{
+											"key": "nombreRemitente",
+											"value": "Nombre remitente Prueba",
+											"type": "text"
+										},
+										{
+											"key": "celularRemitente",
+											"value": "917450095",
+											"type": "text"
+										},
+										{
+											"key": "nombreDestinatario",
+											"value": "Nombre destrinatario Prueba",
+											"type": "text"
+										},
+										{
+											"key": "celularDestinatario",
+											"value": "995679039",
+											"type": "text"
+										},
+										{
+											"key": "esDestinatario",
+											"value": "true",
+											"description": "rellenar solo si es destinatario",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "repartidorCobra",
+											"value": "",
+											"description": "1 | si | true | rellenar solo si el repartidor cobra",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "nameIdPago",
+											"value": "billetera_digital",
+											"description": "obtener nameId de /getPaymentMethods",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/saveDetailsService",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"saveDetailsService"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "398"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18e-aOLQ+EF9RIjWtH1NSoTIpvuyPBs\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 May 2021 12:22:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"idServicio\": \"609a76c11706440750fad6df\",\n    \"remitente\": \"Nombre remitente Prueba\",\n    \"celularRemitente\": \"917450095\",\n    \"destinatario\": \"Nombre destrinatario Prueba\",\n    \"celularDestinatario\": \"995679039\",\n    \"esDestinatario\": false,\n    \"repartidorCobra\": false,\n    \"pagoContraEntrega\": \"Billetera digital\",\n    \"montoContraEntrega\": 10.15,\n    \"descripcion\": \"\",\n    \"createdAt\": \"2021-05-11T12:22:29.126Z\",\n    \"updatedAt\": \"2021-05-11T12:22:29.126Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "getPaymentMethods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/user/getPaymentMethods",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"getPaymentMethods"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getPaymentMethods",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/user/getPaymentMethods",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"getPaymentMethods"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "117"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"75-LGIWXFcXcUMHMDdhca7/5ZVXeRc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 May 2021 12:14:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"paymentMethods\": [\n        {\n            \"_id\": \"6099d04e97c71727541de6a8\",\n            \"nameId\": \"billetera_digital\",\n            \"nameMethod\": \"Billetera digital\"\n        }\n    ]\n}"
 						}
 					]
 				}
