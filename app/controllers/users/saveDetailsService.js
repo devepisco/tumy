@@ -1,36 +1,43 @@
-const { structure } = require("../../middlewares/utils");
+const { structure, handleError } = require("../../middlewares/utils");
 const Exceptions = require('../../../errors/Exceptions');
-const { findPaymentMethod } = require("../users/helpers/findPaymentMethod");
+const { findPaymentMethod, findDetailState, findGlobalState } = require("../users/helpers");
 
 const NewServiceTemplate = require("../../models/NewServices");
 const mongoose = require('mongoose');
+const moment  = require('moment-timezone');
+const  datePeru = moment().tz("America/Lima").format(`YYYY-MM-DDTHH:mm:ss.sssZ`).toString();
 
 const saveDetailsService = structure(async (req,res) =>{
-    let nuevoDetalle = {};
     const nameIdPago = await findPaymentMethod(req.body.nameIdPago);
+    let nuevoDetalle = {};
+    let detalle = {};
+    const foundService = await NewServiceTemplate.SolicitudServicio.findOne({_id: req.body.idServicio});
+    if(!foundService) return handleError(res, 404, "No se encontró la solicitud de servicio");
     
-    const foundService = await NewServiceTemplate.SolicitudServicio.findOne({ _id: req.body.idServicio });
-    if(!foundService) throw new Exceptions(400, "No se encontró la solicitud de servicio")
 
+    //Verficar si el servicio ya contiene un detalle para no sobreescribir el servicio
+    if(foundService.detalle) return handleError(res, 404, "El servicio ya contiene un detalle existente");
+    
+
+    //crear nueva instancia del modelo NewServices/Detalle y actualizar el campo "detalle" del modelo SolicitudServicio
     if(req.body.esDestinatario){ 
         if(req.body.repartidorCobra){
-            const DetailsService = await new NewServiceTemplate.Detalle({
+            detalle = await new NewServiceTemplate.Detalle({
                 _id:new mongoose.Types.ObjectId(),
-                descripcion:"",
+                descripcion:req.body.descripcion,
                 nombreRemitente:req.body.nombreRemitente,
                 celularRemitente:req.body.celularRemitente,
-                nombreDestinatario:req.body.nombreRemitente,
-                celularDestinatario:req.body.celularRemitente,
-                esDestinatario:true,
+                nombreDestinatario:req.body.nombreDestinatario,
+                celularDestinatario:req.body.celularDestinatario,
+                esDestinatario:false,
                 repartidorCobra:true,
                 pagoContraEntrega:nameIdPago._id,
                 montoContraEntrega: foundService.costo
             });
-            nuevoDetalle = await DetailsService.save();
         }else{
-            const DetailsService = await new NewServiceTemplate.Detalle({
+            detalle = await new NewServiceTemplate.Detalle({
                 _id:new mongoose.Types.ObjectId(),
-                descripcion:"",
+                descripcion:req.body.descripcion,
                 nombreRemitente:req.body.nombreRemitente,
                 celularRemitente:req.body.celularRemitente,
                 nombreDestinatario:req.body.nombreRemitente,
@@ -40,13 +47,12 @@ const saveDetailsService = structure(async (req,res) =>{
                 pagoContraEntrega:nameIdPago._id,
                 montoContraEntrega: foundService.costo
             });
-            nuevoDetalle = await DetailsService.save();
         }
     }else{
         if(req.body.repartidorCobra){
-            const DetailsService = await new NewServiceTemplate.Detalle({
+            detalle = await new NewServiceTemplate.Detalle({
                 _id:new mongoose.Types.ObjectId(),
-                descripcion:"",
+                descripcion:req.body.descripcion,
                 nombreRemitente:req.body.nombreRemitente,
                 celularRemitente:req.body.celularRemitente,
                 nombreDestinatario:req.body.nombreDestinatario,
@@ -56,11 +62,10 @@ const saveDetailsService = structure(async (req,res) =>{
                 pagoContraEntrega:nameIdPago._id,
                 montoContraEntrega: foundService.costo
             });
-            nuevoDetalle = await DetailsService.save();
         }else{
-            const DetailsService = await new NewServiceTemplate.Detalle({
+            detalle = await new NewServiceTemplate.Detalle({
                 _id:new mongoose.Types.ObjectId(),
-                descripcion:"",
+                descripcion:req.body.descripcion,
                 nombreRemitente:req.body.nombreRemitente,
                 celularRemitente:req.body.celularRemitente,
                 nombreDestinatario:req.body.nombreDestinatario,
@@ -69,35 +74,59 @@ const saveDetailsService = structure(async (req,res) =>{
                 repartidorCobra:false,
                 pagoContraEntrega:nameIdPago._id,
                 montoContraEntrega: foundService.costo
-            }); 
-            nuevoDetalle = await DetailsService.save();
+            });
         }
-        
     }
     
-    //buscar el ID de servicio, recibido en la ruta saveDetails + detalle de servicio
-    const data = {
-        detalle: nuevoDetalle._id
-    };
-    await NewServiceTemplate.SolicitudServicio.findByIdAndUpdate(req.body.idServicio, data);
-    
-    const UpdatedService = await NewServiceTemplate.SolicitudServicio.findOne({_id:req.body.idServicio});
-    const Detalles = await NewServiceTemplate.Detalle.findOne({_id:nuevoDetalle._id});
-    
-    res.status(200).json({
-        idServicio:UpdatedService._id,
-        remitente: Detalles.nombreRemitente,
-        celularRemitente: Detalles.celularRemitente,
-        destinatario: Detalles.nombreDestinatario,
-        celularDestinatario: Detalles.celularDestinatario,
-        esDestinatario:Detalles.esDestinatario,
-        repartidorCobra:Detalles.repartidorCobra,
-        pagoContraEntrega:nameIdPago.nameMethod,
-        montoContraEntrega: Detalles.montoContraEntrega,
-        descripcion:Detalles.descripcion,
-        createdAt:Detalles.createdAt,
-        updatedAt:Detalles.updatedAt
+    //Buscar el _id correspondiente al EstadoDetalle "servicio creado"
+    const estadoDetalle = await findDetailState("servicio_creado");
+
+    //Actualizar el campo estadoDetalle en el modelo SolicitudServicio
+    const dataEstadoDetalle = { estadoDetalle: estadoDetalle};
+    const updatedEstadoDetalle = await NewServiceTemplate.SolicitudServicio
+            .findByIdAndUpdate(foundService._id, dataEstadoDetalle);
+
+    //Buscar el _id correspondiente al EstadoGlobal "en espera"
+     const estadoGlobal = await findGlobalState("en_proceso");
+
+    //Actualizar el campo estadoGlobal en el  modelo SolicitudServicio
+    const dataEstadoGlobal = { estadoGlobal: estadoGlobal._id };
+    const updatedEstadoGlobal = await NewServiceTemplate.SolicitudServicio
+            .findByIdAndUpdate(foundService._id, dataEstadoGlobal, {
+        new: true
     });
+    //guardar el Detalle solo si se actualizaron correctamente los campos de estadoDetalle y estadoGlobal
+    if(updatedEstadoDetalle.estadoDetalle && updatedEstadoGlobal.estadoGlobal) {
+        nuevoDetalle = await detalle.save();
+        //Actualizar el campo de detalle en el modelo Servicio
+        const data = { detalle: nuevoDetalle._id };
+        const datos = await NewServiceTemplate.SolicitudServicio.findByIdAndUpdate(foundService._id, data, {
+            new: true
+        });
+        console.log(datos);
+        res.status(200).json({
+            idServicio:foundService._id,
+            descripcion: nuevoDetalle.descripcion,
+            remitente: nuevoDetalle.nombreRemitente,
+            celularRemitente: nuevoDetalle.celularRemitente,
+            destinatario: nuevoDetalle.nombreDestinatario,
+            celularDestinatario: nuevoDetalle.celularDestinatario,
+            esDestinatario:nuevoDetalle.esDestinatario,
+            repartidorCobra:nuevoDetalle.repartidorCobra,
+            pagoContraEntrega:nameIdPago.nameMethod,
+            montoContraEntrega: nuevoDetalle.montoContraEntrega,
+            estadoGlobal:  estadoGlobal.nameEstado,
+            estadoDetalle: {
+                estado: estadoDetalle.nameEstado,
+                fecha: datos.estadoDetalle[0].fecha
+            },
+            descripcion:nuevoDetalle.descripcion,
+            createdAt:foundService.createdAt,
+            updatedAt:foundService.updatedAt,
+            
+        });
+    }
+    else return handleError(res, 404, "Hubo un error al guardar el estado del servicio");
 });
 
 module.exports= {saveDetailsService};

@@ -1,5 +1,3 @@
-const { structure, handleError } = require("../../../middlewares/utils");
-const Exceptions = require('../../../../errors/Exceptions');
 const PaymentMethodTemplate =  require('../../../models/NewServices')
 
 const findPaymentMethod = async (nameId = "") =>{

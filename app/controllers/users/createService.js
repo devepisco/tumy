@@ -1,7 +1,7 @@
 const {Client} = require("@googlemaps/google-maps-services-js");
 const { structure, handleError } = require("../../middlewares/utils");
 const Exceptions = require('../../../errors/Exceptions');
-const { findPriceRate } = require("./helpers/findPriceRate");
+const { findPriceRate } = require("./helpers");
 
 const NewServiceTemplate = require("../../models/NewServices");
 

@@ -10,7 +10,8 @@ const {
     updateMe,
     createService,
     saveDetailsService,
-    getPaymentMethods
+    getPaymentMethods,
+    getAllDataServices
   } = require("../controllers/users");
 
   const {
@@ -27,18 +28,22 @@ router.patch("/updateMe", requireAuth, trimRequest.all, validateUpdatedUser, upd
 /**
  * Create a New Service
  */
- router.get("/createService", requireAuth, trimRequest.all,validateCoordinates, createService);
+ router.get("/createService", trimRequest.all,validateCoordinates, createService);
 
 
 /**
  * Save details from a created service
  */
-router.post("/saveDetailsService", requireAuth, trimRequest.all, validateDetailsfromService, saveDetailsService);
+router.post("/saveDetailsService", trimRequest.all, validateDetailsfromService, saveDetailsService);
 
 /**
  * Get all the payment methods exists
  */
 router.get("/getPaymentMethods", trimRequest.all, getPaymentMethods);
 
+/**
+ * Get all data Service and Details
+ */
+router.get("/getAllDataServices", trimRequest.all, getAllDataServices);
 
 module.exports = router;
