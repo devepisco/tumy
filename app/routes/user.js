@@ -11,7 +11,8 @@ const {
     createService,
     saveDetailsService,
     getPaymentMethods,
-    getAllDataServices
+    getAllDataServices,
+    cancelService
   } = require("../controllers/users");
 
   const {
@@ -45,5 +46,10 @@ router.get("/getPaymentMethods", trimRequest.all, getPaymentMethods);
  * Get all data Service and Details
  */
 router.get("/getAllDataServices", trimRequest.all, getAllDataServices);
+
+/**
+ * Cancel the Service request
+ */
+router.get("/cancelService/:id", trimRequest.all, cancelService);
 
 module.exports = router;

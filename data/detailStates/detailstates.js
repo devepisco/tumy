@@ -19,4 +19,8 @@ module.exports = [
         nameId:"entregado",
         nameEstado:"Entregado",
     },
+    {
+        nameId:"cancelado",
+        nameEstado:"Cancelado"
+    }
 ];
