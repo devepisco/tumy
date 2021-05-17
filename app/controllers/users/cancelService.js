@@ -44,8 +44,9 @@ const cancelService = structure( async (req, res) =>{
                 .exec();
         if(updatedEstadoDetalle==1 && updatedEstadoGlobal.estadoGlobal._id) {
             res.status(200).json({
-                foundService
-            })
+                status: 'success',
+                message: 'El servicio ' + IdServicio +' fue cancelado'
+            });
         }
 });
 

@@ -10,6 +10,12 @@ const solicitudServicioSchema = Schema({
         destinoCoordenadas:{
             type:String
         },
+        origenDireccion:{
+            type:String
+        },
+        destinoDireccion:{
+            type:String
+        },
         costo:{
             type: Number
         },
@@ -37,6 +43,7 @@ const solicitudServicioSchema = Schema({
     },
     {
         timestamps: true,
+        default:datePeru 
     }
 );
 

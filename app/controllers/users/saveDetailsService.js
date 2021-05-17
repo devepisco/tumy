@@ -14,11 +14,9 @@ const saveDetailsService = structure(async (req,res) =>{
     const foundService = await NewServiceTemplate.SolicitudServicio.findOne({_id: req.body.idServicio});
     if(!foundService) return handleError(res, 404, "No se encontró la solicitud de servicio");
     
-
     //Verficar si el servicio ya contiene un detalle para no sobreescribir el servicio
     if(foundService.detalle) return handleError(res, 404, "El servicio ya contiene un detalle existente");
     
-
     //crear nueva instancia del modelo NewServices/Detalle y actualizar el campo "detalle" del modelo SolicitudServicio
     if(req.body.esDestinatario){ 
         if(req.body.repartidorCobra){
@@ -103,7 +101,6 @@ const saveDetailsService = structure(async (req,res) =>{
         const datos = await NewServiceTemplate.SolicitudServicio.findByIdAndUpdate(foundService._id, data, {
             new: true
         });
-        console.log(datos);
         res.status(200).json({
             idServicio:foundService._id,
             descripcion: nuevoDetalle.descripcion,

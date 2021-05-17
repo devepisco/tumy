@@ -42,23 +42,3 @@ const findAllDataService = async () => {
     return data;
 }
 module.exports = { findAllDataService }
-
-
-/**
- * 
- *  const data = await NewServiceTemplate.SolicitudServicio.aggregate(
-                [
-                    {
-                        $lookup:{
-                            from: "estadodetalles",
-                            localField:"_id",
-                            foreignField:"servicio",
-                            as: "estadoDetalleArray"
-                        }
-                    },
-                    {
-                        $unwind:"$estadoDetalleArray"
-                    }
-                ]
-            );
- */

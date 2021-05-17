@@ -36,12 +36,13 @@ const createService = structure(async (req,res) =>{
             const NewService = new NewServiceTemplate.SolicitudServicio({
                 origenCoordenadas:req.body.origin,
                 destinoCoordenadas:req.body.destination,
+                origenDireccion:getdistance.data.origin_addresses[0],
+                destinoDireccion:getdistance.data.destination_addresses[0],
                 costo:costo,
                 tiempoAprox:getdistance.data.rows[0].elements[0].duration.text
             });
             const data = await NewService.save();
             //return res.json(data);
-              
             res.status(200).json({
                 idServicio: data._id,
                 origen: getdistance.data.origin_addresses[0],
