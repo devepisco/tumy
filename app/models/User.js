@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 const mongoosePaginateV2 = require("mongoose-paginate-v2");
 const bcrypt = require("bcrypt");
 const mongoose_delete = require("mongoose-delete");
+const crypto = require('crypto');
 
 let userSchema = new Schema(
   {
@@ -41,6 +42,15 @@ let userSchema = new Schema(
       type: String,
       select: false,
     },
+    passwordChangedAt: {
+      type: Date
+    },
+    passwordResetToken: {
+      type: String
+    },
+    passwordResetExpires:{
+      type: Date
+    },
     role: {
       type: String,
       enum: ["user", "driver" ,"admin"],
@@ -56,6 +66,24 @@ let userSchema = new Schema(
   }
 );
 
+userSchema.pre('save', function(next){
+  if(!this.isModified('password') || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now()-1000;
+  next();
+});
+
+userSchema.methods.createPasswordResetToken = function (){
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+
+  // console.log({resetToken}, this.passwordResetToken);
+
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
+  
+}
 const hash = function (user, salt, next) {
   bcrypt.hash(user.password, salt, (error, newHash) => {
     if (error) {

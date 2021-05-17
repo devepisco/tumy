@@ -1,6 +1,6 @@
 const Exceptions = require('../../../errors/Exceptions');
-const registerUserTemplate = require('../../models/User'),
-{ structure } = require("../../middlewares/utils")
+const registerUserTemplate = require('../../models/User');
+const { structure } = require('../../middlewares/utils');
 
 const registerUser = structure(async (req , res)=> {
     const findedUser = await registerUserTemplate.findOne({email: req.body.email})

@@ -3,7 +3,8 @@ const { errorMiddlewarer } = require("./errorMiddleware"),
   { structure } = require("./structure"),
   { removeExtensionFromFile } = require("./removeExtensionFromFile"),
   { isIDGood } = require("./isIDGood"),
-  { validateResult } = require("./validateResult");
+  { validateResult } = require("./validateResult"),
+  { sendEmail } = require("./email");
 
 
 module.exports = {
@@ -12,5 +13,6 @@ module.exports = {
   structure,
   isIDGood,
   removeExtensionFromFile,
-  validateResult
+  validateResult,
+  sendEmail
 };

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "999a1cd8-4769-4a50-82ec-91d12126547d",
+		"_postman_id": "1da6ad23-4901-4116-9275-def8f9447e11",
 		"name": "tumi-courier-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -380,6 +380,1573 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"access_token\": \"4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b756edd21bd24f4950cbb4733215d4b971edb700fcf6eba6eaded6ede11cc02bc51facfd2a64161a015150f70226c77d0fe1697b6f64bbb53e8a74e65d3b9a801930f9e5196f07f96e5244712f4bc7cf2bf71392491596ec7df25d482207c6b5deab9f7a842d367c4be4c688751346ba81\",\n    \"expired_in\": 1617577608000,\n    \"expired_date\": \"2021-04-04T23:06:48.000Z\",\n    \"user\": {\n        \"_id\": \"606a3bbb78c7e21e6cb97534\",\n        \"role\": \"user\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"user@gmail.com\",\n        \"fullname\": \"USUARIO DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-04T22:20:43.371Z\",\n        \"updatedAt\": \"2021-04-04T22:20:43.371Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "register_user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Usuario\",\r\n    \"lastname\":\"Prueba\",\r\n    \"typeID\":\"DNI\",\r\n    \"numID\":\"00345920\",\r\n    \"phone\":\"990328945\",\r\n    \"email\":\"prueba@registeruser.com\",\r\n    \"password\":\"12345678Ae\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register",
+								"user"
+							]
+						},
+						"description": "http://localhost:3000/api/auth/register/user"
+					},
+					"response": [
+						{
+							"name": "register_user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\":\"Usuario\",\r\n    \"lastname\":\"Prueba\",\r\n    \"typeID\":\"DNI\",\r\n    \"numID\":\"00345920\",\r\n    \"phone\":\"990328945\",\r\n    \"email\":\"prueba@registeruser.com\",\r\n    \"password\":\"12345678Ae\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/register/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"register",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "372"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"174-Kf4Jlq2leRODE/vrynoZiwhBi8o\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Apr 2021 22:47:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"role\": \"user\",\n    \"isBlocked\": false,\n    \"_id\": \"6087431953ee5d1d5cab4877\",\n    \"deleted\": false,\n    \"firstname\": \"USUARIO\",\n    \"lastname\": \"PRUEBA\",\n    \"typeID\": \"DNI\",\n    \"numID\": \"00345920\",\n    \"phone\": \"990328945\",\n    \"email\": \"prueba@registeruser.com\",\n    \"password\": \"$2b$05$j.jdItqjWt4ZUYzkKzrLjOz6147G5kH92fkIzDqL8eDXMW9FKfxga\",\n    \"createdAt\": \"2021-04-26T22:47:53.832Z\",\n    \"updatedAt\": \"2021-04-26T22:47:53.832Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "register_driver",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstname",
+									"value": "Driver",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Prueba",
+									"type": "text"
+								},
+								{
+									"key": "typeID",
+									"value": "DNI",
+									"type": "text"
+								},
+								{
+									"key": "numID",
+									"value": "03039493",
+									"type": "text"
+								},
+								{
+									"key": "numSOAT",
+									"value": "059392202",
+									"type": "text"
+								},
+								{
+									"key": "numPlaca",
+									"value": "4509-6B",
+									"type": "text"
+								},
+								{
+									"key": "numTarjetaPropiedad",
+									"value": "AS949K44LL0022FIL",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "953247603",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "prueba@registerdriver.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "98765432Eu",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/josue/Documents/foto de perfil driver.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register/driver",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register",
+								"driver"
+							]
+						},
+						"description": "http://localhost:3000/api/auth/register/driver"
+					},
+					"response": [
+						{
+							"name": "register_driver",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstname",
+											"value": "Driver",
+											"type": "text"
+										},
+										{
+											"key": "lastname",
+											"value": "Prueba",
+											"type": "text"
+										},
+										{
+											"key": "typeID",
+											"value": "DNI",
+											"type": "text"
+										},
+										{
+											"key": "numID",
+											"value": "03039493",
+											"type": "text"
+										},
+										{
+											"key": "numSOAT",
+											"value": "059392202",
+											"type": "text"
+										},
+										{
+											"key": "numPlaca",
+											"value": "4509-6B",
+											"type": "text"
+										},
+										{
+											"key": "numTarjetaPropiedad",
+											"value": "AS949K44LL0022FIL",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "953247603",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "prueba@registerdriver.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "98765432Eu",
+											"type": "text"
+										},
+										{
+											"key": "profilePicture",
+											"type": "file",
+											"src": "/C:/Users/josue/Documents/foto de perfil driver.jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/register/driver",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"register",
+										"driver"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "520"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"208-0cVRNQUmBAq9RDiaPxIXVEsXVzY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Apr 2021 22:59:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"role\": \"driver\",\n    \"isBlocked\": false,\n    \"_id\": \"608745d14fe38d0ae090cab4\",\n    \"deleted\": false,\n    \"firstname\": \"DRIVER\",\n    \"lastname\": \"PRUEBA\",\n    \"typeID\": \"DNI\",\n    \"numID\": \"03039493\",\n    \"numSOAT\": \"059392202\",\n    \"numPlaca\": \"4509-6B\",\n    \"numTarjetaPropiedad\": \"AS949K44LL0022FIL\",\n    \"phone\": \"953247603\",\n    \"email\": \"prueba@registerdriver.com\",\n    \"password\": \"$2b$05$c3EGuTgkc58cju94Gj9pGuAhGotO4gphqmsORXz9LZmKY.2PH73xa\",\n    \"profilePicture\": \"Mon_Apr_26_2021foto_de_perfil_driver.jpg\",\n    \"createdAt\": \"2021-04-26T22:59:29.225Z\",\n    \"updatedAt\": \"2021-04-26T22:59:29.225Z\",\n    \"__v\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "forgot_password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"jose@testmailer.io\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/forgot_password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"forgot_password"
+							]
+						},
+						"description": "http://localhost:3000/api/auth/forgot_password"
+					},
+					"response": [
+						{
+							"name": "forgot_password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"jose@testmailer.io\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/forgot_password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"forgot_password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-Ul4rpO5tOQucseQ42kIMQNFFjs4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Apr 2021 00:56:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Token enviado al correo.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "reset_password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"AE12345670e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/reset_password/abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"reset_password",
+								"abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd"
+							]
+						},
+						"description": "http://localhost:3000/api/auth/reset_password/abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd"
+					},
+					"response": [
+						{
+							"name": "reset_password",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\":\"AE12345670e\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/reset_password/abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"reset_password",
+										"abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "975"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3cf-mkmOnNJL/cWBWz4VIr30MnaqRrQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Apr 2021 00:57:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"4cd6fe153b59e8c4fedc337df5ad07c7649256947a396484a4f6166bd9cd7ffe3881f75fb81d7c4fff447eba471ebbe663eddd6063817cc357e7cea3b52598acd7519e8cd14fd0e74b092cd42c6aeeded75ff12beed3ad1e764663e903863ffcbca7c1a7fe63e44d33e3b132b90dfcafc2f7c43c9131248c1019086f7b52441cc0d3409ef1a09d28ab6d9e1e530f0cfffd4c27736a8a8bc502d71c85f811401bbe0b123e1ce71999da3a01f97809e092adb05c1e03dc4b4a6f34cbadab114487\",\n    \"expired_in\": 1619486854000,\n    \"expired_date\": \"2021-04-27T01:27:34.000Z\",\n    \"user\": {\n        \"role\": \"driver\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"_id\": \"60822a3891fd4d1af4b88c45\",\n        \"firstname\": \"PRUEBA\",\n        \"lastname\": \"DRIVER\",\n        \"typeID\": \"DNI\",\n        \"numID\": \"90202929\",\n        \"numSOAT\": \"05-3ASD39322\",\n        \"numPlaca\": \"2334-5Z\",\n        \"numTarjetaPropiedad\": \"62APSE543\",\n        \"phone\": \"967128349\",\n        \"email\": \"jose@testmailer.io\",\n        \"createdAt\": \"2021-04-23T02:00:24.858Z\",\n        \"updatedAt\": \"2021-04-27T00:57:34.117Z\",\n        \"__v\": 0,\n        \"password\": \"$2b$05$8drshenwzMyQKIEm7rFO1eLrqvezC4tefm5WMAVdBjS4nvhBcJMIi\",\n        \"passwordChangedAt\": \"2021-04-27T00:57:33.117Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "update_userdata",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tokenUser}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Josue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/updateMe",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"updateMe"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "updateMe",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\":\"Javier\",\r\n    \"lastname\":\"Perez\",\r\n    \"typeID\":\"DNI\",\r\n    \"numID\":\"00123092\",\r\n    \"phone\":\"992009034\",\r\n    \"email\":\"admin@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/updateMe",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"updateMe"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"146-JpI2jYUk/uGGHF5xIOHw9p91yZs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 01 May 2021 09:27:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"role\": \"admin\",\n            \"isBlocked\": false,\n            \"deleted\": false,\n            \"_id\": \"608c9f0bca38023cfcd0a50e\",\n            \"firstname\": \"JAVIER\",\n            \"lastname\": \"PEREZ\",\n            \"typeID\": \"DNI\",\n            \"numID\": \"00123092\",\n            \"phone\": \"992009034\",\n            \"email\": \"admin@gmail.com\",\n            \"createdAt\": \"2021-05-01T00:21:31.747Z\",\n            \"updatedAt\": \"2021-05-01T09:27:36.436Z\",\n            \"__v\": 0\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create_service",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047165, -77.134434\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/createService",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"createService"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create_service",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047165, -77.134434\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/createService",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"createService"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "240"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f0-vMQx6S+/Z5OljJRNZ0ygMvnPoaE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 May 2021 01:44:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"idServicio\": \"609f277afe8ca81ca868329a\",\n    \"origen\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\",\n    \"destino\": \"Av. Contralmirante Ernesto de Mora 412, Callao 07021, Peru\",\n    \"distancia\": \"13.9 km\",\n    \"tiempoAprox\": \"37 mins\",\n    \"costo\": \"48.65 soles\"\n}"
+						}
+					]
+				},
+				{
+					"name": "saveDetailsService",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idServicio",
+									"value": "609f277afe8ca81ca868329a",
+									"type": "text"
+								},
+								{
+									"key": "descripcion",
+									"value": "5 unidades de polos",
+									"type": "text"
+								},
+								{
+									"key": "nombreRemitente",
+									"value": "Lorenzo Lima",
+									"type": "text"
+								},
+								{
+									"key": "celularRemitente",
+									"value": "917450095",
+									"type": "text"
+								},
+								{
+									"key": "nombreDestinatario",
+									"value": "Edward Polo",
+									"type": "text"
+								},
+								{
+									"key": "celularDestinatario",
+									"value": "995679039",
+									"type": "text"
+								},
+								{
+									"key": "esDestinatario",
+									"value": "true",
+									"description": "rellenar solo si es destinatario",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "repartidorCobra",
+									"value": "true",
+									"description": "1 | si | true | rellenar solo si el repartidor cobra",
+									"type": "text"
+								},
+								{
+									"key": "nameIdPago",
+									"value": "billetera_digital",
+									"description": "obtener nameId de /getPaymentMethods",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/saveDetailsService",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"saveDetailsService"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "saveDetailsService",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "idServicio",
+											"value": "609f277afe8ca81ca868329a",
+											"type": "text"
+										},
+										{
+											"key": "descripcion",
+											"value": "5 unidades de polos",
+											"type": "text"
+										},
+										{
+											"key": "nombreRemitente",
+											"value": "Lorenzo Lima",
+											"type": "text"
+										},
+										{
+											"key": "celularRemitente",
+											"value": "917450095",
+											"type": "text"
+										},
+										{
+											"key": "nombreDestinatario",
+											"value": "Edward Polo",
+											"type": "text"
+										},
+										{
+											"key": "celularDestinatario",
+											"value": "995679039",
+											"type": "text"
+										},
+										{
+											"key": "esDestinatario",
+											"value": "true",
+											"description": "rellenar solo si es destinatario",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "repartidorCobra",
+											"value": "true",
+											"description": "1 | si | true | rellenar solo si el repartidor cobra",
+											"type": "text"
+										},
+										{
+											"key": "nameIdPago",
+											"value": "billetera_digital",
+											"description": "obtener nameId de /getPaymentMethods",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/user/saveDetailsService",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"saveDetailsService"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "497"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f1-EfGUChSGxffmcbP3d+q6hpTag4A\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 May 2021 01:44:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"idServicio\": \"609f277afe8ca81ca868329a\",\n    \"descripcion\": \"5 unidades de polos\",\n    \"remitente\": \"Lorenzo Lima\",\n    \"celularRemitente\": \"917450095\",\n    \"destinatario\": \"Edward Polo\",\n    \"celularDestinatario\": \"995679039\",\n    \"esDestinatario\": false,\n    \"repartidorCobra\": true,\n    \"pagoContraEntrega\": \"Billetera digital\",\n    \"montoContraEntrega\": 48.65,\n    \"estadoGlobal\": \"En proceso\",\n    \"estadoDetalle\": {\n        \"estado\": \"Servicio creado\",\n        \"fecha\": \"2021-05-15T01:41:27.000Z\"\n    },\n    \"createdAt\": \"2021-05-15T01:44:26.105Z\",\n    \"updatedAt\": \"2021-05-15T01:44:26.105Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "getPaymentMethods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/user/getPaymentMethods",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"getPaymentMethods"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getPaymentMethods",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/user/getPaymentMethods",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"getPaymentMethods"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "117"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"75-LGIWXFcXcUMHMDdhca7/5ZVXeRc\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 May 2021 12:14:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"paymentMethods\": [\n        {\n            \"_id\": \"6099d04e97c71727541de6a8\",\n            \"nameId\": \"billetera_digital\",\n            \"nameMethod\": \"Billetera digital\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "getAllDataServices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/user/getAllDataServices?estadoGlobal=en_proceso&fechaInicio=2021-05-16&fechaFin=2021-05-18",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"getAllDataServices"
+							],
+							"query": [
+								{
+									"key": "estadoGlobal",
+									"value": "en_proceso"
+								},
+								{
+									"key": "fechaInicio",
+									"value": "2021-05-16"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2021-05-18"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getAllDataServices",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/user/getAllDataServices",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"getAllDataServices"
+									],
+									"query": [
+										{
+											"key": "estadoGlobal",
+											"value": "en_proceso",
+											"disabled": true
+										},
+										{
+											"key": "fechaInicio",
+											"value": "2021-05-16",
+											"disabled": true
+										},
+										{
+											"key": "fechaFin",
+											"value": "2021-05-18",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "913"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"391-C4HCki3zfCHvVd6vdKdPPllHapc\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 12:48:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"60a261c2ab642d3284e0915a\",\n            \"nameId\": \"cancelado\",\n            \"nameEstado\": \"Cancelado\",\n            \"origenDireccion\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\",\n            \"destinoDireccion\": \"Av. Contralmirante Ernesto de Mora 412, Callao 07021, Peru\",\n            \"createdAt\": \"2021-05-17T12:29:54.393Z\",\n            \"updatedAt\": \"2021-05-17T12:40:06.836Z\"\n        },\n        {\n            \"_id\": \"60a2630d15b046275801c5a5\",\n            \"nameId\": \"cancelado\",\n            \"nameEstado\": \"Cancelado\",\n            \"origenDireccion\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\",\n            \"destinoDireccion\": \"Av Argentina 2007, Callao 07001, Peru\",\n            \"createdAt\": \"2021-05-17T12:35:26.008Z\",\n            \"updatedAt\": \"2021-05-17T12:37:00.174Z\"\n        },\n        {\n            \"_id\": \"60a264d41420162d7884faf9\",\n            \"nameId\": \"cancelado\",\n            \"nameEstado\": \"Cancelado\",\n            \"origenDireccion\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\",\n            \"destinoDireccion\": \"Av. Contralmirante Ernesto de Mora 412, Callao 07021, Peru\",\n            \"createdAt\": \"2021-05-17T12:43:00.827Z\",\n            \"updatedAt\": \"2021-05-17T12:43:24.192Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "cancelService",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/user/cancelService/60a0a914e33f930df029ac14",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"cancelService",
+								"60a0a914e33f930df029ac14"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "cancelService",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/user/cancelService/60a261c2ab642d3284e0915a",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"cancelService",
+										"60a261c2ab642d3284e0915a"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-ufJusCxP+H8ZGFZEcFSzKa2slG0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 17 May 2021 12:40:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "\"Servicio cancelado con éxito.\""
 						}
 					]
 				}

@@ -15,6 +15,8 @@ const {
   registerDriver,
   getProfile,
   refreshToken,
+  forgotPassword,
+  resetPassword
 } = require("../controllers/auth");
 
 const {
@@ -79,5 +81,15 @@ router.get("/profile", requireAuth, trimRequest.all, getProfile);
  * Refresh token route
  */
 router.get("/refresh_token", requireAuth, trimRequest.all, refreshToken);
+
+/**
+ * Forgot Password route
+ */
+router.post("/forgot_password", forgotPassword);
+
+/**
+ * Reset Password rout
+ */
+router.patch("/reset_password/:token", resetPassword);
 
 module.exports = router;
