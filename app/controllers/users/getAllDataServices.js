@@ -57,6 +57,7 @@ const getAllDataServices = structure (async(req, res) =>{
     // si se ingresan solo las fechas o solo una fecha
     }else if(beginDate && endDate && !globalState || beginDate && !globalState && !endDate){
         if(!endDate) endDate = new Date(beginDate).valueOf() + 24*60*60000;
+        else endDate = new Date(endDate).valueOf() + 24*60*60000;
         data = await ServiceModel.SolicitudServicio.aggregate([
             {
                 $lookup:{
