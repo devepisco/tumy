@@ -1,6 +1,5 @@
 const ServiceModel = require("../../models/NewServices");
-const { structure, handleError } = require("../../middlewares/utils");
-const Exceptions = require('../../../errors/Exceptions');
+const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const { findDetailState, findGlobalState } = require("../users/helpers");
 
 
@@ -37,16 +36,12 @@ const cancelService = structure( async (req, res) =>{
             new: true
         });
         
-        const foundService  = await ServiceModel.SolicitudServicio.findOne({ _id : IdServicio })
-                .populate('detalle')
-                .populate('estadoGlobal')
-                .populate('estadoDetalle._id')
-                .exec();
         if(updatedEstadoDetalle==1 && updatedEstadoGlobal.estadoGlobal._id) {
-            res.status(200).json({
-                status: 'success',
-                message: 'El servicio ' + IdServicio +' fue cancelado'
-            });
+            
+            res.status(200).json(objSuccess(
+                data = {},
+                message = 'El servicio  '+ IdServicio +' fue cancelado'
+            ));
         }
 });
 

@@ -26,7 +26,7 @@ const forgotPassword = structure(async (req, res, next) => {
         });
     
         res.status(200).json({
-            status: 'success',
+            success: 'true',
             message: 'Token enviado al correo.'
         });
     }catch(err){

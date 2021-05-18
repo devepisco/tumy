@@ -1,6 +1,6 @@
 const Exceptions = require('../../../errors/Exceptions');
 const registerUserTemplate = require('../../models/User');
-const { structure } = require('../../middlewares/utils');
+const { structure, objSuccess } = require('../../middlewares/utils');
 
 const registerUser = structure(async (req , res)=> {
     const findedUser = await registerUserTemplate.findOne({email: req.body.email})
@@ -18,8 +18,11 @@ const registerUser = structure(async (req , res)=> {
         email:req.body.email,
         password:req.body.password       
     })
-    const data = await registeredUser.save()
-    return res.json(data)
+    await registeredUser.save()
+    return res.status(200).json(objSuccess(
+        data={},
+        message = "Usuario registrado correctamente"
+    ))
 });
 
 module.exports = { registerUser }

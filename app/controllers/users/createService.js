@@ -1,5 +1,5 @@
 const {Client} = require("@googlemaps/google-maps-services-js");
-const { structure, handleError } = require("../../middlewares/utils");
+const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const Exceptions = require('../../../errors/Exceptions');
 const { findPriceRate } = require("./helpers");
 
@@ -43,14 +43,15 @@ const createService = structure(async (req,res) =>{
             });
             const data = await NewService.save();
             //return res.json(data);
-            res.status(200).json({
+            const data2 = {
                 idServicio: data._id,
                 origen: getdistance.data.origin_addresses[0],
                 destino: getdistance.data.destination_addresses[0],
                 distancia: getdistance.data.rows[0].elements[0].distance.text,
                 tiempoAprox: getdistance.data.rows[0].elements[0].duration.text,
                 costo: costo + ' soles'
-            });
+            }
+            res.status(200).json(objSuccess(data2));
         }
     }
     

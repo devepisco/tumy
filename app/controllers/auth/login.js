@@ -1,5 +1,5 @@
 const { matchedData } = require("express-validator"),
-  { structure, handleError } = require("../../middlewares/utils"),
+  { structure, handleError, objSuccess } = require("../../middlewares/utils"),
   { checkPassword } = require("../../middlewares/auth"),
   { userIsBlocked, generateToken, getNavigationByRole } = require("./helpers"),
   { findUserByEmail } = require("../users/helpers");
@@ -16,7 +16,10 @@ const login = structure(async (req, res) => {
     // all ok, register access and return token
     delete user.password;
     user.navigation = getNavigationByRole(user.role?.name);
-    return res.status(200).json({ ...generateToken(user._id), user });
+    return res.status(200).json(objSuccess(
+      { ...generateToken(user._id), user },
+      message = "Usuario logueado correctamente."
+      ));
   }
 });
 

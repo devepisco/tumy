@@ -23,7 +23,7 @@ const resetPassword = structure (async (req, res) =>{
     await user.save();
 
     //send status success
-    res.status(200).json({ status: 'success' })
+    res.status(200).json({ success: 'true' })
 });
 
 module.exports = { resetPassword }

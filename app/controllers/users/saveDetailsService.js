@@ -1,4 +1,4 @@
-const { structure, handleError } = require("../../middlewares/utils");
+const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const Exceptions = require('../../../errors/Exceptions');
 const { findPaymentMethod, findDetailState, findGlobalState } = require("../users/helpers");
 
@@ -101,7 +101,7 @@ const saveDetailsService = structure(async (req,res) =>{
         const datos = await NewServiceTemplate.SolicitudServicio.findByIdAndUpdate(foundService._id, data, {
             new: true
         });
-        res.status(200).json({
+        const data2 = {
             idServicio:foundService._id,
             descripcion: nuevoDetalle.descripcion,
             remitente: nuevoDetalle.nombreRemitente,
@@ -120,8 +120,8 @@ const saveDetailsService = structure(async (req,res) =>{
             descripcion:nuevoDetalle.descripcion,
             createdAt:foundService.createdAt,
             updatedAt:foundService.updatedAt,
-            
-        });
+        }
+        res.status(200).json(objSuccess(data2));
     }
     else return handleError(res, 404, "Hubo un error al guardar el estado del servicio");
 });

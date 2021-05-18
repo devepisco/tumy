@@ -1,6 +1,6 @@
 const Exceptions = require('../../../errors/Exceptions');
 const registerDriverTemplate = require('../../models/Driver');
-const { structure } = require('../../middlewares/utils');
+const { structure, objSuccess } = require('../../middlewares/utils');
 
 const registerDriver = structure(async (req , res)=> {
     const findedUser = await registerDriverTemplate.findOne({email: req.body.email})
@@ -22,8 +22,11 @@ const registerDriver = structure(async (req , res)=> {
         password:req.body.password,
         profilePicture:req.file.filename,
     })
-    const data = await registeredDriver.save()
-    return res.json(data)
+    await registeredDriver.save()
+    return res.status(200).json(objSuccess(
+        data ={},
+        message = "Usuario motorizado registrado correctamente"
+    ))
 });
 
 module.exports = { registerDriver }

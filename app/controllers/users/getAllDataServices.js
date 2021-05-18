@@ -1,4 +1,4 @@
-const { structure } = require("../../middlewares/utils");
+const { structure, objSuccess } = require("../../middlewares/utils");
 const ServiceModel  = require("../../models/NewServices");
 
 const getAllDataServices = structure (async(req, res) =>{
@@ -175,9 +175,7 @@ const getAllDataServices = structure (async(req, res) =>{
 
         ]);
     }
-    res.status(200).json({
-        data
-    });
+    res.status(200).json(objSuccess(data));
 });
  
 module.exports = { getAllDataServices }
