@@ -11,6 +11,7 @@ const getAllDataServices = structure (async(req, res) =>{
     // si se ingresan los 3 filtros de busqueda o solo 1 fecha y estado global
     if(beginDate && endDate && globalState || beginDate && !endDate && globalState){
         if(!endDate) endDate = new Date(beginDate).valueOf() + 24*60*60000;
+        else endDate = new Date(endDate).valueOf() + 24*60*60000;
         data = await ServiceModel.SolicitudServicio.aggregate([
             {
                 $lookup:{
@@ -46,7 +47,7 @@ const getAllDataServices = structure (async(req, res) =>{
                 $match:{
                     createdAt:{
                         $gte: new Date(beginDate),
-                        $lte: new Date(endDate)
+                        $lt: new Date(endDate)
                     },
                     nameId:globalState
                 }

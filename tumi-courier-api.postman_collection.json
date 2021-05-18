@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
+							"raw": "{\r\n    \"email\":\"test@user.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -778,7 +778,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"jose@testmailer.io\"\r\n}",
+							"raw": "{\r\n    \"email\":\"test@user.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -914,7 +914,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\":\"AE12345670e\"\r\n}",
+							"raw": "{\r\n    \"password\":\"Admin1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -922,7 +922,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/reset_password/abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd",
+							"raw": "http://localhost:3000/api/auth/reset_password/8b67c6da980ad4ff169622bc465a9dd26e934ca575d20892296993855134b699",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -932,7 +932,7 @@
 								"api",
 								"auth",
 								"reset_password",
-								"abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd"
+								"8b67c6da980ad4ff169622bc465a9dd26e934ca575d20892296993855134b699"
 							]
 						},
 						"description": "http://localhost:3000/api/auth/reset_password/abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd"
@@ -1054,20 +1054,19 @@
 					"name": "update_userdata",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{tokenUser}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\":\"Josue\"\r\n}",
+							"raw": "{\r\n    \"firstname\": \"USUARIO\",\r\n    \"lastname\": \"DEPRUEBA\",\r\n    \"typeID\": \"DNI\",\r\n    \"numID\": \"72230303\",\r\n    \"phone\": \"920903021\",\r\n    \"email\": \"test@user.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
