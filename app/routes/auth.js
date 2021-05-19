@@ -7,7 +7,7 @@ const requireAuth = passport.authenticate("jwt", {
   session: false,
 });
 
-const multer = require("multer");
+const multer = require('multer');
 
 const {
   login,
@@ -29,12 +29,12 @@ const {
 const storage = multer.diskStorage({
   //destination for files
   destination: function (request, file, callback) {
-    callback(null, "public/uploads/images/");
+  callback(null, "public/uploads/images/");
   },
   //add back the extension
   filename: function (request, file, callback) {
-    const date = new Date().toDateString().split(" ").join("_");
-    callback(null, date + file.originalname.split(" ").join("_"));
+  const date = new Date().toDateString().split(" ").join("_");
+  callback(null, date + file.originalname.split(" ").join("_"));
   },
 });
 
@@ -42,30 +42,19 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: {
-    fieldsize: 1024 * 1024 * 3,
+  fieldsize: 1024 * 1024 * 3,
   },
 });
-
+  
 /*
  * Register User route
  */
-router.post(
-  "/register/user",
-  trimRequest.all,
-  validateRegisterUser,
-  registerUser
-);
+router.post("/register/user", trimRequest.all, validateRegisterUser, registerUser);
 
 /*
  * Register Driver route
  */
-router.post(
-  "/register/driver",
-  trimRequest.all,
-  upload.single("profilePicture"),
-  validateRegisterDriver,
-  registerDriver
-);
+router.post("/register/driver", trimRequest.all, upload.single("profilePicture"), validateRegisterDriver, registerDriver);
 
 /*
  * Login route

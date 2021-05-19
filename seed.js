@@ -9,10 +9,10 @@ const ServiceModel = require("./app/models/NewServices"),
 
 
 const seedDB = async () => {
-  const usersCount = await User.countDocuments();
+  const usersCount = await User.User.countDocuments();
   if (usersCount < 2) {
     const usersPromises = usersData.map(async (user) => {
-      return new User(user).save();
+      return new User.User(user).save();
     });
 
     const promises = await Promise.all(usersPromises);

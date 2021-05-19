@@ -2,24 +2,25 @@ const { validateResult } = require('../../../middlewares/utils')
 const { check } = require('express-validator')
 const { passwordRegex } = require("../../../middlewares/regex")
 
+
 const validateRegisterUser = [
     check('firstname')
         .not()
         .isEmpty()
         .withMessage('Debe añadir un nombre como mínimo')
-        .isAlpha()
+        .matches(/^[A-Za-z\s]+$/)
         .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('lastname')
         .not()
         .isEmpty()
         .withMessage('Debe añadir sus apellidos')
-        .isAlpha()
+        .matches(/^[A-Za-z\s]+$/)
         .withMessage('El apellido debe contener caracteres alfabéticos'),
     check('typeID')
         .not()
         .isEmpty()
         .withMessage('Debe añadir el tipo de Documento')
-        .isAlpha()
+        .matches(/^[A-Za-z\s]+$/)
         .withMessage('El tipo de ID debe contener caracteres alfabéticos'),
     check('numID')
         .not()
@@ -31,6 +32,21 @@ const validateRegisterUser = [
             min: 8
           })
         .withMessage('El ID debe tener como mínimo 8 caracteres'),
+    check('isOrg')
+        .not()
+        .isEmpty()
+        .withMessage('Es necesario confirmar si la cuenta pertenece a una empresa.'),
+    check('nombreEmpresa')
+        .optional(),
+    check('razonSocial')
+        .optional(),
+    check('ruc')
+        .optional()
+        .isLength({
+            min:11,
+            max:11
+        })
+        .withMessage('El RUC debe contener exactamente 11 caracteres'),
     check('phone')
         .not()
         .isEmpty()

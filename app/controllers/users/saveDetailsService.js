@@ -1,11 +1,8 @@
 const { structure, handleError, objSuccess } = require("../../middlewares/utils");
-const Exceptions = require('../../../errors/Exceptions');
 const { findPaymentMethod, findDetailState, findGlobalState } = require("../users/helpers");
 
 const NewServiceTemplate = require("../../models/NewServices");
 const mongoose = require('mongoose');
-const moment  = require('moment-timezone');
-const  datePeru = moment().tz("America/Lima").format(`YYYY-MM-DDTHH:mm:ss.sssZ`).toString();
 
 const saveDetailsService = structure(async (req,res) =>{
     const nameIdPago = await findPaymentMethod(req.body.nameIdPago);
@@ -18,8 +15,8 @@ const saveDetailsService = structure(async (req,res) =>{
     if(foundService.detalle) return handleError(res, 404, "El servicio ya contiene un detalle existente");
     
     //crear nueva instancia del modelo NewServices/Detalle y actualizar el campo "detalle" del modelo SolicitudServicio
-    if(req.body.esDestinatario){ 
-        if(req.body.repartidorCobra){
+    if(req.body.esDestinatario == "true"){ 
+        if(req.body.repartidorCobra == "true"){
             detalle = await new NewServiceTemplate.Detalle({
                 _id:new mongoose.Types.ObjectId(),
                 descripcion:req.body.descripcion,
@@ -47,7 +44,7 @@ const saveDetailsService = structure(async (req,res) =>{
             });
         }
     }else{
-        if(req.body.repartidorCobra){
+        if(req.body.repartidorCobra == "true"){
             detalle = await new NewServiceTemplate.Detalle({
                 _id:new mongoose.Types.ObjectId(),
                 descripcion:req.body.descripcion,

@@ -5,7 +5,7 @@ const { structure, sendEmail } = require('../../middlewares/utils');
 
 const forgotPassword = structure(async (req, res, next) => {
     //get user based on posted email
-    const user = await registerUserTemplate.findOne({ email: req.body.email })
+    const user = await registerUserTemplate.User.findOne({ email: req.body.email })
     if(!user){
         throw new Exceptions(404, 'No existe un usuario con ese correo');
     }

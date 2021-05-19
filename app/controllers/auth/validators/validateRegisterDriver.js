@@ -7,19 +7,19 @@ const validateRegisterDriver = [
         .not()
         .isEmpty()
         .withMessage('Debe añadir un nombre como mínimo')
-        .isAlpha()
+        .matches(/^[A-Za-z\s]+$/)
         .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('lastname')
         .not()
         .isEmpty()
         .withMessage('Debe añadir sus apellidos')
-        .isAlpha()
+        .matches(/^[A-Za-z\s]+$/)
         .withMessage('El apellido debe contener caracteres alfabéticos'),
     check('typeID')
         .not()
         .isEmpty()
         .withMessage('Debe añadir el tipo de Documento')
-        .isAlpha()
+        .matches(/^[A-Za-z\s]+$/)
         .withMessage('El tipo de ID debe contener caracteres alfabéticos'),
     check('numID')
         .not()
@@ -73,10 +73,25 @@ const validateRegisterDriver = [
         .withMessage('La contraseña es muy corta, debe ser de almenos 8 caracteres')
         .matches(passwordRegex)
         .withMessage("La contraseña debe contener almenos una letra y un número"),
-    // check('profilePicture')
-    //     .not()
-    //     .isEmpty()
-    //     .withMessage('Debe ingresar una imagen de perfil del conductor'),
+    check('profilePicture')
+        .custom(
+            (value, {req}) => {
+                if(!req.file)return false;
+                else{
+                    switch (req.file.mimetype) {
+                        case 'image/jpg':
+                            return '.jpg';
+                        case 'image/jpeg':
+                            return '.jpeg';
+                        case  'image/png':
+                            return '.png';
+                        default:
+                            return false;
+                    }
+                }
+            }
+            )
+        .withMessage('Debe registrar una imagen de perfil válida del repartidor'),
     (req, res, next) => {
       validateResult(req, res, next)
     }

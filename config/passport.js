@@ -28,7 +28,7 @@ const jwtOptions = {
 
 const jwtLogin = new JWTStrategy(jwtOptions, (jwtPayload, cb) => {
   //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
-  User.findById(jwtPayload.data._id, (err, user) => {
+  User.User.findById(jwtPayload.data._id, (err, user) => {
     if (err) {
       return cb(err, false);
     }

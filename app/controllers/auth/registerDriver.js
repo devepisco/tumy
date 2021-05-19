@@ -22,7 +22,9 @@ const registerDriver = structure(async (req , res)=> {
         password:req.body.password,
         profilePicture:req.file.filename,
     })
+
     await registeredDriver.save()
+
     return res.status(200).json(objSuccess(
         data ={},
         message = "Usuario motorizado registrado correctamente"

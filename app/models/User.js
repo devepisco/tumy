@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 const mongoosePaginateV2 = require("mongoose-paginate-v2");
 const bcrypt = require("bcrypt");
 const mongoose_delete = require("mongoose-delete");
@@ -29,6 +30,10 @@ let userSchema = new Schema(
     },
     numTarjetaPropiedad:{
       type: String
+    },
+    empresa:{
+      type: Schema.Types.ObjectId, ref:'Empresa',
+      default:null
     },
     phone: {
       type: String
@@ -63,6 +68,21 @@ let userSchema = new Schema(
   },
   {
     timestamps: true,
+  }
+);
+
+let empresaSchema = new Schema(
+  {
+    _id:Schema.Types.ObjectId,
+    nombre:{
+      type: String
+    },
+    razonSocial:{
+      type: String
+    },
+    ruc:{
+      type: String
+    }
   }
 );
 
@@ -129,4 +149,7 @@ userSchema.plugin(mongoose_delete, {
   ],
 });
 
-module.exports = model("User", userSchema);
+const User = mongoose.model('User', userSchema);
+const Empresa = mongoose.model('Empresa', empresaSchema);
+
+module.exports = { User, Empresa }

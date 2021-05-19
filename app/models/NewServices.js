@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const  moment  = require('moment-timezone');
 const  datePeru = moment().tz("America/Lima").format();
 
@@ -58,40 +58,39 @@ const estadoGlobalSchema = new Schema({
 });
 
 const detalleSchema = new Schema({
-        _id:Schema.Types.ObjectId,
-        descripcion:{
-            type: String
-        },
-        nombreRemitente:{
-            type:String
-        },
-        celularRemitente:{
-            type:String
-        },
-        nombreDestinatario:{
-            type:String
-        },
-        celularDestinatario:{
-            type:String
-        },
-        esDestinatario: {
-            type: Boolean,
-            default: false
-        },
-        repartidorCobra: {
-            type: Boolean,
-            default: false
-        },
-        pagoContraEntrega:{
-            type: Schema.Types.ObjectId,
-            default: null
-        },
-        montoContraEntrega:{
-            type: Number,
-            default: 0
-        }
+    _id:Schema.Types.ObjectId,
+    descripcion:{
+        type: String
+    },
+    nombreRemitente:{
+        type:String
+    },
+    celularRemitente:{
+        type:String
+    },
+    nombreDestinatario:{
+        type:String
+    },
+    celularDestinatario:{
+        type:String
+    },
+    esDestinatario: {
+        type: Boolean,
+        default: false
+    },
+    repartidorCobra: {
+        type: Boolean,
+        default: false
+    },
+    pagoContraEntrega:{
+        type: Schema.Types.ObjectId,
+        default: null
+    },
+    montoContraEntrega:{
+        type: Number,
+        default: 0
     }
-);
+});
 
 const pagoContraEntregaSchema = new Schema({
     nameId: {
