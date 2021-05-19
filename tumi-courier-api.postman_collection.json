@@ -389,8 +389,68 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstname\":\"Usuario\",\r\n    \"lastname\":\"Prueba\",\r\n    \"typeID\":\"DNI\",\r\n    \"numID\":\"00345920\",\r\n    \"phone\":\"990328945\",\r\n    \"email\":\"prueba@registeruser.com\",\r\n    \"password\":\"12345678Ae\"\r\n}",
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "Usuario Ejemplo",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Prueba Ejemplo",
+									"type": "text"
+								},
+								{
+									"key": "typeID",
+									"value": "DNI",
+									"type": "text"
+								},
+								{
+									"key": "numID",
+									"value": "45678920",
+									"type": "text"
+								},
+								{
+									"key": "isOrg",
+									"value": "false",
+									"description": "\"true\" or \"false\"",
+									"type": "text"
+								},
+								{
+									"key": "nombreEmpresa",
+									"value": "Solutions enterprise",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "razonSocial",
+									"value": "SOluciones empresariales s.a.c",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "ruc",
+									"value": "10393939291",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "998090239",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "usuario@prueba.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Usuario1234*",
+									"type": "text"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -398,14 +458,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/register/user",
-							"protocol": "http",
+							"raw": "{{baseURL}}/auth/register/user",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"auth",
 								"register",
 								"user"
@@ -531,12 +588,13 @@
 							"formdata": [
 								{
 									"key": "firstname",
-									"value": "Driver",
+									"value": "Prueba Ados",
+									"contentType": "application/json",
 									"type": "text"
 								},
 								{
 									"key": "lastname",
-									"value": "Prueba",
+									"value": "Repartidor",
 									"type": "text"
 								},
 								{
@@ -546,43 +604,38 @@
 								},
 								{
 									"key": "numID",
-									"value": "03039493",
+									"value": "73838311",
 									"type": "text"
 								},
 								{
 									"key": "numSOAT",
-									"value": "059392202",
-									"type": "text"
-								},
-								{
-									"key": "numPlaca",
-									"value": "4509-6B",
+									"value": "0405050505",
 									"type": "text"
 								},
 								{
 									"key": "numTarjetaPropiedad",
-									"value": "AS949K44LL0022FIL",
+									"value": "92839fec4c",
 									"type": "text"
 								},
 								{
 									"key": "phone",
-									"value": "953247603",
+									"value": "990345690",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "prueba@registerdriver.com",
+									"value": "prueba@josue.caaaa",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "98765432Eu",
+									"value": "Josue1234*",
 									"type": "text"
 								},
 								{
 									"key": "profilePicture",
 									"type": "file",
-									"src": "/C:/Users/josue/Documents/foto de perfil driver.jpg"
+									"src": "/C:/Users/josue/Desktop/a/tumi-courier-api/public/uploads/images/Mon_Apr_26_2021foto_de_perfil_driver.jpg"
 								}
 							],
 							"options": {
@@ -592,184 +645,18 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/register/driver",
-							"protocol": "http",
+							"raw": "{{baseURL}}/auth/register/driver",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"auth",
 								"register",
 								"driver"
 							]
-						},
-						"description": "http://localhost:3000/api/auth/register/driver"
-					},
-					"response": [
-						{
-							"name": "register_driver",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "firstname",
-											"value": "Driver",
-											"type": "text"
-										},
-										{
-											"key": "lastname",
-											"value": "Prueba",
-											"type": "text"
-										},
-										{
-											"key": "typeID",
-											"value": "DNI",
-											"type": "text"
-										},
-										{
-											"key": "numID",
-											"value": "03039493",
-											"type": "text"
-										},
-										{
-											"key": "numSOAT",
-											"value": "059392202",
-											"type": "text"
-										},
-										{
-											"key": "numPlaca",
-											"value": "4509-6B",
-											"type": "text"
-										},
-										{
-											"key": "numTarjetaPropiedad",
-											"value": "AS949K44LL0022FIL",
-											"type": "text"
-										},
-										{
-											"key": "phone",
-											"value": "953247603",
-											"type": "text"
-										},
-										{
-											"key": "email",
-											"value": "prueba@registerdriver.com",
-											"type": "text"
-										},
-										{
-											"key": "password",
-											"value": "98765432Eu",
-											"type": "text"
-										},
-										{
-											"key": "profilePicture",
-											"type": "file",
-											"src": "/C:/Users/josue/Documents/foto de perfil driver.jpg"
-										}
-									],
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:3000/api/auth/register/driver",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"auth",
-										"register",
-										"driver"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "520"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"208-0cVRNQUmBAq9RDiaPxIXVEsXVzY\""
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 26 Apr 2021 22:59:29 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"role\": \"driver\",\n    \"isBlocked\": false,\n    \"_id\": \"608745d14fe38d0ae090cab4\",\n    \"deleted\": false,\n    \"firstname\": \"DRIVER\",\n    \"lastname\": \"PRUEBA\",\n    \"typeID\": \"DNI\",\n    \"numID\": \"03039493\",\n    \"numSOAT\": \"059392202\",\n    \"numPlaca\": \"4509-6B\",\n    \"numTarjetaPropiedad\": \"AS949K44LL0022FIL\",\n    \"phone\": \"953247603\",\n    \"email\": \"prueba@registerdriver.com\",\n    \"password\": \"$2b$05$c3EGuTgkc58cju94Gj9pGuAhGotO4gphqmsORXz9LZmKY.2PH73xa\",\n    \"profilePicture\": \"Mon_Apr_26_2021foto_de_perfil_driver.jpg\",\n    \"createdAt\": \"2021-04-26T22:59:29.225Z\",\n    \"updatedAt\": \"2021-04-26T22:59:29.225Z\",\n    \"__v\": 0\n}"
 						}
-					]
+					},
+					"response": []
 				},
 				{
 					"name": "forgot_password",
@@ -786,14 +673,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/forgot_password",
-							"protocol": "http",
+							"raw": "{{baseURL}}/auth/forgot_password",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"auth",
 								"forgot_password"
 							]
@@ -1385,14 +1269,14 @@
 								{
 									"key": "esDestinatario",
 									"value": "true",
-									"description": "rellenar solo si es destinatario",
+									"description": "true or false",
 									"type": "text",
 									"disabled": true
 								},
 								{
 									"key": "repartidorCobra",
 									"value": "true",
-									"description": "1 | si | true | rellenar solo si el repartidor cobra",
+									"description": "true or false",
 									"type": "text"
 								},
 								{
