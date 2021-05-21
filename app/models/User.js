@@ -4,6 +4,7 @@ const mongoosePaginateV2 = require("mongoose-paginate-v2");
 const bcrypt = require("bcrypt");
 const mongoose_delete = require("mongoose-delete");
 const crypto = require('crypto');
+const typeDocument = require("../../../../data/typeDocument")
 
 let userSchema = new Schema(
   {
@@ -17,7 +18,8 @@ let userSchema = new Schema(
     },
     typeID: {
       type: String,
-      uppercase: true
+      uppercase: true,
+      enum: typeDocument,
     },
     numID: {
       type: String

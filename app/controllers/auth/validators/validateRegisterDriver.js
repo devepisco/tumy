@@ -1,26 +1,27 @@
 const { validateResult } = require('../../../middlewares/utils')
 const { check } = require('express-validator')
-const { passwordRegex } = require("../../../middlewares/regex")
+const { passwordRegex, names } = require("../../../middlewares/regex")
+const typeDocument = require("../../../..//data/typeDocument")
 
 const validateRegisterDriver = [
     check('firstname')
         .not()
         .isEmpty()
         .withMessage('Debe añadir un nombre como mínimo')
-        .isString()
+        .matches(names)
         .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('lastname')
         .not()
         .isEmpty()
         .withMessage('Debe añadir sus apellidos')
-        .isString()
+        .matches(names)
         .withMessage('El apellido debe contener caracteres alfabéticos'),
     check('typeID')
         .not()
         .isEmpty()
         .withMessage('Debe añadir el tipo de Documento')
-        .matches(/^[A-Za-z\s]+$/)
-        .withMessage('El tipo de ID debe contener caracteres alfabéticos'),
+        .isIn(typeDocument)
+        .withMessage(`El tipo de Documento debe estar entre ${typeDocument.join(", ")}`),
     check('numID')
         .not()
         .isEmpty()
