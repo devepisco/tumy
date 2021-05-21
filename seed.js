@@ -1,5 +1,7 @@
 const User = require("./app/models/User"),
   usersData = require("./data/users/users");
+const Driver = require("./app/models/Driver"),
+  driversData = require("./data/drivers/drivers");
 const PriceRate = require("./app/models/PriceRate"),
   pricerateData = require("./data/pricerates/pricerates");
 const ServiceModel = require("./app/models/NewServices"),
@@ -9,6 +11,7 @@ const ServiceModel = require("./app/models/NewServices"),
 
 
 const seedDB = async () => {
+  //Usuarios
   const usersCount = await User.User.countDocuments();
   if (usersCount < 2) {
     const usersPromises = usersData.map(async (user) => {
@@ -18,6 +21,17 @@ const seedDB = async () => {
     const promises = await Promise.all(usersPromises);
     console.log(promises);
   }
+  //Repartidores
+  const driversCount = await Driver.countDocuments();
+  if (driversCount < 2) {
+    const driversPromises = driversData.map(async (driver) => {
+      return new Driver(driver).save();
+    });
+
+    const promises = await Promise.all(driversPromises);
+    console.log(promises);
+  }
+  //Tarifas
   const pricerateCount = await PriceRate.countDocuments();
   if (pricerateCount < 1) {
     const priceratesPromises = pricerateData.map(async (pricerate) => {
@@ -27,7 +41,7 @@ const seedDB = async () => {
     const promises = await Promise.all(priceratesPromises);
     console.log(promises);
   }
-
+  //Métodos de pago
   const paymentMethodCount = await ServiceModel.PagoContraEntrega.countDocuments();
   if (paymentMethodCount < 1) {
     const paymentMethodPromises = paymentMethodData.map(async (paymentMethod) => {
@@ -36,7 +50,7 @@ const seedDB = async () => {
     const promises = await Promise.all(paymentMethodPromises);
     console.log(promises);
   }
-
+  //Estados Detalle
   const estadoDetalleCount = await ServiceModel.EstadoDetalle.countDocuments();
   if (estadoDetalleCount < 1) {
     const estadoDetallePromises = estadoDetalleData.map(async (estadoDetalle) => {
@@ -45,7 +59,7 @@ const seedDB = async () => {
     const promises = await Promise.all(estadoDetallePromises);
     console.log(promises);
   }
-
+  //Estados Globales
   const estadoGlobalCount = await ServiceModel.EstadoGlobal.countDocuments();
   if (estadoGlobalCount < 1) {
     const estadoGlobalPromises = estadoGlobalData.map(async (estadoGlobal) => {
