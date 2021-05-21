@@ -7,13 +7,13 @@ const validateRegisterDriver = [
         .not()
         .isEmpty()
         .withMessage('Debe añadir un nombre como mínimo')
-        .matches(/^[A-Za-z\s]+$/)
+        .isString()
         .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('lastname')
         .not()
         .isEmpty()
         .withMessage('Debe añadir sus apellidos')
-        .matches(/^[A-Za-z\s]+$/)
+        .isString()
         .withMessage('El apellido debe contener caracteres alfabéticos'),
     check('typeID')
         .not()
