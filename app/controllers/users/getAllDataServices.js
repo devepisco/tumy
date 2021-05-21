@@ -1,5 +1,5 @@
 const { structure, objSuccess } = require("../../middlewares/utils");
-const ServiceModel  = require("../../models/NewServices");
+const { SolicitudServicio, EstadoGlobal }  = require("../../models/NewServices");
 
 const getAllDataServices = structure (async(req, res) =>{
     //obtener parametros fecha de inicio, fecha fin, estado de detalle, estado global
@@ -12,10 +12,10 @@ const getAllDataServices = structure (async(req, res) =>{
     if(beginDate && endDate && globalState || beginDate && !endDate && globalState){
         if(!endDate) endDate = new Date(beginDate).valueOf() + 24*60*60000;
         else endDate = new Date(endDate).valueOf() + 24*60*60000;
-        data = await ServiceModel.SolicitudServicio.aggregate([
+        data = await SolicitudServicio.aggregate([
             {
                 $lookup:{
-                    from:'estadoglobals',
+                    from: EstadoGlobal.collection.name,
                     localField:'estadoGlobal',
                     foreignField:'_id',
                     as:'estadoGlobal'
@@ -58,10 +58,10 @@ const getAllDataServices = structure (async(req, res) =>{
     }else if(beginDate && endDate && !globalState || beginDate && !globalState && !endDate){
         if(!endDate) endDate = new Date(beginDate).valueOf() + 24*60*60000;
         else endDate = new Date(endDate).valueOf() + 24*60*60000;
-        data = await ServiceModel.SolicitudServicio.aggregate([
+        data = await SolicitudServicio.aggregate([
             {
                 $lookup:{
-                    from:'estadoglobals',
+                    from: EstadoGlobal.collection.name,
                     localField:'estadoGlobal',
                     foreignField:'_id',
                     as:'estadoGlobal'
@@ -101,10 +101,10 @@ const getAllDataServices = structure (async(req, res) =>{
 
     // si se ingresa solo el estado global
     }else if(globalState && !beginDate && !endDate){
-        data = await ServiceModel.SolicitudServicio.aggregate([
+        data = await SolicitudServicio.aggregate([
             {
                 $lookup:{
-                    from:'estadoglobals',
+                    from: EstadoGlobal.collection.name,
                     localField:'estadoGlobal',
                     foreignField:'_id',
                     as:'estadoGlobal'
@@ -143,10 +143,10 @@ const getAllDataServices = structure (async(req, res) =>{
     // si no mandas nada o cualquier otro parametro 
     }else if(!beginDate && !endDate && !globalState){
         console.log("Se realizó una consulta sin filtros");
-        data = await ServiceModel.SolicitudServicio.aggregate([
+        data = await SolicitudServicio.aggregate([
             {
                 $lookup:{
-                    from:'estadoglobals',
+                    from: EstadoGlobal.collection.name,
                     localField:'estadoGlobal',
                     foreignField:'_id',
                     as:'estadoGlobal'

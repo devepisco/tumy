@@ -45,13 +45,16 @@ let driverSchema = new Schema(
     },
     profilePicture:{
     },
+    status: {
+      type: String,
+      default: "Pendiente",
+    },
+    reason: {
+      type: String,
+    },
     role: {
       type: String,
       default: "driver",
-    },
-    isBlocked: {
-      type: Boolean,
-      default: false,
     },
   },
   {
@@ -104,4 +107,4 @@ driverSchema.plugin(mongoose_delete, {
   ],
 });
 
-module.exports = model("Driver", driverSchema);
+module.exports = model("RequestDriver", driverSchema);

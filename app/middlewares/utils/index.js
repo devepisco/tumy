@@ -5,6 +5,7 @@ const { errorMiddlewarer } = require("./errorMiddleware"),
   { isIDGood } = require("./isIDGood"),
   { validateResult } = require("./validateResult"),
   { sendEmail } = require("./email"),
+  { cleanQuery } = require("./cleanQuery"),
   { objSuccess } = require("./objSuccess");
 
 
@@ -16,5 +17,6 @@ module.exports = {
   removeExtensionFromFile,
   validateResult,
   sendEmail,
-  objSuccess
+  objSuccess,
+  cleanQuery
 };

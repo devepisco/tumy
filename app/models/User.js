@@ -4,7 +4,7 @@ const mongoosePaginateV2 = require("mongoose-paginate-v2");
 const bcrypt = require("bcrypt");
 const mongoose_delete = require("mongoose-delete");
 const crypto = require('crypto');
-const typeDocument = require("../../../../data/typeDocument")
+const typeDocument = require("../../data/typeDocument")
 
 let userSchema = new Schema(
   {
@@ -152,6 +152,6 @@ userSchema.plugin(mongoose_delete, {
 });
 
 const User = mongoose.model('User', userSchema);
-const Empresa = mongoose.model('Empresa', empresaSchema);
+const Empresa = mongoose.model('Business', empresaSchema);
 
 module.exports = { User, Empresa }

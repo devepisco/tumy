@@ -37,7 +37,7 @@ const solicitudServicioSchema = Schema({
             },
             fecha: {
                 type: Date,
-                default:datePeru
+                default: Date.now
             }
         }]
     },
