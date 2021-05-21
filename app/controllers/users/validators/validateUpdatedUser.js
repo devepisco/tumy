@@ -7,13 +7,13 @@ const validateUpdatedUser = [
         .not()
         .isEmpty()
         .withMessage('Debe añadir un nombre como mínimo')
-        .isAlpha()
+        .isString()
         .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('lastname')
         .not()
         .isEmpty()
         .withMessage('Debe añadir sus apellidos')
-        .isAlpha()
+        .isString()
         .withMessage('El apellido debe contener caracteres alfabéticos'),
     check('typeID')
         .not()
