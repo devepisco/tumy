@@ -4,11 +4,11 @@ const { structure, objSuccess } = require('../../middlewares/utils');
 const mongoose = require('mongoose');
 
 const registerUser = structure(async (req , res)=> {
-    const findedUser = await User.findOne({email: req.body.email})
-    if(findedUser) throw new Exceptions(400, "El correo ya fue registrado")
+    const foundUser = await User.findOne({email: req.body.email})
+    if(foundUser) throw new Exceptions(400, "El correo ya fue registrado")
 
-    const findedUser2 = await User.findOne({IDNumber: req.body.numID})
-    if(findedUser2) throw new Exceptions(400, "El DNI ya fue registrado")
+    const foundIdUser = await User.findOne({IDNumber: req.body.numID})
+    if(foundIdUser) throw new Exceptions(400, "El DNI ya fue registrado")
 
     const registeredUser = new User({
         firstname:req.body.firstname,

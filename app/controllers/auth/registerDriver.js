@@ -1,15 +1,15 @@
 const Exceptions = require('../../../errors/Exceptions');
-const { Driver } = require('../../models/Driver');
+const RequestDriver = require('../../models/Driver');
 const { structure, objSuccess } = require('../../middlewares/utils');
 
 const registerDriver = structure(async (req , res)=> {
-    const findedUser = await Driver.findOne({email: req.body.email})
+    const findedUser = await RequestDriver.findOne({email: req.body.email})
     if(findedUser) throw new Exceptions(400, "El correo ya fue registrado")
 
-    const findedUser2 = await Driver.findOne({IDNumber: req.body.numID})
+    const findedUser2 = await RequestDriver.findOne({IDNumber: req.body.numID})
     if(findedUser2) throw new Exceptions(400, "El DNI ya fue registrado")
 
-    const registeredDriver = new Driver({
+    const registeredDriver = new RequestDriver({
         firstname:req.body.firstname,
         lastname:req.body.lastname,
         IDType:req.body.typeID,

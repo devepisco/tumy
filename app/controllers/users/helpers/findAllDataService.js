@@ -1,8 +1,8 @@
-const ServiceModel  = require("../../../models/NewServices");
+const { RequestService }  = require("../../../models/NewServices");
 
 const findAllDataService = async () => {
     //obtener los datos completos de servicio
-    const data = await ServiceModel.RequestService.aggregate(
+    const data = await RequestService.aggregate(
         [
             {
                 $lookup:{

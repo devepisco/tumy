@@ -1,6 +1,6 @@
 const passport = require("passport"),
-  { decrypt } = require('../app/middlewares/crypto')
-  User = require("../app/models/User"),
+  { decrypt } = require('../app/middlewares/crypto'),
+  { User } = require("../app/models/User"),
   passportJWT = require("passport-jwt"),
   JWTStrategy = passportJWT.Strategy;
 

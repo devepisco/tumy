@@ -13,7 +13,7 @@ const { PaymentMethod, DetailState, GlobalState }  = require("./app/models/NewSe
 const seedDB = async () => {
   //Usuarios
   const usersCount = await User.countDocuments();
-  if (usersCount < 4) {
+  if (usersCount <2) {
     const usersPromises = usersData.map(async (user) => {
       return new User(user).save();
     });
@@ -52,7 +52,7 @@ const seedDB = async () => {
   }
   //Estados Detalle
   const estadoDetalleCount = await DetailState.countDocuments();
-  if (estadoDetalleCount < 1) {
+  if (estadoDetalleCount < 6) {
     const estadoDetallePromises = estadoDetalleData.map(async (estadoDetalle) => {
       return new DetailState(estadoDetalle).save();
     });
@@ -61,7 +61,7 @@ const seedDB = async () => {
   }
   //Estados Globales
   const globalStateCount = await GlobalState.countDocuments();
-  if (globalStateCount < 1) {
+  if (globalStateCount < 3) {
     const globalStatePromises = globalStateData.map(async (globalState) => {
       return new GlobalState(globalState).save();
     });

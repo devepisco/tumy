@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const { Schema, model } = require("mongoose");
 const  moment  = require('moment-timezone');
 const  datePeru = moment().tz("America/Lima").format();
@@ -47,7 +46,7 @@ const requestServiceSchema = Schema({
     }
 );
 
-const estadoDetalleSchema = new Schema({
+const detailStateSchema = new Schema({
     IdName: String,
     stateName: String
 });
@@ -101,10 +100,10 @@ const paymentMethodSchema = new Schema({
     }
 });
 
-const RequestService = mongoose.model('RequestService', requestServiceSchema);
-const DetailState = mongoose.model('DetailState', estadoDetalleSchema);
-const GlobalState = mongoose.model('GlobalState', globalStateSchema);
-const Detail = mongoose.model('Detail', detailSchema);  
-const PaymentMethod = mongoose.model('PaymentMethod', paymentMethodSchema);
+const RequestService = model('RequestService', requestServiceSchema);
+const DetailState = model('DetailState', detailStateSchema);
+const GlobalState = model('GlobalState', globalStateSchema);
+const Detail = model('Detail', detailSchema);  
+const PaymentMethod = model('PaymentMethod', paymentMethodSchema);
 
-module.exports = { RequestService, Detail, PaymentMethod, DetailState, GlobalState};
+module.exports = { RequestService, Detail, PaymentMethod, DetailState, GlobalState };
