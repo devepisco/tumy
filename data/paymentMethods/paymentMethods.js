@@ -1,7 +1,7 @@
 module.exports = [
     {
-      nameId:"billetera_digital",
-      nameMethod: "Billetera digital"
+      IdName:"billetera_digital",
+      methodName: "Billetera digital"
     }
   ];
   

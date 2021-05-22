@@ -1,20 +1,20 @@
-const PaymentMethodTemplate =  require('../../../models/NewServices')
+const { PaymentMethod } =  require('../../../models/NewServices')
 
-const findPaymentMethod = async (nameId = "") =>{
-  if(!nameId){
-      const PaymentMethod = await PaymentMethodTemplate.PagoContraEntrega.find()
+const findPaymentMethod = async (IdName = "") =>{
+  if(!IdName){
+      const FoundPaymentMethod = await PaymentMethod.find()
     .lean()
-    .select("nameId")
-    .select("nameMethod")
-  return PaymentMethod;
+    .select("IdName")
+    .select("methodName")
+  return FoundPaymentMethod;
   }
-    const PaymentMethod = await PaymentMethodTemplate.PagoContraEntrega.findOne({
-        nameId
+    const FoundPaymentMethod = await PaymentMethod.findOne({
+        IdName
     })
     .lean()
     .select("_id")
-    .select("nameMethod")
-  return PaymentMethod;
+    .select("methodName")
+  return FoundPaymentMethod;
 }
 
 module.exports = { findPaymentMethod }

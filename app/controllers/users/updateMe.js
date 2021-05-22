@@ -1,5 +1,5 @@
 const { matchedData } = require("express-validator");
-const User = require("../../models/User");
+const { User } = require("../../models/User");
 const { structure } = require("../../middlewares/utils");
 const { getUserIdFromToken  } = require("../auth/helpers/getUserIdFromToken");
 
@@ -10,7 +10,7 @@ const updateMe = structure(async (req, res) =>{
 
     //console.log(userId);
     // Actualizar los campos recibidos
-    const updatedUser = await User.User.findByIdAndUpdate(userId, data, {
+    const updatedUser = await User.findByIdAndUpdate(userId, data, {
         new: true
     });
     

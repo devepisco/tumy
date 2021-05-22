@@ -1,14 +1,14 @@
 module.exports = [
     {
-        nameId:"en_proceso",
-        nameEstado:"En proceso",
+        IdName:"en_proceso",
+        stateName:"En proceso",
     },
     {
-        nameId:"entregado",
-        nameEstado:"Entregado",
+        IdName:"entregado",
+        stateName:"Entregado",
     },
     {
-        nameId:"cancelado",
-        nameEstado:"Cancelado",
+        IdName:"cancelado",
+        stateName:"Cancelado",
     }
 ];

@@ -16,24 +16,24 @@ let userSchema = new Schema(
       type: String,
       uppercase: true
     },
-    typeID: {
+    IDType: {
       type: String,
       uppercase: true,
       enum: typeDocument,
     },
-    numID: {
+    IDNumber: {
       type: String
     },
-    numSOAT:{
+    SOATNumber:{
       type: String
     },
-    numPlaca:{
+    VehicleRegistration:{
       type: String
     },
-    numTarjetaPropiedad:{
+    propertyCardNumber:{
       type: String
     },
-    empresa:{
+    business:{
       type: Schema.Types.ObjectId, ref:'Empresa',
       default:null
     },
@@ -73,7 +73,7 @@ let userSchema = new Schema(
   }
 );
 
-let empresaSchema = new Schema(
+let businessSchema = new Schema(
   {
     _id:Schema.Types.ObjectId,
     nombre:{
@@ -152,6 +152,6 @@ userSchema.plugin(mongoose_delete, {
 });
 
 const User = mongoose.model('User', userSchema);
-const Empresa = mongoose.model('Business', empresaSchema);
+const Empresa = mongoose.model('Business', businessSchema);
 
 module.exports = { User, Empresa }

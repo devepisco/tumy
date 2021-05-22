@@ -3,7 +3,7 @@ const { structure, handleError, objSuccess } = require("../../middlewares/utils"
 const Exceptions = require('../../../errors/Exceptions');
 const { findPriceRate } = require("./helpers");
 
-const NewServiceTemplate = require("../../models/NewServices");
+const { RequestService } = require("../../models/NewServices");
 
 const createService = structure(async (req,res) =>{
     
@@ -33,7 +33,7 @@ const createService = structure(async (req,res) =>{
             if(costo < tarifa_estandar.minPrice) costo = tarifa_estandar.minPrice;
             
             //Funcion para guardar datos de nuevo Servicio
-            const NewService = new NewServiceTemplate.SolicitudServicio({
+            const NewService = new RequestService({
                 origenCoordenadas:req.body.origin,
                 destinoCoordenadas:req.body.destination,
                 origenDireccion:getdistance.data.origin_addresses[0],

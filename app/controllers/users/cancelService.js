@@ -1,10 +1,10 @@
-const ServiceModel = require("../../models/NewServices");
+const { RequestService } = require("../../models/NewServices");
 const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const { findDetailState, findGlobalState } = require("../users/helpers");
 
 
 const cancelService = structure( async (req, res) =>{
-    const foundService1 = await ServiceModel.SolicitudServicio.findOne({_id: req.params.id});
+    const foundService1 = await RequestService.findOne({_id: req.params.id});
     if(!foundService1) return handleError(res, 404, "No se encontró la solicitud de servicio");
 
     const IdServicio = req.params.id;
@@ -18,7 +18,7 @@ const cancelService = structure( async (req, res) =>{
         }
         if(cancelado) return handleError(res, 404,"El servicio ya fue cancelado");
 
-        //Actualizar el campo estadoDetalle en el modelo SolicitudServicio
+        //Actualizar el campo estadoDetalle en el modelo RequestService
         let updatedEstadoDetalle = null
         const countDetailStates = await foundService1.estadoDetalle.length;
         await foundService1.estadoDetalle.push(estadoDetalle._id)
@@ -27,16 +27,16 @@ const cancelService = structure( async (req, res) =>{
         if(foundService1.estadoDetalle.length>countDetailStates) updatedEstadoDetalle=1;
 
         //Buscar el _id correspondiente al EstadoGlobal "en espera"
-         const estadoGlobal = await findGlobalState("cancelado");
+         const globalState = await findGlobalState("cancelado");
         
-        //Actualizar el campo estadoGlobal en el  modelo SolicitudServicio
-        const dataEstadoGlobal = { estadoGlobal: estadoGlobal._id };
-        const updatedEstadoGlobal = await ServiceModel.SolicitudServicio
+        //Actualizar el campo globalState en el  modelo RequestService
+        const dataEstadoGlobal = { globalState: globalState._id };
+        const updatedEstadoGlobal = await RequestService
                 .findByIdAndUpdate(IdServicio, dataEstadoGlobal, {
             new: true
         });
         
-        if(updatedEstadoDetalle==1 && updatedEstadoGlobal.estadoGlobal._id) {
+        if(updatedEstadoDetalle==1 && updatedEstadoGlobal.globalState._id) {
             
             res.status(200).json(objSuccess(
                 data = {},

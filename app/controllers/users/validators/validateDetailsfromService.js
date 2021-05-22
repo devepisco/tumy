@@ -27,7 +27,7 @@ const validateDetailsfromService = [
     check('nameIdPago')
         .not()
         .isEmpty()
-        .withMessage('Debe añadir el nameId de Pago contra entrega'),
+        .withMessage('Debe añadir el IdName de Pago contra entrega'),
     (req, res, next) => {
       validateResult(req, res, next)
     }

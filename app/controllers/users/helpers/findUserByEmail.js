@@ -1,7 +1,7 @@
 const User = require("../../../models/User");
 
 const findUserByEmail = async (email = "") => {
-  const user = await User.User.findOne({
+  const user = await User.findOne({
     email,
   })
     .lean()

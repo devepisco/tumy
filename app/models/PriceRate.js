@@ -2,10 +2,10 @@ const { Schema, model } = require("mongoose");
 
 let pricerateSchema = new Schema(
   {
-    nameId: {
+    IdName: {
       type:String
     },
-    namerate: {
+    rateName: {
       type: String,
       uppercase: true
     },

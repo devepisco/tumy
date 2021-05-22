@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const  moment  = require('moment-timezone');
 const  datePeru = moment().tz("America/Lima").format();
 
-const solicitudServicioSchema = Schema({
+const requestServiceSchema = Schema({
         origenCoordenadas:{
             type: String
         },
@@ -26,7 +26,7 @@ const solicitudServicioSchema = Schema({
             type: Schema.Types.ObjectId, ref: 'Detalle',
             default:null
         },
-        estadoGlobal:{
+        globalState:{
             type:Schema.Types.ObjectId, ref: 'EstadoGlobal',
             default:null
         },
@@ -48,16 +48,16 @@ const solicitudServicioSchema = Schema({
 );
 
 const estadoDetalleSchema = new Schema({
-    nameId: String,
-    nameEstado: String
+    IdName: String,
+    stateName: String
 });
 
-const estadoGlobalSchema = new Schema({
-    nameId: String,
-    nameEstado: String
+const globalStateSchema = new Schema({
+    IdName: String,
+    stateName: String
 });
 
-const detalleSchema = new Schema({
+const detailSchema = new Schema({
     _id:Schema.Types.ObjectId,
     descripcion:{
         type: String
@@ -92,19 +92,19 @@ const detalleSchema = new Schema({
     }
 });
 
-const pagoContraEntregaSchema = new Schema({
-    nameId: {
+const paymentMethodSchema = new Schema({
+    IdName: {
         type: String
     },
-    nameMethod: {
+    methodName: {
         type: String
     }
 });
 
-const SolicitudServicio = mongoose.model('SolicitudServicio', solicitudServicioSchema);
-const EstadoDetalle = mongoose.model('EstadoDetalle', estadoDetalleSchema);
-const EstadoGlobal = mongoose.model('EstadoGlobal', estadoGlobalSchema);
-const Detalle = mongoose.model('Detalle', detalleSchema);  
-const PagoContraEntrega = mongoose.model('PagoContraEntrega', pagoContraEntregaSchema);
+const RequestService = mongoose.model('RequestService', requestServiceSchema);
+const DetailState = mongoose.model('DetailState', estadoDetalleSchema);
+const GlobalState = mongoose.model('GlobalState', globalStateSchema);
+const Detail = mongoose.model('Detail', detailSchema);  
+const PaymentMethod = mongoose.model('PaymentMethod', paymentMethodSchema);
 
-module.exports = { SolicitudServicio, Detalle, PagoContraEntrega, EstadoDetalle, EstadoGlobal};
+module.exports = { RequestService, Detail, PaymentMethod, DetailState, GlobalState};

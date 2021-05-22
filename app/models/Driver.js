@@ -13,22 +13,22 @@ let driverSchema = new Schema(
       type: String,
       uppercase: true
     },
-    typeID: {
+    IDType: {
       type: String,
       uppercase: true
     },
-    numID: {
+    IDNumber: {
       type: String,
       uppercase: true
     },
-    numSOAT:{
+    SOATNumber:{
       type: String
     },
-    numPlaca:{
+    VehicleRegistration:{
       type: String,
       uppercase: true
     },
-    numTarjetaPropiedad:{
+    propertyCardNumber:{
       type: String
     },
     phone: {
