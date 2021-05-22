@@ -613,6 +613,11 @@
 									"type": "text"
 								},
 								{
+									"key": "numPlaca",
+									"value": "B5-2201",
+									"type": "text"
+								},
+								{
 									"key": "numTarjetaPropiedad",
 									"value": "92839fec4c",
 									"type": "text"
@@ -635,7 +640,7 @@
 								{
 									"key": "profilePicture",
 									"type": "file",
-									"src": "/C:/Users/josue/Desktop/a/tumi-courier-api/public/uploads/images/Mon_Apr_26_2021foto_de_perfil_driver.jpg"
+									"src": "/C:/Users/josue/Pictures/Saved Pictures/118859000_256359592140267_2844313051045324039_n.jpg"
 								}
 							],
 							"options": {
@@ -656,7 +661,167 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "register_driver",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstname",
+											"value": "Prueba Ados",
+											"contentType": "application/json",
+											"type": "text"
+										},
+										{
+											"key": "lastname",
+											"value": "Repartidor",
+											"type": "text"
+										},
+										{
+											"key": "typeID",
+											"value": "DNI",
+											"type": "text"
+										},
+										{
+											"key": "numID",
+											"value": "73838311",
+											"type": "text"
+										},
+										{
+											"key": "numSOAT",
+											"value": "0405050505",
+											"type": "text"
+										},
+										{
+											"key": "numPlaca",
+											"value": "B5-2201",
+											"type": "text"
+										},
+										{
+											"key": "numTarjetaPropiedad",
+											"value": "92839fec4c",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "990345690",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "prueba@josue.caaaa",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Josue1234*",
+											"type": "text"
+										},
+										{
+											"key": "profilePicture",
+											"type": "file",
+											"src": "/C:/Users/josue/Pictures/Saved Pictures/118859000_256359592140267_2844313051045324039_n.jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/auth/register/driver",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"auth",
+										"register",
+										"driver"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-DGkAbAlOQ+husJPNTSf4u9dOpS4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 22 May 2021 12:56:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {},\n    \"message\": \"Usuario motorizado registrado correctamente\"\n}"
+						}
+					]
 				},
 				{
 					"name": "forgot_password",
@@ -806,17 +971,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/reset_password/8b67c6da980ad4ff169622bc465a9dd26e934ca575d20892296993855134b699",
-							"protocol": "http",
+							"raw": "{{baseURL}}/auth/reset_password/59fbff7e3a72cfcf915fd2799f796ad6bbdafebb9bd08d45474fef625f4eb041",
 							"host": [
-								"localhost"
+								"{{baseURL}}"
 							],
-							"port": "3000",
 							"path": [
-								"api",
 								"auth",
 								"reset_password",
-								"8b67c6da980ad4ff169622bc465a9dd26e934ca575d20892296993855134b699"
+								"59fbff7e3a72cfcf915fd2799f796ad6bbdafebb9bd08d45474fef625f4eb041"
 							]
 						},
 						"description": "http://localhost:3000/api/auth/reset_password/abf04898eaaa60e30b94e696a2d8dc19f6ba306281a8fbac053a32a72cd407dd"
@@ -1832,6 +1994,97 @@
 							"body": "\"Servicio cancelado con éxito.\""
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "request",
+			"item": [
+				{
+					"name": "acceptRequestDriver",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/request/accept/60a91ac87819df1b2c45cb47",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"request",
+								"accept",
+								"60a91ac87819df1b2c45cb47"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rejectRequestDriver",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/request/reject/60a91ac87819df1b2c45cb47",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"request",
+								"reject",
+								"60a91ac87819df1b2c45cb47"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRequestDrivers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/request/driver",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"request",
+								"driver"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
