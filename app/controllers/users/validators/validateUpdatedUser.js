@@ -32,6 +32,19 @@ const validateUpdatedUser = [
             min: 8
           })
         .withMessage('El ID debe tener como mínimo 8 caracteres'),
+    check('nombreEmpresa')
+        .optional(),
+    check('razonSocial')
+        .optional(),
+    check('ruc')
+        .optional()
+        .isNumeric()
+        .withMessage('El RUC debe contener caracteres numéricos')
+        .isLength({
+            min:11,
+            max:11
+        })
+        .withMessage('El RUC debe contener 11 caracteres'),
     check('phone')
         .not()
         .isEmpty()
@@ -49,19 +62,7 @@ const validateUpdatedUser = [
         .isEmpty()
         .withMessage('Debe añadir el correo electrónico')
         .isEmail()
-        .withMessage('Correo electrónico no válido'), 
-    // check('password')
-    //     .exists()
-    //     .withMessage('Debe añadir la contraseña')
-    //     .not()
-    //     .isEmpty()
-    //     .withMessage('Debe añadir la contraseña')
-    //     .isLength({
-    //       min: 8
-    //     })
-    //     .withMessage('La contraseña es muy corta, debe ser de almenos 8 caracteres')
-    //     .matches(passwordRegex)
-    //     .withMessage("La contraseña debe contener almenos una letra y un número"),
+        .withMessage('Correo electrónico no válido'),
     (req, res, next) => {
       validateResult(req, res, next)
     }

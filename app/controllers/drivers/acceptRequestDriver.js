@@ -27,7 +27,6 @@ const acceptRequestDriver = structure( async (req, res) => {
         propertyCardNumber: FoundRequestDriver.propertyCardNumber,
         phone:FoundRequestDriver.phone,
         email:FoundRequestDriver.email,
-        password: FoundRequestDriver.password,
         profilePicture:FoundRequestDriver.profilePicture
     })
     await NewUserDriver.save();

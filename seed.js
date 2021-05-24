@@ -1,5 +1,6 @@
-const { User } = require("./app/models/User"),
-  usersData = require("./data/users/users");
+const { User, Business } = require("./app/models/User"),
+  usersData = require("./data/users/users"),
+  businessData = require("./data/business/business");
 const RequestDriver = require("./app/models/Driver"),
   driversData = require("./data/drivers/drivers");
 const PriceRate = require("./app/models/PriceRate"),
@@ -19,6 +20,16 @@ const seedDB = async () => {
     });
 
     const promises = await Promise.all(usersPromises);
+    console.log(promises);
+  }
+  //Empresas
+  const businessCount = await Business.countDocuments();
+  if (businessCount <1) {
+    const businessPromises = businessData.map(async (business) => {
+      return new Business(business).save();
+    });
+
+    const promises = await Promise.all(businessPromises);
     console.log(promises);
   }
   //Repartidores

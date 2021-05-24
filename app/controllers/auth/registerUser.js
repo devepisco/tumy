@@ -1,5 +1,5 @@
 const Exceptions = require('../../../errors/Exceptions');
-const { User, Empresa } = require('../../models/User');
+const { User, Business } = require('../../models/User');
 const { structure, objSuccess } = require('../../middlewares/utils');
 const mongoose = require('mongoose');
 
@@ -20,7 +20,7 @@ const registerUser = structure(async (req , res)=> {
         password:req.body.password       
     })
     if(req.body.isOrg == "true"){
-        const registeredOrg = new Empresa({
+        const registeredOrg = new Business({
             _id: new mongoose.Types.ObjectId(),
             nombre: req.body.nombreEmpresa,
             razonSocial: req.body.razonSocial,

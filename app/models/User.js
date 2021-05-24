@@ -34,7 +34,7 @@ let userSchema = new Schema(
       type: String
     },
     business:{
-      type: Schema.Types.ObjectId, ref:'Empresa',
+      type: Schema.Types.ObjectId, ref:'Business',
       default:null
     },
     phone: {
@@ -76,10 +76,10 @@ let userSchema = new Schema(
 let businessSchema = new Schema(
   {
     _id:Schema.Types.ObjectId,
-    nombre:{
+    name:{
       type: String
     },
-    razonSocial:{
+    socialReason:{
       type: String
     },
     ruc:{
@@ -152,6 +152,6 @@ userSchema.plugin(mongoose_delete, {
 });
 
 const User = mongoose.model('User', userSchema);
-const Empresa = mongoose.model('Business', businessSchema);
+const Business = mongoose.model('Business', businessSchema);
 
-module.exports = { User, Empresa }
+module.exports = { User, Business }

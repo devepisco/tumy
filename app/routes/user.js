@@ -24,12 +24,12 @@ const {
 /**
  * Updating user data route
  */
-router.patch("/updateMe", requireAuth, trimRequest.all, validateUpdatedUser, updateMe);
+router.patch("/updateMe", trimRequest.all, requireAuth, validateUpdatedUser, updateMe);
 
 /**
  * Create a New Service
  */
- router.get("/createService", trimRequest.all,validateCoordinates, createService);
+ router.get("/createService", trimRequest.all, validateCoordinates, createService);
 
 
 /**
@@ -50,6 +50,6 @@ router.get("/getAllDataServices", trimRequest.all, getAllDataServices);
 /**
  * Cancel the Service request
  */
-router.get("/cancelService/:id", trimRequest.all, cancelService);
+router.get("/cancelService/:id", trimRequest.param, cancelService);
 
 module.exports = router;
