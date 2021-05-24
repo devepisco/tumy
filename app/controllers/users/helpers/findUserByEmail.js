@@ -5,7 +5,8 @@ const findUserByEmail = async (email = "") => {
     email,
   })
     .lean()
-    .select("+password");
+    .select("+password")
+    .populate("business");
   return user;
 };
 
