@@ -14,8 +14,19 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"test@user.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "usuario@editado.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Editado1234*",
+									"type": "text"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -40,8 +51,19 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "usuario@editado.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Editado1234*",
+											"type": "text"
+										}
+									],
 									"options": {
 										"raw": {
 											"language": "json"
@@ -113,15 +135,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "771"
+									"value": "1015"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"303-aXwCv2wqnG0gmyrqJPHX0yMFF8A\""
+									"value": "W/\"3f7-Qe2XuDysBWuKGEk81FpzlQ7WGGs\""
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 20 Apr 2021 15:46:08 GMT"
+									"value": "Mon, 24 May 2021 02:43:09 GMT"
 								},
 								{
 									"key": "Connection",
@@ -133,7 +155,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"access_token\": \"4cd6fe153b59e8c4fedc337df5ad07c7649256947a396484a4f6166bd9cd7ffe3881f75fb81d7c4fff447eba471ebbe69be7f7f06665a1e2465ca8d02d0e5df757f8b6313c4c8ad5e0040fc4b1cceb003c5c568ecdcaf3e86e56cf1b0867a82f02a35212d0c6ea4ef9cb9573fc51eda7257afa65f0534959c64182d3810890557da13c9717657d5b3cc44eb4e5899a4db6655c155c7723de545f04ada791904a9185142e76d699fd5a7914c5f3d37cdace3997a28699868bfd7c56930d2ba21e\",\n    \"expired_in\": 1618935368000,\n    \"expired_date\": \"2021-04-20T16:16:08.000Z\",\n    \"user\": {\n        \"_id\": \"607ef706e9c2d61ff45404ae\",\n        \"role\": \"admin\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"ADMIN DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-20T15:45:10.428Z\",\n        \"updatedAt\": \"2021-04-20T15:45:10.428Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"access_token\": \"4cd6fe153b59e8c4fedc337df5ad07c7649256947a396484a4f6166bd9cd7ffe3881f75fb81d7c4fff447eba471ebbe6f5c8558ea31ba908c98454fda549d5357d01e681b7ab3784737fe4c9201b11a503709b2b4241f2bf5bbbfc24de3ca31ef058ef2a4a676ea3c82bc1946e3f11f9f3825766d6a603395c29a81d0698296556fc2f8973ad78f04c92035c29e3a9cc5c9661a2d780e7ba6ab6cd3c894b06ce37aa204c452a619847f96bb5c37a1df72bdf1d918814ff38a4204387d685f04d\",\n        \"expired_in\": 1621825989000,\n        \"expired_date\": \"2021-05-24T03:13:09.000Z\",\n        \"user\": {\n            \"_id\": \"60a9b11a9768220b18c3cbcd\",\n            \"business\": {\n                \"_id\": \"60a99b43349c7549c4ca7510\",\n                \"name\": \"SilverThink Solutions\",\n                \"ruc\": \"10393939291\",\n                \"socialReason\": \"Soluciones empresariales s.a.c\",\n                \"__v\": 0\n            },\n            \"role\": \"user\",\n            \"isBlocked\": false,\n            \"deleted\": false,\n            \"firstname\": \"USUARIO\",\n            \"lastname\": \"EDITADO\",\n            \"IDType\": \"DNI\",\n            \"IDNumber\": \"00345601\",\n            \"phone\": \"900200399\",\n            \"email\": \"usuario@editado.com\",\n            \"createdAt\": \"2021-05-23T01:34:18.510Z\",\n            \"updatedAt\": \"2021-05-23T01:58:31.581Z\",\n            \"__v\": 0,\n            \"navigation\": []\n        }\n    },\n    \"message\": \"Usuario logueado correctamente.\"\n}"
 						}
 					]
 				},
@@ -257,6 +279,104 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"user\": {\n        \"_id\": \"607ef706e9c2d61ff45404ae\",\n        \"role\": \"admin\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"email\": \"admin@gmail.com\",\n        \"fullname\": \"ADMIN DE PRUEBA\",\n        \"country\": \"Peru\",\n        \"city\": \"Lima\",\n        \"phone\": \"979347245\",\n        \"createdAt\": \"2021-04-20T15:45:10.428Z\",\n        \"updatedAt\": \"2021-04-20T15:45:10.428Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
+						},
+						{
+							"name": "get_profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/auth/profile",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "476"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1dc-ZmVLr/EelzpsWvHxUuzN6cZsThg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 02:44:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"_id\": \"60a9b11a9768220b18c3cbcd\",\n        \"business\": {\n            \"_id\": \"60a99b43349c7549c4ca7510\",\n            \"name\": \"SilverThink Solutions\",\n            \"ruc\": \"10393939291\",\n            \"socialReason\": \"Soluciones empresariales s.a.c\",\n            \"__v\": 0\n        },\n        \"role\": \"user\",\n        \"isBlocked\": false,\n        \"deleted\": false,\n        \"firstname\": \"USUARIO\",\n        \"lastname\": \"EDITADO\",\n        \"IDType\": \"DNI\",\n        \"IDNumber\": \"00345601\",\n        \"phone\": \"900200399\",\n        \"email\": \"usuario@editado.com\",\n        \"createdAt\": \"2021-05-23T01:34:18.510Z\",\n        \"updatedAt\": \"2021-05-23T01:58:31.581Z\",\n        \"__v\": 0,\n        \"navigation\": []\n    }\n}"
 						}
 					]
 				},
@@ -413,27 +533,24 @@
 								},
 								{
 									"key": "isOrg",
-									"value": "false",
+									"value": "true",
 									"description": "\"true\" or \"false\"",
 									"type": "text"
 								},
 								{
 									"key": "nombreEmpresa",
 									"value": "Solutions enterprise",
-									"type": "text",
-									"disabled": true
+									"type": "text"
 								},
 								{
 									"key": "razonSocial",
 									"value": "SOluciones empresariales s.a.c",
-									"type": "text",
-									"disabled": true
+									"type": "text"
 								},
 								{
 									"key": "ruc",
 									"value": "10393939291",
-									"type": "text",
-									"disabled": true
+									"type": "text"
 								},
 								{
 									"key": "phone",
@@ -1111,8 +1228,59 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstname\": \"USUARIO\",\r\n    \"lastname\": \"DEPRUEBA\",\r\n    \"typeID\": \"DNI\",\r\n    \"numID\": \"72230303\",\r\n    \"phone\": \"920903021\",\r\n    \"email\": \"test@user.com\"\r\n}",
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "Usuario",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Editado",
+									"type": "text"
+								},
+								{
+									"key": "typeID",
+									"value": "DNI",
+									"type": "text"
+								},
+								{
+									"key": "numID",
+									"value": "00345601",
+									"type": "text"
+								},
+								{
+									"key": "nombreEmpresa",
+									"value": "SilverThink Solutions",
+									"type": "text"
+								},
+								{
+									"key": "razonSocial",
+									"value": "Soluciones empresariales s.a.c",
+									"type": "text"
+								},
+								{
+									"key": "ruc",
+									"value": "10393939291",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "900200399",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "usuario@editado.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Editado1234*",
+									"type": "text"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
