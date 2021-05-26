@@ -1,6 +1,6 @@
 const { validateResult } = require('../../../middlewares/utils')
 const { check } = require('express-validator')
-const { names } = require("../../../middlewares/regex")
+const { names, ruc } = require("../../../middlewares/regex")
 const typeDocument = require("../../../..//data/typeDocument")
 
 const validateUpdatedUser = [
@@ -32,18 +32,17 @@ const validateUpdatedUser = [
             min: 8
           })
         .withMessage('El ID debe tener como mínimo 8 caracteres'),
-    check('nombreEmpresa')
+    check('business')
+        .isObject(),
+    check('business.name')
         .optional(),
-    check('razonSocial')
+    check('business.socialReason')
         .optional(),
-    check('ruc')
+    check('business.ruc')
         .optional()
         .isNumeric()
         .withMessage('El RUC debe contener caracteres numéricos')
-        .isLength({
-            min:11,
-            max:11
-        })
+        .matches(ruc)
         .withMessage('El RUC debe contener 11 caracteres'),
     check('phone')
         .not()

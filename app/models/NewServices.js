@@ -1,44 +1,52 @@
 const { Schema, model } = require("mongoose");
+const mongoosePaginateV2 = require("mongoose-paginate-v2");
+const mongoose_delete = require("mongoose-delete");
 const  moment  = require('moment-timezone');
 const  datePeru = moment().tz("America/Lima").format();
-
+const { User } = require('../models/User');
+ 
 const requestServiceSchema = Schema({
-        origenCoordenadas:{
-            type: String
-        },
-        destinoCoordenadas:{
-            type:String
-        },
-        origenDireccion:{
-            type:String
-        },
-        destinoDireccion:{
-            type:String
-        },
-        costo:{
-            type: Number
-        },
-        tiempoAprox:{
-            type: String
-        },
-        detalle:{
-            type: Schema.Types.ObjectId, ref: 'Detalle',
+    origin:{
+        coordinates: String,
+        address: String
+    },
+    destination:{
+        coordinates: String,
+        address: String
+    },
+    costo:{
+        type: Number
+    },
+    tiempoAprox:{
+        type: String
+    },
+    detail:{
+        descripcion: String,
+        nombreRemitente: String,
+        celularRemitente: String,
+        nombreDestinatario:String,
+        celularDestinatario:String,
+        esDestinatario: Boolean,
+        repartidorCobra: Boolean,
+        pagoContraEntrega: Schema.Types.ObjectId,
+        montoContraEntrega: Number,
+        driverUser : { type:Schema.Types.ObjectId, ref: User}
+    },
+    globalState:{
+        type:Schema.Types.ObjectId, ref: 'GlobalState',
+        default:null
+    },
+    detailState:[{
+        _id:{
+            type:Schema.Types.ObjectId, ref: 'DetailState',
             default:null
         },
-        globalState:{
-            type:Schema.Types.ObjectId, ref: 'EstadoGlobal',
-            default:null
-        },
-        estadoDetalle:[{
-            _id:{
-                type:Schema.Types.ObjectId, ref: 'EstadoDetalle',
-                default:null
-            },
-            fecha: {
-                type: Date,
-                default: Date.now
-            }
-        }]
+        date: {
+            type: Date,
+            default: Date.now
+        }
+    }],
+    creatorUser : { type:Schema.Types.ObjectId, ref: User},
     },
     {
         timestamps: true,
@@ -56,41 +64,6 @@ const globalStateSchema = new Schema({
     stateName: String
 });
 
-const detailSchema = new Schema({
-    _id:Schema.Types.ObjectId,
-    descripcion:{
-        type: String
-    },
-    nombreRemitente:{
-        type:String
-    },
-    celularRemitente:{
-        type:String
-    },
-    nombreDestinatario:{
-        type:String
-    },
-    celularDestinatario:{
-        type:String
-    },
-    esDestinatario: {
-        type: Boolean,
-        default: false
-    },
-    repartidorCobra: {
-        type: Boolean,
-        default: false
-    },
-    pagoContraEntrega:{
-        type: Schema.Types.ObjectId,
-        default: null
-    },
-    montoContraEntrega:{
-        type: Number,
-        default: 0
-    }
-});
-
 const paymentMethodSchema = new Schema({
     IdName: {
         type: String
@@ -100,10 +73,21 @@ const paymentMethodSchema = new Schema({
     }
 });
 
+requestServiceSchema.plugin(mongoosePaginateV2);
+requestServiceSchema.plugin(mongoose_delete, {
+  deletedAt: true,
+  overrideMethods: [
+    "countDocuments",
+    "find",
+    "findOne",
+    "findOneAndUpdate",
+    "update",
+    "aggregate",
+  ],
+});
 const RequestService = model('RequestService', requestServiceSchema);
 const DetailState = model('DetailState', detailStateSchema);
 const GlobalState = model('GlobalState', globalStateSchema);
-const Detail = model('Detail', detailSchema);  
 const PaymentMethod = model('PaymentMethod', paymentMethodSchema);
 
-module.exports = { RequestService, Detail, PaymentMethod, DetailState, GlobalState };
+module.exports = { RequestService, PaymentMethod, DetailState, GlobalState };

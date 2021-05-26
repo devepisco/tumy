@@ -28,7 +28,11 @@ module.exports = [
     lastname:"Editado",
     IDType:"DNI",
     IDNumber:"00011122",
-    business:mongoose.Types.ObjectId("60a99b43349c7549c4ca7510"),
+    business:{
+      name: "SilverThink Solutions",
+      ruc: "10393939291",
+      socialReason: "Soluciones empresariales s.a.c"
+    },
     phone:"900111222",
     email:"usuario@editado.com",
     password:"Editado1234*",

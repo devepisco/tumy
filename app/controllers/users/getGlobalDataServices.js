@@ -1,9 +1,7 @@
 const { structure, objSuccess } = require("../../middlewares/utils");
-const { RequestService, GlobalState,  }  = require("../../models/NewServices");
+const { RequestService, GlobalState }  = require("../../models/NewServices");
 
-const getAllDataServices = structure (async(req, res) =>{
-    //obtener parametros fecha de inicio, fecha fin, estado de detalle, estado global
-    
+const getGlobalDataServices = structure (async(req, res) =>{
     const beginDate = req.query.fechaInicio;
     let endDate = req.query.fechaFin;
     const globalState = req.query.estadoGlobal;
@@ -35,8 +33,8 @@ const getAllDataServices = structure (async(req, res) =>{
             {
                 $project:{
                     _id:1,
-                    origenDireccion:1,
-                    destinoDireccion:1,
+                    'origin.address':1,
+                    'destination.address':1,
                     IdName:1,
                     stateName:1,
                     createdAt:1,
@@ -81,9 +79,8 @@ const getAllDataServices = structure (async(req, res) =>{
             {
                 $project:{
                     _id:1,
-                    origenDireccion:1,
-                    destinoDireccion:1,
-                    IdName:1,
+                    'origin.address':1,
+                    'destination.address':1,
                     stateName:1,
                     createdAt:1,
                     updatedAt:1
@@ -124,8 +121,8 @@ const getAllDataServices = structure (async(req, res) =>{
             {
                 $project:{
                     _id:1,
-                    origenDireccion:1,
-                    destinoDireccion:1,
+                    'origin.address':1,
+                    'destination.address':1,
                     IdName:1,
                     stateName:1,
                     createdAt:1,
@@ -166,9 +163,8 @@ const getAllDataServices = structure (async(req, res) =>{
             {
                 $project:{
                     _id:1,
-                    origenDireccion:1,
-                    destinoDireccion:1,
-                    IdName:1,
+                    'origin.address':1,
+                    'destination.address':1,
                     stateName:1,
                     createdAt:1,
                     updatedAt:1
@@ -180,4 +176,4 @@ const getAllDataServices = structure (async(req, res) =>{
     res.status(200).json(objSuccess(data));
 });
  
-module.exports = { getAllDataServices }
+module.exports = { getGlobalDataServices }

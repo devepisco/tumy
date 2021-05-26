@@ -1,6 +1,5 @@
-const { User, Business } = require("./app/models/User"),
-  usersData = require("./data/users/users"),
-  businessData = require("./data/business/business");
+const { User } = require("./app/models/User"),
+  usersData = require("./data/users/users");
 const RequestDriver = require("./app/models/Driver"),
   driversData = require("./data/drivers/drivers");
 const PriceRate = require("./app/models/PriceRate"),
@@ -12,7 +11,7 @@ const { PaymentMethod, DetailState, GlobalState }  = require("./app/models/NewSe
 
 
 const seedDB = async () => {
-  //Usuarios
+  //Users
   const usersCount = await User.countDocuments();
   if (usersCount <2) {
     const usersPromises = usersData.map(async (user) => {
@@ -22,17 +21,7 @@ const seedDB = async () => {
     const promises = await Promise.all(usersPromises);
     console.log(promises);
   }
-  //Empresas
-  const businessCount = await Business.countDocuments();
-  if (businessCount <1) {
-    const businessPromises = businessData.map(async (business) => {
-      return new Business(business).save();
-    });
-
-    const promises = await Promise.all(businessPromises);
-    console.log(promises);
-  }
-  //Repartidores
+  //Drivers
   const driversCount = await RequestDriver.countDocuments();
   if (driversCount < 2) {
     const driversPromises = driversData.map(async (driver) => {
@@ -42,7 +31,7 @@ const seedDB = async () => {
     const promises = await Promise.all(driversPromises);
     console.log(promises);
   }
-  //Tarifas
+  //Price rates
   const pricerateCount = await PriceRate.countDocuments();
   if (pricerateCount < 1) {
     const priceratesPromises = pricerateData.map(async (pricerate) => {
@@ -52,7 +41,7 @@ const seedDB = async () => {
     const promises = await Promise.all(priceratesPromises);
     console.log(promises);
   }
-  //Métodos de pago
+  //Payment Methods
   const paymentMethodCount = await PaymentMethod.countDocuments();
   if (paymentMethodCount < 1) {
     const paymentMethodPromises = paymentMethodData.map(async (paymentMethod) => {
@@ -61,7 +50,7 @@ const seedDB = async () => {
     const promises = await Promise.all(paymentMethodPromises);
     console.log(promises);
   }
-  //Estados Detalle
+  //Detail States
   const estadoDetalleCount = await DetailState.countDocuments();
   if (estadoDetalleCount < 6) {
     const estadoDetallePromises = estadoDetalleData.map(async (estadoDetalle) => {
@@ -70,7 +59,7 @@ const seedDB = async () => {
     const promises = await Promise.all(estadoDetallePromises);
     console.log(promises);
   }
-  //Estados Globales
+  //Global States
   const globalStateCount = await GlobalState.countDocuments();
   if (globalStateCount < 3) {
     const globalStatePromises = globalStateData.map(async (globalState) => {

@@ -34,8 +34,15 @@ let userSchema = new Schema(
       type: String
     },
     business:{
-      type: Schema.Types.ObjectId, ref:'Business',
-      default:null
+      name:{
+        type: String
+      },
+      socialReason:{
+        type: String
+      },
+      ruc:{
+        type: String
+      }
     },
     phone: {
       type: String
@@ -70,21 +77,6 @@ let userSchema = new Schema(
   },
   {
     timestamps: true,
-  }
-);
-
-let businessSchema = new Schema(
-  {
-    _id:Schema.Types.ObjectId,
-    name:{
-      type: String
-    },
-    socialReason:{
-      type: String
-    },
-    ruc:{
-      type: String
-    }
   }
 );
 
@@ -152,6 +144,5 @@ userSchema.plugin(mongoose_delete, {
 });
 
 const User = mongoose.model('User', userSchema);
-const Business = mongoose.model('Business', businessSchema);
 
-module.exports = { User, Business }
+module.exports = { User }

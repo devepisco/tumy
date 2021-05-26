@@ -2,6 +2,7 @@ const {Client} = require("@googlemaps/google-maps-services-js");
 const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const Exceptions = require('../../../errors/Exceptions');
 const { findPriceRate } = require("./helpers");
+const { getUserIdFromToken  } = require("../auth/helpers/getUserIdFromToken");
 
 const { RequestService } = require("../../models/NewServices");
 
@@ -9,7 +10,7 @@ const createService = structure(async (req,res) =>{
     
     let origin = req.body.origin;
     let destination = req.body.destination;
-    
+    const userId = req.user._id;
     origin = origin.split(",");
     destination = destination.split(",");
 
@@ -34,24 +35,29 @@ const createService = structure(async (req,res) =>{
             
             //Funcion para guardar datos de nuevo Servicio
             const NewService = new RequestService({
-                origenCoordenadas:req.body.origin,
-                destinoCoordenadas:req.body.destination,
-                origenDireccion:getdistance.data.origin_addresses[0],
-                destinoDireccion:getdistance.data.destination_addresses[0],
+                origin:{
+                    coordinates: req.body.origin,
+                    address: getdistance.data.origin_addresses[0]
+                },
+                destination:{
+                    coordinates: req.body.destination,
+                    address: getdistance.data.destination_addresses[0]
+                },
                 costo:costo,
-                tiempoAprox:getdistance.data.rows[0].elements[0].duration.text
+                tiempoAprox:getdistance.data.rows[0].elements[0].duration.text,
+                creatorUser: userId
             });
-            const data = await NewService.save();
+            const currentService = await NewService.save();
             //return res.json(data);
-            const data2 = {
-                idServicio: data._id,
-                origen: getdistance.data.origin_addresses[0],
-                destino: getdistance.data.destination_addresses[0],
+            const data = {
+                idServicio: currentService._id,
+                origen: currentService.origin.address,
+                destino: currentService.destination.address,
                 distancia: getdistance.data.rows[0].elements[0].distance.text,
                 tiempoAprox: getdistance.data.rows[0].elements[0].duration.text,
-                costo: costo + ' soles'
+                costo: currentService.costo + ' soles'
             }
-            res.status(200).json(objSuccess(data2));
+            res.status(200).json(objSuccess(data,"Servicio creado correctamente"));
         }
     }
     
