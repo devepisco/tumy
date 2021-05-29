@@ -8,6 +8,8 @@ const { PaymentMethod, DetailState, GlobalState }  = require("./app/models/NewSe
   paymentMethodData = require("./data/paymentMethods/paymentMethods"),
   estadoDetalleData = require("./data/detailStates/detailstates"),
   globalStateData = require("./data/globalStates/globalstates");
+const {maxReachDriver} = require("./app/models/maxReachDriver"),
+  maxReachDriverData = require("./data/maxReachDriver/maxReachDriver")
 
 
 const seedDB = async () => {
@@ -66,6 +68,15 @@ const seedDB = async () => {
       return new GlobalState(globalState).save();
     });
     const promises = await Promise.all(globalStatePromises);
+    console.log(promises);
+  }
+  //maxReachDriver
+  const maxReachDriverCount = await maxReachDriver.countDocuments();
+  if (maxReachDriverCount < 1) {
+    const maxReachDriverPromises = maxReachDriverData.map(async (data) => {
+      return new maxReachDriver(data).save();
+    });
+    const promises = await Promise.all(maxReachDriverPromises);
     console.log(promises);
   }
 };

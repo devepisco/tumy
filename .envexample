@@ -4,3 +4,12 @@ MONGO_URI=mongodb://localhost:27017/tumi-courier-db
 SECRET_KEY=secret-key
 JWT_SECRET=secret-key-jwt
 JWT_EXPIRATION_IN_MINUTES=30
+
+EMAIL_NAME=TUMI APP SUPPORT
+EMAIL_USER=tumiappdev@gmail.com
+EMAIL_PASSWORD=tumiappdev1234
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+
+GOOGLE_MAPS_API_KEY=AIzaSyD5JTFO1uOStRPY1Faat10O6b_gWz9e3BQ
+GOOGLE_MAPS_API_URL=https://maps.googleapis.com/maps/api/distancematrix/json?

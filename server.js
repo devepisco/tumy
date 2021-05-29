@@ -8,6 +8,16 @@ const cors = require("cors");
 const initMongodb = require('./config/mongodb')
 const { errorMiddlewarer } = require('./app/middlewares/utils')
 const { seedDB } = require('./seed')
+require('./config/redis')
+
+const http = require("http").Server(app);
+const { socketIO } = require('./config/sockets')
+const io = require("socket.io")(http, {
+    path: "/api/socket.io",
+    cors: {
+      origin: '*',
+    }
+});
 
 // Setup express server port from ENV, default: 3000
 app.set("port", process.env.PORT || 3000);
@@ -43,7 +53,7 @@ app.use('/api',require('./app/routes'))
 //middleware error
 app.use(errorMiddlewarer);
 
-app.listen(app.get("port"), () => {
+http.listen(app.get("port"), () => {
   if (process.env.NODE_ENV === "development") {
     // Prints initialization
     console.log("****************************");
@@ -59,10 +69,12 @@ app.listen(app.get("port"), () => {
   }
 });
 
+socketIO(io)
+
 //Init MongoDB
 initMongodb()
 
 //seed BD
 seedDB()
 
-module.exports = { app };
+module.exports = { app, io };
