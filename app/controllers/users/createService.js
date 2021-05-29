@@ -2,7 +2,6 @@ const {Client} = require("@googlemaps/google-maps-services-js");
 const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const Exceptions = require('../../../errors/Exceptions');
 const { findPriceRate } = require("./helpers");
-const { getUserIdFromToken  } = require("../auth/helpers/getUserIdFromToken");
 
 const { RequestService } = require("../../models/NewServices");
 
