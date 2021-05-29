@@ -2,7 +2,7 @@ const PriceRate = require("../../../models/PriceRate");
 
 const findPriceRate = async (IdName = "") => {
   const pricerate = await PriceRate.findOne({
-    IdName
+    nameId: IdName
   })
     .lean()
     .select("price")

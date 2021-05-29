@@ -29,8 +29,7 @@ const createService = structure(async (req,res) =>{
         else{
             const distancia = parseFloat(getdistance.data.rows[0].elements[0].distance.text);
             const tarifa_estandar = await findPriceRate('tarifa_estandar');
-            
-            var costo = distancia * tarifa_estandar.price;
+            const costo = distancia * tarifa_estandar.price;
             if(costo < tarifa_estandar.minPrice) costo = tarifa_estandar.minPrice;
             
             //Funcion para guardar datos de nuevo Servicio

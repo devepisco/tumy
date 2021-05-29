@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1da6ad23-4901-4116-9275-def8f9447e11",
+		"_postman_id": "eaccac82-7538-47ef-9b7b-95c83bb970a4",
 		"name": "tumi-courier-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"prueba@registeruser.com\",\r\n    \"password\":\"Usuario1234*\"\r\n}",
+							"raw": "{\r\n    \"email\":\"test@user.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1288,11 +1288,8 @@
 				},
 				{
 					"name": "create_service",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
@@ -1332,15 +1329,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047165, -77.134434\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseURL}}/user/createService",
 									"host": [
@@ -1443,7 +1431,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idServicio\":\"60ad4a512824eb37b461771d\",\r\n    \"descripcion\":\"5 unidades de polos\",\r\n    \"nombreRemitente\":\"Lorenzo Lima\",\r\n    \"celularRemitente\":\"917450095\",\r\n    \"nombreDestinatario\":\"Edward Polo\",\r\n    \"celularDestinatario\":\"995679039\",\r\n    \"esDestinatario\":\"true\",\r\n    \"repartidorCobra\":\"true\",\r\n    \"nameIdPago\":\"billetera_digital\"\r\n}",
+							"raw": "{\r\n    \"idServicio\":\"60b1cd62b1d26e22688999df\",\r\n    \"descripcion\":\"5 unidades de polos\",\r\n    \"nombreRemitente\":\"Lorenzo Lima\",\r\n    \"celularRemitente\":\"917450095\",\r\n    \"nombreDestinatario\":\"Edward Polo\",\r\n    \"celularDestinatario\":\"995679039\",\r\n    \"esDestinatario\":\"true\",\r\n    \"repartidorCobra\":\"true\",\r\n    \"nameIdPago\":\"billetera_digital\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

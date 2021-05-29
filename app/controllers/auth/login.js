@@ -15,7 +15,7 @@ const login = structure(async (req, res) => {
   else {
     // all ok, register access and return token
     delete user.password;
-    user.navigation = getNavigationByRole(user.role?.name);
+    /* user.navigation = getNavigationByRole(user.role?.name); */
     return res.status(200).json(objSuccess(
       { ...generateToken(user._id), user },
       message = "Usuario logueado correctamente."
