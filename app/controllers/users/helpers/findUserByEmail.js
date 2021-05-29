@@ -1,11 +1,11 @@
-const User = require("../../../models/User");
+const { User } = require("../../../models/User");
 
 const findUserByEmail = async (email = "") => {
-  const user = await User.User.findOne({
+  const user = await User.findOne({
     email,
   })
     .lean()
-    .select("+password");
+    .select("+password")
   return user;
 };
 

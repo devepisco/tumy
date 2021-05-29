@@ -1,9 +1,9 @@
 const { getItemsWithPagination } = require("../../middlewares/db/getItemsWithPagination");
 const { structure } = require("../../middlewares/utils");
-const Driver = require("../../models/Driver")
+const RequestDriver = require("../../models/Driver")
 
 const getRequestDriver = structure(async (req, res) => {
-    const drivers = await getItemsWithPagination(req.query, {status: "Pendiente"}, Driver)
+    const drivers = await getItemsWithPagination(req.query, {status: "Pendiente"}, RequestDriver)
     return res.status(200).json(drivers)
 })
 

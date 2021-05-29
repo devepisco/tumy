@@ -1,13 +1,13 @@
-const ServiceModel =  require('../../../models/NewServices')
+const { GlobalState } =  require('../../../models/NewServices')
 
-const findGlobalState = async (nameId = "") =>{
-    const GlobalState = await ServiceModel.EstadoGlobal.findOne({
-        nameId
+const findGlobalState = async (IdName = "") =>{
+    const FoundGlobalState = await GlobalState.findOne({
+        IdName
     })
     .lean()
     .select("_id")
-    .select("nameEstado")
-  return GlobalState;
+    .select("stateName")
+  return FoundGlobalState;
 }
 
 module.exports = { findGlobalState }

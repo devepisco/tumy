@@ -1,23 +1,25 @@
-const { matchedData } = require("express-validator");
-const User = require("../../models/User");
-const { structure } = require("../../middlewares/utils");
+const { User } = require("../../models/User");
+const { structure, objSuccess } = require('../../middlewares/utils');
 const { getUserIdFromToken  } = require("../auth/helpers/getUserIdFromToken");
 
 const updateMe = structure(async (req, res) =>{
-    const data = matchedData(req);
-    
-    let userId = getUserIdFromToken(req.headers.authorization.replace("Bearer ", "").trim())
+    const userData = {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        IDType:req.body.typeID,
+        IDNumber:req.body.numID,
+        business:req.body.business,
+        phone:req.body.phone,
+        email:req.body.email
+    }
+    const userId = getUserIdFromToken(req.headers.authorization.replace("Bearer ", "").trim())
+    const updatedUser = await User.findByIdAndUpdate(userId, userData, {new:true});
 
-    //console.log(userId);
-    // Actualizar los campos recibidos
-    const updatedUser = await User.User.findByIdAndUpdate(userId, data, {
-        new: true
-    });
-    
-    
-    res.status(200).json({
-        updatedUser
-    });
+    // const updatedUser = await findUserById(userId)
+
+    res.status(200).json(
+        objSuccess(updatedUser,"Se actualizaron los datos del usuario")
+    );
 });
 
 module.exports = { updateMe }

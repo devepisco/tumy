@@ -1,6 +1,6 @@
 const { validateResult } = require('../../../middlewares/utils')
 const { check } = require('express-validator')
-const { names } = require("../../../middlewares/regex")
+const { names, ruc } = require("../../../middlewares/regex")
 const typeDocument = require("../../../..//data/typeDocument")
 
 const validateUpdatedUser = [
@@ -32,6 +32,18 @@ const validateUpdatedUser = [
             min: 8
           })
         .withMessage('El ID debe tener como mínimo 8 caracteres'),
+    check('business')
+        .isObject(),
+    check('business.name')
+        .optional(),
+    check('business.socialReason')
+        .optional(),
+    check('business.ruc')
+        .optional()
+        .isNumeric()
+        .withMessage('El RUC debe contener caracteres numéricos')
+        .matches(ruc)
+        .withMessage('El RUC debe contener 11 caracteres'),
     check('phone')
         .not()
         .isEmpty()
@@ -49,19 +61,7 @@ const validateUpdatedUser = [
         .isEmpty()
         .withMessage('Debe añadir el correo electrónico')
         .isEmail()
-        .withMessage('Correo electrónico no válido'), 
-    // check('password')
-    //     .exists()
-    //     .withMessage('Debe añadir la contraseña')
-    //     .not()
-    //     .isEmpty()
-    //     .withMessage('Debe añadir la contraseña')
-    //     .isLength({
-    //       min: 8
-    //     })
-    //     .withMessage('La contraseña es muy corta, debe ser de almenos 8 caracteres')
-    //     .matches(passwordRegex)
-    //     .withMessage("La contraseña debe contener almenos una letra y un número"),
+        .withMessage('Correo electrónico no válido'),
     (req, res, next) => {
       validateResult(req, res, next)
     }

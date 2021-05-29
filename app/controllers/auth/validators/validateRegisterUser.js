@@ -32,16 +32,16 @@ const validateRegisterUser = [
             min: 8
           })
         .withMessage('El ID debe tener como mínimo 8 caracteres'),
-    check('isOrg')
-        .not()
-        .isEmpty()
-        .withMessage('Es necesario confirmar si la cuenta pertenece a una empresa.'),
-    check('nombreEmpresa')
+    check('business')
+        .isObject(),
+    check('business.nombreEmpresa')
         .optional(),
-    check('razonSocial')
+    check('business.razonSocial')
         .optional(),
-    check('ruc')
+    check('business.ruc')
         .optional()
+        .isNumeric()
+        .withMessage('El RUC debe contener solo caracteres numéricos')
         .isLength({
             min:11,
             max:11

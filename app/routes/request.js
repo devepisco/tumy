@@ -9,12 +9,24 @@ const requireAuth = passport.authenticate("jwt", {
 
 
 const {
-  getRequestDriver
+  getRequestDriver,
+  acceptRequestDriver,
+  rejectRequestDriver
 } = require("../controllers/drivers");
 
 /*
  * GET request drivers
  */
 router.get("/driver", trimRequest.query, requireAuth, getRequestDriver);
+
+/**
+ * Accept request drivers
+ */
+router.get("/accept/:id", trimRequest.param, requireAuth, acceptRequestDriver)
+
+/**
+ * Reject request drivers
+ */
+ router.get("/reject/:id", trimRequest.param, requireAuth, rejectRequestDriver)
 
 module.exports = router;

@@ -16,26 +16,33 @@ let userSchema = new Schema(
       type: String,
       uppercase: true
     },
-    typeID: {
+    IDType: {
       type: String,
       uppercase: true,
       enum: typeDocument,
     },
-    numID: {
+    IDNumber: {
       type: String
     },
-    numSOAT:{
+    SOATNumber:{
       type: String
     },
-    numPlaca:{
+    VehicleRegistration:{
       type: String
     },
-    numTarjetaPropiedad:{
+    propertyCardNumber:{
       type: String
     },
-    empresa:{
-      type: Schema.Types.ObjectId, ref:'Empresa',
-      default:null
+    business:{
+      name:{
+        type: String
+      },
+      socialReason:{
+        type: String
+      },
+      ruc:{
+        type: String
+      }
     },
     phone: {
       type: String
@@ -70,21 +77,6 @@ let userSchema = new Schema(
   },
   {
     timestamps: true,
-  }
-);
-
-let empresaSchema = new Schema(
-  {
-    _id:Schema.Types.ObjectId,
-    nombre:{
-      type: String
-    },
-    razonSocial:{
-      type: String
-    },
-    ruc:{
-      type: String
-    }
   }
 );
 
@@ -152,6 +144,5 @@ userSchema.plugin(mongoose_delete, {
 });
 
 const User = mongoose.model('User', userSchema);
-const Empresa = mongoose.model('Business', empresaSchema);
 
-module.exports = { User, Empresa }
+module.exports = { User }

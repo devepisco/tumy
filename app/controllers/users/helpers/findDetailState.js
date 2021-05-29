@@ -1,13 +1,13 @@
-const ServiceModel =  require('../../../models/NewServices')
+const { DetailState } =  require('../../../models/NewServices')
 
-const findDetailState = async (nameId = "") =>{
-    const DetailState = await ServiceModel.EstadoDetalle.findOne({
-        nameId
+const findDetailState = async (IdName = "") =>{
+    const FoundDetailState = await DetailState.findOne({
+        IdName
     })
     .lean()
     .select("_id")
-    .select("nameEstado")
-  return DetailState;
+    .select("stateName")
+  return FoundDetailState;
 }
 
 module.exports = { findDetailState }

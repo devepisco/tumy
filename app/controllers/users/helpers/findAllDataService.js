@@ -1,8 +1,8 @@
-const ServiceModel  = require("../../../models/NewServices");
+const { RequestService }  = require("../../../models/NewServices");
 
 const findAllDataService = async () => {
     //obtener los datos completos de servicio
-    const data = await ServiceModel.SolicitudServicio.aggregate(
+    const data = await RequestService.aggregate(
         [
             {
                 $lookup:{
@@ -29,13 +29,13 @@ const findAllDataService = async () => {
             {
                 $lookup:{
                     from: "estadoglobals",
-                    localField:"estadoGlobal",
+                    localField:"globalState",
                     foreignField:"_id",
-                    as: "estadoGlobalArray"
+                    as: "globalStateArray"
                 }
             },
             {
-                $unwind:"$estadoGlobalArray"
+                $unwind:"$globalStateArray"
             },
         ]
     );

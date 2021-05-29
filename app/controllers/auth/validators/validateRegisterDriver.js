@@ -38,6 +38,10 @@ const validateRegisterDriver = [
         .withMessage('Debe añadir el número de SOAT')
         .isNumeric()
         .withMessage('El número de SOAT debe contener caracteres numéricos'),
+    check('numPlaca')
+        .not()
+        .isEmpty()
+        .withMessage('Debe añadir la placa del vehiculo motorizado'),
     check('numTarjetaPropiedad')
         .not()
         .isEmpty()

@@ -11,7 +11,9 @@ const {
     createService,
     saveDetailsService,
     getPaymentMethods,
-    getAllDataServices,
+    getGlobalDataServices,
+    getDetailDataFromService,
+    getDriverFromService,
     cancelService
   } = require("../controllers/users");
 
@@ -24,18 +26,18 @@ const {
 /**
  * Updating user data route
  */
-router.patch("/updateMe", requireAuth, trimRequest.all, validateUpdatedUser, updateMe);
+router.patch("/updateMe", trimRequest.all, requireAuth, validateUpdatedUser, updateMe);
 
 /**
  * Create a New Service
  */
- router.get("/createService", trimRequest.all,validateCoordinates, createService);
+ router.get("/createService", trimRequest.all, requireAuth, validateCoordinates, createService);
 
 
 /**
  * Save details from a created service
  */
-router.post("/saveDetailsService", trimRequest.all, validateDetailsfromService, saveDetailsService);
+router.post("/saveDetailsService", trimRequest.all, requireAuth, validateDetailsfromService, saveDetailsService);
 
 /**
  * Get all the payment methods exists
@@ -43,13 +45,23 @@ router.post("/saveDetailsService", trimRequest.all, validateDetailsfromService, 
 router.get("/getPaymentMethods", trimRequest.all, getPaymentMethods);
 
 /**
- * Get all data Service and Details
+ * Get the Global Data from service
  */
-router.get("/getAllDataServices", trimRequest.all, getAllDataServices);
+router.get("/getServices", trimRequest.all, requireAuth, getGlobalDataServices);
+
+/**
+ * Get the Detail Data from service
+ */
+ router.get("/getService/:id", trimRequest.all, requireAuth, getDetailDataFromService);
+
+/**
+ * Get the driver from a service
+ */
+ router.get("/getService/:id/driver", trimRequest.all, requireAuth, getDriverFromService);
 
 /**
  * Cancel the Service request
  */
-router.get("/cancelService/:id", trimRequest.all, cancelService);
+router.get("/cancelService/:id", trimRequest.all, requireAuth, cancelService);
 
 module.exports = router;

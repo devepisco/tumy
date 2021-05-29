@@ -1,26 +1,26 @@
 module.exports = [
     {
-        nameId:"servicio_creado",
-        nameEstado:"Servicio creado",
+        IdName:"servicio_creado",
+        stateName:"Servicio creado",
     },
     {
-        nameId:"pendiente_recojo",
-        nameEstado:"Pendiente de recojo",
+        IdName:"pendiente_recojo",
+        stateName:"Pendiente de recojo",
     },
     {
-        nameId:"recogido",
-        nameEstado:"Recogido",
+        IdName:"recogido",
+        stateName:"Recogido",
     },
     {
-        nameId:"proceso_entrega",
-        nameEstado:"En proceso de entrega",
+        IdName:"proceso_entrega",
+        stateName:"En proceso de entrega",
     },
     {
-        nameId:"entregado",
-        nameEstado:"Entregado",
+        IdName:"entregado",
+        stateName:"Entregado",
     },
     {
-        nameId:"cancelado",
-        nameEstado:"Cancelado"
+        IdName:"cancelado",
+        stateName:"Cancelado"
     }
 ];

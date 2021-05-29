@@ -1,13 +1,13 @@
-const User = require("./app/models/User"),
+const { User } = require("./app/models/User"),
   usersData = require("./data/users/users");
-const Driver = require("./app/models/Driver"),
+const RequestDriver = require("./app/models/Driver"),
   driversData = require("./data/drivers/drivers");
 const PriceRate = require("./app/models/PriceRate"),
   pricerateData = require("./data/pricerates/pricerates");
-const ServiceModel = require("./app/models/NewServices"),
+const { PaymentMethod, DetailState, GlobalState }  = require("./app/models/NewServices"),
   paymentMethodData = require("./data/paymentMethods/paymentMethods"),
   estadoDetalleData = require("./data/detailStates/detailstates"),
-  estadoGlobalData = require("./data/globalStates/globalstates");
+  globalStateData = require("./data/globalStates/globalstates");
 
 
 const seedDB = async () => {
@@ -15,23 +15,23 @@ const seedDB = async () => {
   const usersCount = await User.countDocuments();
   if (usersCount < 4) {
     const usersPromises = usersData.map(async (user) => {
-      return new User.User(user).save();
+      return new User(user).save();
     });
 
     const promises = await Promise.all(usersPromises);
     console.log(promises);
   }
-  //Repartidores
-  const driversCount = await Driver.countDocuments();
+  //Drivers
+  const driversCount = await RequestDriver.countDocuments();
   if (driversCount < 2) {
     const driversPromises = driversData.map(async (driver) => {
-      return new Driver(driver).save();
+      return new RequestDriver(driver).save();
     });
 
     const promises = await Promise.all(driversPromises);
     console.log(promises);
   }
-  //Tarifas
+  //Price rates
   const pricerateCount = await PriceRate.countDocuments();
   if (pricerateCount < 1) {
     const priceratesPromises = pricerateData.map(async (pricerate) => {
@@ -41,31 +41,31 @@ const seedDB = async () => {
     const promises = await Promise.all(priceratesPromises);
     console.log(promises);
   }
-  //Métodos de pago
-  const paymentMethodCount = await ServiceModel.PagoContraEntrega.countDocuments();
+  //Payment Methods
+  const paymentMethodCount = await PaymentMethod.countDocuments();
   if (paymentMethodCount < 1) {
     const paymentMethodPromises = paymentMethodData.map(async (paymentMethod) => {
-      return new ServiceModel.PagoContraEntrega(paymentMethod).save();
+      return new PaymentMethod(paymentMethod).save();
     });
     const promises = await Promise.all(paymentMethodPromises);
     console.log(promises);
   }
-  //Estados Detalle
-  const estadoDetalleCount = await ServiceModel.EstadoDetalle.countDocuments();
-  if (estadoDetalleCount < 1) {
+  //Detail States
+  const estadoDetalleCount = await DetailState.countDocuments();
+  if (estadoDetalleCount < 6) {
     const estadoDetallePromises = estadoDetalleData.map(async (estadoDetalle) => {
-      return new ServiceModel.EstadoDetalle(estadoDetalle).save();
+      return new DetailState(estadoDetalle).save();
     });
     const promises = await Promise.all(estadoDetallePromises);
     console.log(promises);
   }
-  //Estados Globales
-  const estadoGlobalCount = await ServiceModel.EstadoGlobal.countDocuments();
-  if (estadoGlobalCount < 1) {
-    const estadoGlobalPromises = estadoGlobalData.map(async (estadoGlobal) => {
-      return new ServiceModel.EstadoGlobal(estadoGlobal).save();
+  //Global States
+  const globalStateCount = await GlobalState.countDocuments();
+  if (globalStateCount < 3) {
+    const globalStatePromises = globalStateData.map(async (globalState) => {
+      return new GlobalState(globalState).save();
     });
-    const promises = await Promise.all(estadoGlobalPromises);
+    const promises = await Promise.all(globalStatePromises);
     console.log(promises);
   }
 };

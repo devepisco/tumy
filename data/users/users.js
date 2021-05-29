@@ -1,9 +1,11 @@
+mongoose = require('mongoose');
+
 module.exports = [
   {
     firstname:"Usuario",
     lastname:"de Prueba",
-    typeID:"DNI",
-    numID:"72230303",
+    IDType:"DNI",
+    IDNumber:"72230303",
     phone:"920903021",
     email:"test@user.com",
     password:"Admin1234*",
@@ -13,8 +15,8 @@ module.exports = [
   {
     firstname:"Admin",
     lastname:"admin",
-    typeID:"DNI",
-    numID:"70200302",
+    IDType:"DNI",
+    IDNumber:"70200302",
     phone:"967128349",
     email:"admin@gmail.com",
     password:"Admin1234*",
@@ -22,31 +24,19 @@ module.exports = [
     isBlocked: false,
   },
   {
-    firstname:"Repartidor De",
-    lastname:"Prueba Uno",
-    typeID:"DNI",
-    numID:"00112233",
-    numSOAT:"05-302920202",
-    numPlaca:"B1-3030",
-    numTarjetaPropiedad:"MD2300A0SD0CX0024",
-    phone:"910203040",
-    email:"repartidor@test1.com",
-    password:"Repartidor1234*",
-    role: "driver",
-    isBlocked: false,
-},
-{
-    firstname:"Repartidor De",
-    lastname:"Prueba Dos",
-    typeID:"DNI",
-    numID:"11223344",
-    numSOAT:"05-102934950",
-    numPlaca:"B3-1029",
-    numTarjetaPropiedad:"MD4ABZ450220D0112",
-    phone:"990204578",
-    email:"repartidor@test2.com",
-    password:"Repartidor1234*",
-    role: "driver",
+    firstname:"Usuario",
+    lastname:"Editado",
+    IDType:"DNI",
+    IDNumber:"00011122",
+    business:{
+      name: "SilverThink Solutions",
+      ruc: "10393939291",
+      socialReason: "Soluciones empresariales s.a.c"
+    },
+    phone:"900111222",
+    email:"usuario@editado.com",
+    password:"Editado1234*",
+    role: "user",
     isBlocked: false,
   }
 ];

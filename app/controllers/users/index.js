@@ -2,7 +2,9 @@ const { updateMe } = require('./updateMe')
 const { createService } = require('./createService');
 const { saveDetailsService } = require('./saveDetailsService');
 const { getPaymentMethods } = require('./getPaymentMethods');
-const { getAllDataServices } = require('./getAllDataServices');
+const { getGlobalDataServices } = require('./getGlobalDataServices');
+const { getDetailDataFromService } = require('./getDetailDataFromService');
+const { getDriverFromService } = require('./getDriverFromService');
 const { cancelService } = require('./cancelService');
 
 module.exports = {
@@ -10,6 +12,8 @@ module.exports = {
     createService,
     saveDetailsService,
     getPaymentMethods,
-    getAllDataServices,
+    getGlobalDataServices,
+    getDetailDataFromService,
+    getDriverFromService,
     cancelService
 }
