@@ -31,7 +31,7 @@ router.patch("/updateMe", trimRequest.all, requireAuth, validateUpdatedUser, upd
 /**
  * Create a New Service
  */
- router.get("/createService", trimRequest.all, requireAuth, validateCoordinates, createService);
+ router.post("/createService", trimRequest.all, requireAuth, validateCoordinates, createService);
 
 
 /**

@@ -13,9 +13,9 @@ const {maxReachDriver} = require("./app/models/maxReachDriver"),
 
 
 const seedDB = async () => {
-  //Users
+  //Usuarios
   const usersCount = await User.countDocuments();
-  if (usersCount <2) {
+  if (usersCount < 4) {
     const usersPromises = usersData.map(async (user) => {
       return new User(user).save();
     });
