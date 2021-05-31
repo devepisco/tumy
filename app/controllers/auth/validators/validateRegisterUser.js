@@ -33,7 +33,9 @@ const validateRegisterUser = [
           })
         .withMessage('El ID debe tener como mínimo 8 caracteres'),
     check('business')
-        .isObject(),
+        .optional()
+        .isObject()
+        .withMessage('La empresa debe ser un objeto'),
     check('business.nombreEmpresa')
         .optional(),
     check('business.razonSocial')
