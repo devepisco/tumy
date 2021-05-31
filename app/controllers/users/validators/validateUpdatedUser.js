@@ -33,6 +33,7 @@ const validateUpdatedUser = [
           })
         .withMessage('El ID debe tener como mínimo 8 caracteres'),
     check('business')
+        .optional()
         .isObject()
         .withMessage('La empresa debe ser un objeto'),
     check('business.name')
