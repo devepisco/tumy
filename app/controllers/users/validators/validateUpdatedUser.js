@@ -16,13 +16,13 @@ const validateUpdatedUser = [
         .withMessage('Debe añadir sus apellidos')
         .matches(names)
         .withMessage('El apellido debe contener caracteres alfabéticos'),
-    check('typeID')
+    check('IDType')
         .not()
         .isEmpty()
         .withMessage('Debe añadir el tipo de Documento')
         .isIn(typeDocument)
         .withMessage(`El tipo de Documento debe estar entre ${typeDocument.join(", ")}`),
-    check('numID')
+    check('IDNumber')
         .not()
         .isEmpty()
         .withMessage('Debe añadir el número de DNI')
