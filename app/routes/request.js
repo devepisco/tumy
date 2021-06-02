@@ -14,6 +14,10 @@ const {
   rejectRequestDriver
 } = require("../controllers/drivers");
 
+const {
+  editDetailState
+} = require("../controllers/requestService")
+
 /*
  * GET request drivers
  */
@@ -28,5 +32,10 @@ router.get("/accept/:id", trimRequest.param, requireAuth, acceptRequestDriver)
  * Reject request drivers
  */
  router.get("/reject/:id", trimRequest.param, requireAuth, rejectRequestDriver)
+
+/**
+ * Change globalState
+ */
+router.get("/:id/:detailstate", trimRequest.all, editDetailState)
 
 module.exports = router;
