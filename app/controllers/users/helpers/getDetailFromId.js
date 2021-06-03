@@ -1,5 +1,5 @@
-const { isIDGood } = require("../utils");
-const { RequestService } = require("../../models/NewServices")
+const { isIDGood } = require("../../../middlewares/utils");
+const { RequestService } = require("../../../models/NewServices")
 
 const getDetailFromId = async (id) => {
     const IdService = isIDGood(id);

@@ -1,10 +1,11 @@
-const { getItemsWithPagination, getItemByQuery } = require("../../../app/middlewares/db");
-const { RequestService } = require("../../../app/models/NewServices");
-const { maxReachDriver } = require("../../../app/models/maxReachDriver");
-const { distanceMatrix } = require("../../../app/middlewares/googlemapsapi/distanceMatrix");
-const { findGlobalState } = require("../../controllers/users/helpers");
+const { getItemsWithPagination, getItemByQuery } = require("../../../middlewares/db");
+const { RequestService } = require("../../../models/NewServices");
+const { maxReachDriver } = require("../../../models/maxReachDriver");
+const { distanceMatrix } = require("../../../middlewares/googlemapsapi/distanceMatrix");
+const { findGlobalState } = require("../../../controllers/users/helpers");
+const { clientService } = require("../../../../config/redis")
 
-const getService = async ( driver, page = 1 ) => {
+const getService = async ( driver, page = 1 ) => {  
     const globalState = await findGlobalState("en_proceso");
     const service = await getItemsWithPagination({page:page, limit:1},{globalState: globalState._id},RequestService,'detailState._id');
     const originService = service.docs[0].origin.coordinates;

@@ -11,7 +11,7 @@ const  editDetailState = structure(async (req, res) => {
     const requestService = await RequestService.findById(IdRequestService)
     requestService.detailState.push({_id:detailState._id})
     const result = await requestService.save()
-    await result.populate('detailState._id').execPopulate()
+    await result.populate('detailState._id',{_id:0, idName:0,__v:0}).execPopulate()
     emitToUpdateService(requestService.detail.driverUser, requestService._id, requestService)
     return res.status(200).json(objSuccess({},"El estado Detalle se actualizó correctamente"))
 });

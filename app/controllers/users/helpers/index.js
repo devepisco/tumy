@@ -5,6 +5,7 @@ const { findPaymentMethod } = require('./findPaymentMethod')
 const { findDetailState } = require('./findDetailState')
 const { findGlobalState } = require('./findGlobalState')
 const { findAllDataService } = require('./findAllDataService')
+const { getDetailFromId } = require("./getDetailFromId")
 
 module.exports = {
     findUserByEmail,
@@ -13,5 +14,6 @@ module.exports = {
     findPaymentMethod,
     findDetailState,
     findGlobalState,
-    findAllDataService
+    findAllDataService,
+    getDetailFromId
 }
