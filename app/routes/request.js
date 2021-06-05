@@ -18,6 +18,9 @@ const {
   editDetailState
 } = require("../controllers/requestService")
 
+const {
+  validateEditDetailState
+} = require("../controllers/requestService/validators")
 /*
  * GET request drivers
  */
@@ -36,6 +39,6 @@ router.get("/accept/:id", trimRequest.param, requireAuth, acceptRequestDriver)
 /**
  * Change globalState
  */
-router.get("/:id/:detailstate", trimRequest.all, editDetailState)
+router.get("/:id/:detailstate", trimRequest.all, requireAuth, validateEditDetailState, editDetailState)
 
 module.exports = router;

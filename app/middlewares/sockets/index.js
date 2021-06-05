@@ -1,5 +1,7 @@
-const { emitToUpdateService } = require("./emitToUpdateService")
+const { emitToUpdateService } = require("./emitToUpdateService");
+const { emitServiceToDriver } = require("./emitServiceToDriver");
 
 module.exports = {
-  emitToUpdateService
+  emitToUpdateService,
+  emitServiceToDriver,
 };

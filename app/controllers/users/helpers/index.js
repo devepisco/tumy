@@ -6,6 +6,8 @@ const { findDetailState } = require('./findDetailState')
 const { findGlobalState } = require('./findGlobalState')
 const { findAllDataService } = require('./findAllDataService')
 const { getDetailFromId } = require("./getDetailFromId")
+const { getService } = require("./getService")
+const { asignDriverToService } = require("./asignDriverToService")
 
 module.exports = {
     findUserByEmail,
@@ -15,5 +17,7 @@ module.exports = {
     findDetailState,
     findGlobalState,
     findAllDataService,
-    getDetailFromId
+    getDetailFromId,
+    getService,
+    asignDriverToService
 }

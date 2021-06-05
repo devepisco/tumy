@@ -1,24 +1,71 @@
-const { getItemsWithPagination, getItemByQuery } = require("../../../middlewares/db");
-const { RequestService } = require("../../../models/NewServices");
-const { maxReachDriver } = require("../../../models/maxReachDriver");
-const { distanceMatrix } = require("../../../middlewares/googlemapsapi/distanceMatrix");
-const { findGlobalState } = require("../../../controllers/users/helpers");
-const { clientService } = require("../../../../config/redis")
+const {
+  RequestService,
+  GlobalState,
+  DetailState,
+} = require("../../../models/NewServices");
+const {
+  findDetailState,
+} = require("../../../controllers/users/helpers/findDetailState");
 
-const getService = async ( driver, page = 1 ) => {  
-    const globalState = await findGlobalState("en_proceso");
-    const service = await getItemsWithPagination({page:page, limit:1},{globalState: globalState._id},RequestService,'detailState._id');
-    const originService = service.docs[0].origin.coordinates;
-    let distanceServiceDriver = await distanceMatrix(driver.coordinates, originService);
-    distanceServiceDriver = parseFloat(distanceServiceDriver.rows[0].elements[0].distance.text)
-    const maxReach = await getItemByQuery({}, maxReachDriver);
-    if(distanceServiceDriver <= maxReach.number) {
-      await RequestService.findByIdAndUpdate(service.docs[0]._id,{'detail.driverUser':driver.id})
-      return service.docs[0];
+const getService = async () => {
+  const detailStateModel = await findDetailState("servicio_creado");
+  const service = await RequestService.aggregate([
+    {
+      $lookup: {
+        from: GlobalState.collection.name,
+        localField: "globalState",
+        foreignField: "_id",
+        as: "globalState",
+      }
+    },
+    {
+      $lookup: {
+        from: DetailState.collection.name,
+        localField: "detailState._id",
+        foreignField: "_id",
+        as: "detailState",
+      },
+    },
+    {
+      $project: {
+        "_id":1,
+        "origin":1,
+        "destination":1,
+        "detail":1,
+        "globalState":1,
+        "costo":1,
+        "tiempoAprox":1,
+        "detailState":1,
+        "detailStateSize":{
+          $size:"$detailState"
+        }
+      }
+    },
+    {
+      $match:{
+        $and: [
+          {"detailState._id": detailStateModel._id},
+          {"detailStateSize":{ $lt:2, $gte:1}}
+        ]
+      }
+    },
+    {
+      $project: {
+        "globalState._id":0,
+        "globalState.IdName":0,
+        "globalState.__v":0,
+        "detailState._id":0,
+        "detailState.IdName":0,
+        "detailState.__v":0,
+      }
+    },
+    {
+      $limit:1
     }
-    else {
-      if(page < service.totalDocs) return getService(location, service.page + 1 )
-      else false
-    }
-}
-module.exports = { getService } 
+
+  ]);
+  console.log(service)
+  if (service.length < 1) return false;
+  else return service;
+};
+module.exports = { getService };
