@@ -1,5 +1,6 @@
 const { validateResult } = require('../../../middlewares/utils')
 const { check } = require('express-validator')
+const { names } = require('../../../middlewares/regex')
 
 const validateDetailsfromService = [
     check('idServicio')
@@ -17,13 +18,21 @@ const validateDetailsfromService = [
         .isEmpty()
         .withMessage('Debe añadir una descripcion del paquete'),
     check('nombreRemitente')
-        .not()
-        .isEmpty()
-        .withMessage('Debe añadir el nombre del remitente'),
+        .optional()
+        .matches(names)
+        .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('celularRemitente')
-        .not()
-        .isEmpty()
-        .withMessage('Debe añadir el celular del remitente'),
+        .optional()
+        .isNumeric()
+        .withMessage("El celular de debe contener caracteres numéricos."),
+    check('nombreDestinatario')
+        .optional()
+        .matches(names)
+        .withMessage('El nombre debe contener caracteres alfabéticos'),
+    check('celularDestinatario')
+        .optional()
+        .isNumeric()
+        .withMessage("El celular de debe contener caracteres numéricos."),
     check('montoContraEntrega')
         .optional()
         .isNumeric()

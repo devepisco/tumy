@@ -24,7 +24,13 @@ const saveDetailsService = structure(async (req, res) => {
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
 
-  if(foundService.detail) return handleError(res, 404, "El servicio ya contiene un detalle existente");
+  if (foundService.detail) {
+    return handleError(
+      res,
+      404,
+      "El servicio ya contiene un detalle existente"
+    );
+  }
 
   const detailState = await findDetailState("servicio_creado");
   const globalState = await findGlobalState("en_proceso");
@@ -110,9 +116,11 @@ const saveDetailsService = structure(async (req, res) => {
       );
     }
   }
-  updatedService.detailState = [{
-    _id: detailState._id,
-  }];
+  updatedService.detailState = [
+    {
+      _id: detailState._id,
+    },
+  ];
   await updatedService.save();
 
   if (
@@ -120,6 +128,7 @@ const saveDetailsService = structure(async (req, res) => {
     updatedService.globalState &&
     updatedService.detailState
   ) {
+    const isAsigned = await asignDriverToService(updatedService);
     const data = await RequestService.aggregate([
       {
         $lookup: {
@@ -143,15 +152,15 @@ const saveDetailsService = structure(async (req, res) => {
         },
       },
     ]);
-    //await asignDriverToService(updatedService);
-    console.log(updatedService);
-    res.status(200).json(objSuccess(data));
-  } else
+    console.log(data);
+    res.status(200).json(objSuccess(data, "isAsigned:" + isAsigned));
+  } else {
     return handleError(
       res,
       404,
       "Hubo un error al guardar el estado del servicio"
     );
+  }
 });
 
 module.exports = { saveDetailsService };

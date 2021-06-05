@@ -1,7 +1,7 @@
 const { validateResult } = require('../../../middlewares/utils')
 const { check } = require('express-validator')
 const { passwordRegex, names } = require("../../../middlewares/regex")
-const typeDocument = require("../../../..//data/typeDocument")
+const typeDocument = require("../../../../data/typeDocument")
 
 const validateRegisterDriver = [
     check('firstname')
