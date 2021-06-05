@@ -1,6 +1,7 @@
 const { validateResult } = require('../../../middlewares/utils')
 const { check } = require('express-validator')
 const { names } = require('../../../middlewares/regex')
+const paymentMethods = require('../../../../data/paymentMethods')
 
 const validateDetailsfromService = [
     check('idServicio')
@@ -38,9 +39,9 @@ const validateDetailsfromService = [
         .isNumeric()
         .withMessage('El monto contra entrega debe contener un valor numérico'),
     check('nameIdPago')
-        .not()
-        .isEmpty()
-        .withMessage('Debe añadir el IdName de Pago contra entrega'),
+        .optional()
+        .isIn(paymentMethods)
+        .withMessage('El campo nameIdPago debe estar dentro de la lista de métodos de pago'),
     (req, res, next) => {
       validateResult(req, res, next)
     }
