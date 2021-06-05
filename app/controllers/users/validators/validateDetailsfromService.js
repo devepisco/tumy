@@ -24,6 +24,10 @@ const validateDetailsfromService = [
         .not()
         .isEmpty()
         .withMessage('Debe añadir el celular del remitente'),
+    check('montoContraEntrega')
+        .optional()
+        .isNumeric()
+        .withMessage('El monto contra entrega debe contener un valor numérico'),
     check('nameIdPago')
         .not()
         .isEmpty()

@@ -24,7 +24,7 @@ const saveDetailsService = structure(async (req, res) => {
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
 
-  //if(foundService.detail) return handleError(res, 404, "El servicio ya contiene un detalle existente");
+  if(foundService.detail) return handleError(res, 404, "El servicio ya contiene un detalle existente");
 
   const detailState = await findDetailState("servicio_creado");
   const globalState = await findGlobalState("en_proceso");
@@ -43,7 +43,7 @@ const saveDetailsService = structure(async (req, res) => {
             esDestinatario: false,
             repartidorCobra: true,
             pagoContraEntrega: IdNamePago._id,
-            montoContraEntrega: foundService.costo,
+            montoContraEntrega: req.body.montoContraEntrega,
           },
           globalState: globalState._id,
         },
@@ -83,7 +83,7 @@ const saveDetailsService = structure(async (req, res) => {
             esDestinatario: false,
             repartidorCobra: true,
             pagoContraEntrega: IdNamePago._id,
-            montoContraEntrega: foundService.costo,
+            montoContraEntrega: req.body.montoContraEntrega,
           },
           globalState: globalState._id,
         },
@@ -102,7 +102,7 @@ const saveDetailsService = structure(async (req, res) => {
             esDestinatario: false,
             repartidorCobra: false,
             pagoContraEntrega: IdNamePago._id,
-            montoContraEntrega: foundService.costo,
+            montoContraEntrega: req.body.montoContraEntrega,
           },
           globalState: globalState._id,
         },
