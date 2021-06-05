@@ -24,7 +24,7 @@ const saveDetailsService = structure(async (req, res) => {
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
 
-  if (foundService.detail) {
+  if (Object.keys(foundService.detail).length === 0) {
     return handleError(
       res,
       404,
