@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const {
   structure,
   isIDGood,
@@ -5,7 +7,7 @@ const {
   objSuccess,
 } = require("../../middlewares/utils");
 const { findDetailState } = require("../users/helpers/findDetailState");
-const { RequestService } = require("../../models/NewServices");
+const { RequestService, GlobalState, DetailState } = require("../../models/NewServices");
 const { emitToUpdateService, emitServiceToDriver } = require("../../middlewares/sockets");
 const { matchedData } = require("express-validator");
 const { getService } = require("../users/helpers");
@@ -15,8 +17,30 @@ const { editInfoDriver } = require("../../../config/helpers/editInfoDriver");
 const editDetailState = structure(async (req, res) => {
   const { id, detailstate } = matchedData(req);
   const foundDetailState = await findDetailState(detailstate);
-  const requestService = await RequestService.findById(id);
-  console.log(requestService)
+  let requestService = await RequestService.aggregate([
+    {
+      $lookup: {
+        from: GlobalState.collection.name,
+        localField: "globalState",
+        foreignField: "_id",
+        as: "globalState",
+      },
+    },
+    {
+      $lookup: {
+        from: DetailState.collection.name,
+        localField: "detailState._id",
+        foreignField: "_id",
+        as: "detailState",
+      },
+    },
+    {
+      $match: {
+        _id: mongoose.Types.ObjectId(id),
+      },
+    },
+  ]);
+  requestService = requestService[0];
   let existDetailState = requestService.detailState.find(
     (state) => state._id == `${foundDetailState._id}`
   );
