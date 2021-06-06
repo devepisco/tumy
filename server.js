@@ -48,7 +48,7 @@ app.use(express.static("public"));
 app.use(helmet());
 
 //import routes
-app.use('/api',require('./app/routes'))
+app.use('/tumi/api',require('./app/routes'))
 
 //middleware error
 app.use(errorMiddlewarer);
