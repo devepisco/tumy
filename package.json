@@ -30,6 +30,7 @@
     "express-validator": "^6.10.1",
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
+    "mercadopago": "^1.5.7",
     "moment-timezone": "^0.5.33",
     "mongoose": "^5.12.7",
     "mongoose-aggregate-paginate-v2": "^1.0.42",

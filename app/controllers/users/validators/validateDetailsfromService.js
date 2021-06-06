@@ -20,7 +20,7 @@ const validateDetailsfromService = [
         .withMessage('Debe añadir una descripcion del paquete'),
     check('nombreRemitente')
         .optional()
-        .matches(names)
+        .isString()
         .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('celularRemitente')
         .optional()
@@ -28,7 +28,7 @@ const validateDetailsfromService = [
         .withMessage("El celular de debe contener caracteres numéricos."),
     check('nombreDestinatario')
         .optional()
-        .matches(names)
+        .isString()
         .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('celularDestinatario')
         .optional()
