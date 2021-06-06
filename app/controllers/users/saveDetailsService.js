@@ -20,11 +20,10 @@ const saveDetailsService = structure(async (req, res) => {
   idService = isIDGood(req.body.idServicio);
   const IdNamePago = await findPaymentMethod(req.body.nameIdPago);
   let updatedService = {};
-  const foundService = await RequestService.findOne({ _id: idService });
+  const foundService = await RequestService.findOne({ _id: idService }).lean();
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
-
-  if (Object.keys(foundService.detail).length === 0) {
+  if (foundService.detail && Object.keys(foundService.detail).length !== 0) {
     return handleError(
       res,
       404,
@@ -153,7 +152,7 @@ const saveDetailsService = structure(async (req, res) => {
       },
     ]);
     console.log(data);
-    res.status(200).json(objSuccess(data, "isAsigned:" + isAsigned));
+    res.status(200).json(objSuccess(data, "Se actualizó de manera correcta"));
   } else {
     return handleError(
       res,
