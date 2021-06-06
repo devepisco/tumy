@@ -127,7 +127,7 @@ const saveDetailsService = structure(async (req, res) => {
     updatedService.globalState &&
     updatedService.detailState
   ) {
-    const isAsigned = await asignDriverToService(updatedService);
+    asignDriverToService(updatedService);
     const data = await RequestService.aggregate([
       {
         $lookup: {
@@ -150,8 +150,17 @@ const saveDetailsService = structure(async (req, res) => {
           _id: updatedService._id,
         },
       },
+      {
+        $project: {
+          "globalState._id":0,
+          "globalState.IdName":0,
+          "globalState.__v":0,
+          "detailState._id":0,
+          "detailState.IdName":0,
+          "detailState.__v":0,
+        }
+      },
     ]);
-    console.log(data);
     res.status(200).json(objSuccess(data, "Se actualizó de manera correcta"));
   } else {
     return handleError(

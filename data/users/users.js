@@ -1,5 +1,3 @@
-mongoose = require('mongoose');
-
 module.exports = [
   {
     firstname:"Usuario",

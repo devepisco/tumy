@@ -32,8 +32,8 @@ const socketIO = (io) => {
         data.isAvaliable = true;
         const infoDriver = editInfoDriver(reply, data)
         clientService.set("infoDriver", infoDriver)
+        socket.emit("driver:location", data)
       });
-      socket.emit("driver:location", data)
     });
 
     on(socket, "client:detailService", async(data) => {
