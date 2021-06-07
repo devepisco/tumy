@@ -36,9 +36,9 @@ const saveDetailsService = structure(async (req, res) => {
   let detail = {
     descripcion: req.body.descripcion,
     nombreRemitente: req.body.nombreRemitente,
-    celularRemitente: req.body.celularRemitente.replace('+51', ''),
+    celularRemitente: req.body.celularRemitente && req.body.celularRemitente.replace('+51', ''),
     nombreDestinatario: req.body.nombreDestinatario,
-    celularDestinatario: req.body.celularDestinatario.replace('+51', ''),
+    celularDestinatario: req.body.celularDestinatario && req.body.celularDestinatario.replace('+51', ''),
     esDestinatario: req.body.esDestinatario == "true",
     repartidorCobra: req.body.repartidorCobra == "true",
     pagoContraEntrega: IdNamePago._id,
