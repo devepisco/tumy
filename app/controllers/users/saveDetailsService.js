@@ -70,7 +70,7 @@ const saveDetailsService = structure(async (req, res) => {
     title: "Servicio de Courier",
     quantity: 1,
     currency_id: "PEN",
-    unit_price: data.costo,
+    unit_price: updatedService.costo,
   };
 
   const payer = {
@@ -84,7 +84,7 @@ const saveDetailsService = structure(async (req, res) => {
   };
 
   const { id } = await createNewPreference(item, payer);
-  data.preferenceId = id;
+  updatedService.preferenceId = id;
 
   await updatedService.save();
   
