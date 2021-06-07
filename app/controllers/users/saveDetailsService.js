@@ -20,7 +20,6 @@ const saveDetailsService = structure(async (req, res) => {
   /* Validaciones */
   idService = isIDGood(req.body.idServicio);
   const IdNamePago = await findPaymentMethod(req.body.nameIdPago);
-  console.log(req.user);
   const foundService = await RequestService.findOne({ _id: idService }).lean();
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
@@ -44,7 +43,7 @@ const saveDetailsService = structure(async (req, res) => {
     pagoContraEntrega: IdNamePago._id,
     montoContraEntrega: req.body.montoContraEntrega,
   };
-  if (!detail.esDestinatario) {
+  if (detail.esDestinatario) {
     detail.nombreDestinatario = `${req.user.firstname} ${req.user.lastname}`;
     detail.celularDestinatario = req.user.phone;
   } else {
