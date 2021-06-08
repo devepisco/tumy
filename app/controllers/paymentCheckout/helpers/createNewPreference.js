@@ -6,7 +6,7 @@ const createNewPreference = async (item, payer) => {
     payer,
     expires: true,
     payment_methods: {
-      excluded_payment_methods: [{ id: "ticket" }, { id: "atm" }],
+      excluded_payment_types: [{ id: "ticket" }, { id: "atm" }],
       default_installments: 1,
     },
   };
