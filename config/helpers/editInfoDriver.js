@@ -3,6 +3,7 @@ const editInfoDriver = (data, driver) => {
     let editedInfo = false;
     if(data){
       infoDriver = JSON.parse(data)
+      console.log("infoDriver:",infoDriver)
       const arr = infoDriver.map (function (x){ 
         if(x.id == driver.id){ 
           editedInfo = true;

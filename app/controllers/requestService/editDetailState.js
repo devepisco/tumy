@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-
 const {
   structure,
   isIDGood,
@@ -7,7 +5,7 @@ const {
   objSuccess,
 } = require("../../middlewares/utils");
 const { findDetailState } = require("../users/helpers/findDetailState");
-const { RequestService, GlobalState, DetailState } = require("../../models/NewServices");
+const { RequestService } = require("../../models/NewServices");
 const { emitToUpdateService, emitServiceToDriver } = require("../../middlewares/sockets");
 const { matchedData } = require("express-validator");
 const { getService } = require("../users/helpers");
@@ -17,30 +15,7 @@ const { editInfoDriver } = require("../../../config/helpers/editInfoDriver");
 const editDetailState = structure(async (req, res) => {
   const { id, detailstate } = matchedData(req);
   const foundDetailState = await findDetailState(detailstate);
-  let requestService = await RequestService.aggregate([
-    {
-      $lookup: {
-        from: GlobalState.collection.name,
-        localField: "globalState",
-        foreignField: "_id",
-        as: "globalState",
-      },
-    },
-    {
-      $lookup: {
-        from: DetailState.collection.name,
-        localField: "detailState._id",
-        foreignField: "_id",
-        as: "detailState",
-      },
-    },
-    {
-      $match: {
-        _id: mongoose.Types.ObjectId(id),
-      },
-    },
-  ]);
-  requestService = requestService[0];
+  const requestService = await RequestService.findById(id);
   let existDetailState = requestService.detailState.find(
     (state) => state._id == `${foundDetailState._id}`
   );
@@ -64,12 +39,16 @@ const editDetailState = structure(async (req, res) => {
         clientService.set("infoDriver", infoDriver)
       });
     }
+  if(detailstate == 'recogido'){
+    
+  }
   requestService.detailState.push({ _id: foundDetailState._id });
   await requestService.save();
+  const updatedService = await RequestService.findOne({_id:id}).populate('detailState._id',{_id:0,IdName:0,__v:0}).exec();
   emitToUpdateService(
-    requestService.detail.driverUser,
-    requestService._id,
-    requestService
+    updatedService.detail.driverUser,
+    updatedService._id,
+    updatedService
   );
   res
     .status(200)
