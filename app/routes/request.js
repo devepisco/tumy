@@ -38,7 +38,7 @@ router.get("/reject/:id", trimRequest.param, requireAuth, rejectRequestDriver);
 /**
  * Update/Edit DetailStates
  */
-router.get(
+router.patch(
   "/:id/:detailstate",
   trimRequest.all,
   requireAuth,

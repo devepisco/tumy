@@ -51,6 +51,10 @@ const requestServiceSchema = Schema(
         },
       },
     ],
+    captures:{
+      payment:[String],
+      service:[String]
+    },
     preferenceId: { type: String },
     creatorUser: { type: Schema.Types.ObjectId, ref: User },
   },
