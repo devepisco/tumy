@@ -4,7 +4,7 @@ const {
   handleError,
   objSuccess,
 } = require("../../middlewares/utils");
-const { findDetailState } = require("../users/helpers/findDetailState");
+const { findDetailState, findGlobalState} = require("../users/helpers");
 const { RequestService } = require("../../models/NewServices");
 const {
   emitToUpdateService,
@@ -23,13 +23,13 @@ const editDetailState = structure(async (req, res) => {
   let existDetailState = requestService.detailState.find(
     (state) => state._id == `${foundDetailState._id}`
   );
-  // if (existDetailState)
-  //   return handleError(
-  //     res,
-  //     400,
-  //     "La solicitud de servicio ya se encuentra en estado: " +
-  //       foundDetailState.stateName
-  //   );
+  if (existDetailState)
+    return handleError(
+      res,
+      400,
+      "La solicitud de servicio ya se encuentra en estado: " +
+        foundDetailState.stateName
+    );
   if (detailstate == "pendiente_recojo") {
     if (requestService.detail.driverUser) {
       const service = await getService();
@@ -46,7 +46,9 @@ const editDetailState = structure(async (req, res) => {
       clientService.set("infoDriver", infoDriver);
     });
   }
-  if (detailstate == "recogido") {
+  if (detailstate == "entregado") {
+    const foundGlobalState = await findGlobalState("entregado");
+    requestService.globalState = foundGlobalState._id;
     if (req.files) {
       for (i in req.files.paymentCaptures) {
         requestService.captures.payment.push(req.files.paymentCaptures[i].filename);

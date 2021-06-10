@@ -13,6 +13,7 @@ const {
   getRequestDriver,
   acceptRequestDriver,
   rejectRequestDriver,
+  driverCancelService
 } = require("../controllers/drivers");
 
 const { editDetailState } = require("../controllers/requestService");
@@ -46,5 +47,10 @@ router.patch(
   validateEditDetailState,
   editDetailState
 );
+
+/**
+ * Cancel Service with reason
+ */
+router.post("cancel/service/:id", trimRequest.all, requireAuth, driverCancelService)
 
 module.exports = router;

@@ -10,7 +10,7 @@ const socketIO = (io) => {
 
     on(socket, "driver:init", (data) =>{
       socket.join(data);
-      console.log("driver asignado", data)
+      console.log("driver conectado", data)
     });
 
     on(socket, "driver:service", async (data) =>{
