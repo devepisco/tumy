@@ -28,4 +28,11 @@ const uploadServicePictures = upload.fields([
   },
 ]);
 
-module.exports = { upload, uploadServicePictures };
+const uploadCancelationPictures = upload.fields([
+  {
+    name: "cancelationCaptures",
+    maxCount: 3,
+  }
+]);
+
+module.exports = { upload, uploadServicePictures, uploadCancelationPictures };

@@ -7,13 +7,13 @@ const requireAuth = passport.authenticate("jwt", {
   session: false,
 });
 
-const { uploadServicePictures } = require("../../config/multer");
+const { uploadServicePictures, uploadCancelationPictures } = require("../../config/multer");
 
 const {
   getRequestDriver,
   acceptRequestDriver,
   rejectRequestDriver,
-  driverCancelService
+  driverCancelService,
 } = require("../controllers/drivers");
 
 const { editDetailState } = require("../controllers/requestService");
@@ -21,6 +21,9 @@ const { editDetailState } = require("../controllers/requestService");
 const {
   validateEditDetailState,
 } = require("../controllers/requestService/validators");
+const {
+  validateDriverCancelService,
+} = require("../controllers/drivers/validators");
 /*
  * GET request drivers
  */
@@ -51,6 +54,13 @@ router.patch(
 /**
  * Cancel Service with reason
  */
-router.post("cancel/service/:id", trimRequest.all, requireAuth, driverCancelService)
+router.post(
+  "/cancel/service/:id",
+  trimRequest.all,
+  requireAuth,
+  uploadCancelationPictures,
+  validateDriverCancelService,
+  driverCancelService
+);
 
 module.exports = router;

@@ -1,10 +1,10 @@
-const { Schema } = require("mongoose");
-const { User } = require("../models/User");
+const { Schema, model } = require("mongoose");
+const { User } = require("./User");
 
-const canceledServices = Schema({
+const canceledServicesSchema = Schema({
     creatorUser:{ 
         type: Schema.Types.ObjectId, 
-        ref: User 
+        ref: User
     },
     whoseProblem:{
         type: String,
@@ -21,5 +21,5 @@ const canceledServices = Schema({
         type: String
     }],
 });
-
-module.exports = { canceledServices }
+const CanceledServices = model('CanceledServices', canceledServicesSchema);
+module.exports = { CanceledServices }

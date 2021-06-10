@@ -49,6 +49,10 @@ const requestServiceSchema = Schema(
           type: Date,
           default: Date.now,
         },
+        obs: {
+          type: String,
+          default: null
+        }
       },
     ],
     captures:{
