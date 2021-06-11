@@ -28,6 +28,10 @@ const validateDriverCancelService = [
         .isEmpty()
         .withMessage("Debe ingresar un resumen de la cancelación del servicio.")
         .isString(),
+    check('coordinates')
+        .not()
+        .isEmpty()
+        .withMessage('Debe añadir las coordenadas de motorizado'),
     check("cancelationCaptures")
         .custom((value, { req }) => {
             let countErrors = 0;

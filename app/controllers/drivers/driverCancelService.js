@@ -5,7 +5,7 @@ const { RequestService } = require("../../models/NewServices");
 const { findDetailState } = require("../users/helpers");
 
 const driverCancelService = structure( async (req, res) => {
-    const { id, whoseProblem, reason, resume } = matchedData(req);
+    const { id, whoseProblem, reason, resume, coordinates } = matchedData(req);
     const foundService = await RequestService.findById(id);
     if(!foundService) return handleError(res, 404, "No se encontró la solicitud de servicio");
 
@@ -26,6 +26,7 @@ const driverCancelService = structure( async (req, res) => {
         creatorUser: req.user._id,
         whoseProblem: whoseProblem,
         resume: resume,
+        coordinates: coordinates, 
         service:id
     });
     if (req.files) {
