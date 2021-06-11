@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { User } = require("./User");
-
+const { RequestService } = require("./NewServices");
 const canceledServicesSchema = Schema({
     creatorUser:{ 
         type: Schema.Types.ObjectId, 
@@ -17,9 +17,16 @@ const canceledServicesSchema = Schema({
     resume:{
         type: String
     },
+    coordinates:{
+        type:String
+    },
     captures:[{
         type: String
     }],
+    service:{
+        type: Schema.Types.ObjectId, 
+        ref: RequestService
+    }
 });
 const CanceledServices = model('CanceledServices', canceledServicesSchema);
 module.exports = { CanceledServices }
