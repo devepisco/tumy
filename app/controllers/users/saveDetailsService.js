@@ -83,7 +83,7 @@ const saveDetailsService = structure(async (req, res) => {
     name: req.user.firstname,
     surname: req.user.lastname,
   };
-
+  console.log(payer)
   const { id } = await createNewPreference(item, payer);
   updatedService.preferenceId = id;
 
