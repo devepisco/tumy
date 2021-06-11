@@ -36,7 +36,7 @@ const validateEditDetailState = [
     .custom((value, { req }) => {
       let countErrors = 0;
       if(!req.files) return true
-      else if(!req.files.serviceCaptures) return true;
+      else if(!req.files.serviceCaptures) return true;  
       for (i in req.files.serviceCaptures){
         if(images.test(req.files.serviceCaptures[i].mimetype) === false) countErrors +=1;
       } 

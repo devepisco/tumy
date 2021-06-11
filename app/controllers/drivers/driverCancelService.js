@@ -25,7 +25,8 @@ const driverCancelService = structure( async (req, res) => {
     const newCanceledService = new CanceledServices({
         creatorUser: req.user._id,
         whoseProblem: whoseProblem,
-        resume: resume
+        resume: resume,
+        service:id
     });
     if (req.files) {
         for (i in req.files.cancelationCaptures) {

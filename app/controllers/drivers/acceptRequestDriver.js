@@ -1,7 +1,8 @@
 const Exceptions = require("../../../errors/Exceptions");
 const { structure, isIDGood, handleError, objSuccess } = require("../../middlewares/utils");
 const RequestDriver = require("../../models/Driver");
-const { User } = require("../../models/User")
+const { User } = require("../../models/User");
+
 
 const acceptRequestDriver = structure( async (req, res) => {
     idDriver = isIDGood(req.params.id);
@@ -25,11 +26,13 @@ const acceptRequestDriver = structure( async (req, res) => {
         SOATNumber:FoundRequestDriver.SOATNumber,
         VehicleRegistration: FoundRequestDriver.VehicleRegistration,
         propertyCardNumber: FoundRequestDriver.propertyCardNumber,
+        business:FoundRequestDriver.business,
         phone:FoundRequestDriver.phone,
         email:FoundRequestDriver.email,
+        password:FoundRequestDriver.password,
         profilePicture:FoundRequestDriver.profilePicture
     })
-    await NewUserDriver.save();
+    
     res.status(200).json(objSuccess(NewUserDriver,"La solicitud de motorizado fue aceptada correctamente"));
 });
 
