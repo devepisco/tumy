@@ -64,7 +64,6 @@ const getService = async () => {
     }
 
   ]);
-  console.log(service)
   if (service.length < 1) return false;
   else return service;
 };

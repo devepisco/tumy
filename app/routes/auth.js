@@ -7,8 +7,6 @@ const requireAuth = passport.authenticate("jwt", {
   session: false,
 });
 
-const multer = require('multer');
-
 const {
   login,
   registerUser,
@@ -25,26 +23,7 @@ const {
   validateRegisterDriver,
 } = require("../controllers/auth/validators");
 
-//define storage for images
-const storage = multer.diskStorage({
-  //destination for files
-  destination: function (request, file, callback) {
-  callback(null, "public/uploads/images/");
-  },
-  //add back the extension
-  filename: function (request, file, callback) {
-  const date = new Date().toDateString().split(" ").join("_");
-  callback(null, date + file.originalname.split(" ").join("_"));
-  },
-});
-
-//Upload parameters for multer
-const upload = multer({
-  storage: storage,
-  limits: {
-  fieldsize: 1024 * 1024 * 3,
-  },
-});
+const { upload } = require("../../config/multer")
   
 /*
  * Register User route

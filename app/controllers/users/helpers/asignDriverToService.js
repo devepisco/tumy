@@ -30,9 +30,6 @@ const asignDriverToService = (service) => {
       }
     }
     if(countAvaliableDrivers >= 1){
-        await RequestService.findByIdAndUpdate(service._id, {
-          "detail.driverUser": nearestDriver.id,
-        },{new:true});
         const data = await RequestService.aggregate([
           {
             $lookup: {
