@@ -8,18 +8,19 @@ const driverCancelService = structure( async (req, res) => {
     const { id, whoseProblem, reason, resume, coordinates } = matchedData(req);
     const foundService = await RequestService.findById(id);
     if(!foundService) return handleError(res, 404, "No se encontró la solicitud de servicio");
-
-    let foundDetailState = await findDetailState("cancelado");
-    let existDetailState = foundService.detailState.find(
-        (state) => state._id == `${foundDetailState._id}`
-      );
-      if (existDetailState)
-        return handleError(
-          res,
-          400,
-          "La solicitud de servicio ya se encuentra en estado: " +
-            foundDetailState.stateName
-        );
+//reaprtidor servicio reasignado {obs : reason}
+//cliente -> entrega finalizada {obs : reason}
+    // let foundDetailState = await findDetailState("cancelado");
+    // let existDetailState = foundService.detailState.find(
+    //     (state) => state._id == `${foundDetailState._id}`
+    //   );
+    // if (existDetailState)
+    //     return handleError(
+    //       res,
+    //       400,
+    //       "La solicitud de servicio ya se encuentra en estado: " +
+    //         foundDetailState.stateName
+    //     );
     foundDetailState.obs = reason;
     foundService.detailState.push(foundDetailState)
     const newCanceledService = new CanceledServices({

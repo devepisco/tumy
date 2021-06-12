@@ -1,5 +1,7 @@
-const { getAllUsers } = require('./getAllUsers')
+const { getAllUsers } = require("./getAllUsers");
+const { getUserDetail } = require("./getUserDetail");
 
-module.exports = { 
-    getAllUsers
-}
+module.exports = {
+  getAllUsers,
+  getUserDetail,
+};

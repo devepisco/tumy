@@ -1,19 +1,22 @@
 const {
   structure,
-  isIDGood,
   handleError,
-} = require("../../../app/middlewares/utils");
-const { getItemsWithPagination} = require("../../../app/middlewares/db")
-const { User } = require("../../models/User")
-const { isAdmin } = require("./helpers/isAdmin");
+  objSuccess,
+} = require("../../middlewares/utils");
+const { getItemsWithPagination } = require("../../../app/middlewares/db");
+const { User } = require("../../models/User");
+const { isAdmin } = require("../admin/helpers");
 
 const getAllUsers = structure(async (req, res) => {
-  if (!isIDGood(req.user.id))
-    return handleError(res, 404, "Formato incorrecto del Id de usuario.");
-  if (!isAdmin(req.user.id))
-    return handleError(res, 400, "Usuario no permitido.");
-  //get All users
-  const users = await getItemsWithPagination(req.query,{}, User);
-  return res.status(200).json(objSucces(drivers));
+  const isUserAdmin = await isAdmin(req.user._id);
+  if (!isUserAdmin) return handleError(res, 400, "Usuario no permitido.");
+  const users = await getItemsWithPagination(
+    req.query,
+    { isBlocked: req.query.isBlocked,
+      rol: req.params.typeUser
+    },
+    User
+  );
+  return res.status(200).json(objSuccess(users));
 });
 module.exports = { getAllUsers };

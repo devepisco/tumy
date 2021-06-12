@@ -5,9 +5,12 @@ const passport = require("passport");
 const requireAuth = passport.authenticate("jwt", {
   session: false,
 });
-const { getAllUsers } = require("../controllers/admin");
+const { getAllUsers,getUserDetail } = require("../controllers/admin");
 
 //get list of users
-router.get("/get/users", trimRequest.all, requireAuth, getAllUsers);
+router.get("/get/users/:typeUser", trimRequest.all, requireAuth, getAllUsers);
+
+//get detail from user._id
+router.get("/get/userDetail/:id", trimRequest.all, requireAuth, getUserDetail);
 
 module.exports = router;
