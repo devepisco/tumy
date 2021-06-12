@@ -13,7 +13,7 @@ const getAllUsers = structure(async (req, res) => {
   const users = await getItemsWithPagination(
     req.query,
     { isBlocked: req.query.isBlocked,
-      rol: req.params.typeUser
+      //role: req.params.typeUser
     },
     User
   );

@@ -8,7 +8,7 @@ const requireAuth = passport.authenticate("jwt", {
 const { getAllUsers,getUserDetail } = require("../controllers/admin");
 
 //get list of users
-router.get("/get/users/:typeUser", trimRequest.all, requireAuth, getAllUsers);
+router.get("/get/users", trimRequest.all, requireAuth, getAllUsers);
 
 //get detail from user._id
 router.get("/get/userDetail/:id", trimRequest.all, requireAuth, getUserDetail);
