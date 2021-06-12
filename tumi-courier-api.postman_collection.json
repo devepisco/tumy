@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "eaccac82-7538-47ef-9b7b-95c83bb970a4",
+		"_postman_id": "1da6ad23-4901-4116-9275-def8f9447e11",
 		"name": "tumi-courier-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"test@user.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
+							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1299,7 +1299,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047165, -77.134434\"\r\n}",
+							"raw": "{\r\n    \"origin\":\"-12.1771741,-76.9955442\",\r\n    \"destination\":\"-12.1741806,-76.9998204\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1329,6 +1329,15 @@
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"origin\":\"-12.064115, -77.035826\",\r\n    \"destination\":\"-12.047165, -77.134434\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{baseURL}}/user/createService",
 									"host": [
@@ -1431,7 +1440,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idServicio\":\"60b1cd62b1d26e22688999df\",\r\n    \"descripcion\":\"5 unidades de polos\",\r\n    \"nombreRemitente\":\"Lorenzo Lima\",\r\n    \"celularRemitente\":\"917450095\",\r\n    \"nombreDestinatario\":\"Edward Polo\",\r\n    \"celularDestinatario\":\"995679039\",\r\n    \"esDestinatario\":\"true\",\r\n    \"repartidorCobra\":\"true\",\r\n    \"nameIdPago\":\"billetera_digital\"\r\n}",
+							"raw": "{\r\n    \"idServicio\":\"60bbecbfbd28aa45acb87eb3\",\r\n    \"descripcion\":\"5 unidades de polos\",\r\n    \"nombreRemitente\":\"Lorenzo Lima\",\r\n    \"celularRemitente\":\"917450095\",\r\n    \"nombreDestinatario\":\"Edward Polo\",\r\n    \"celularDestinatario\":\"995679039\",\r\n    \"montoContraEntrega\":0,\r\n    \"esDestinatario\":\"true\",\r\n    \"repartidorCobra\":\"true\",\r\n    \"nameIdPago\":\"billetera_digital\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2290,6 +2299,250 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "editDetailState",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "paymentCaptures",
+									"description": "max:3, optional",
+									"type": "file",
+									"src": [
+										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
+										"/C:/Users/josue/Documents/178738244_1062674624256531_94806729029419826_n.jpg"
+									],
+									"disabled": true
+								},
+								{
+									"key": "serviceCaptures",
+									"description": "max:3, optional",
+									"type": "file",
+									"src": [
+										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
+										"/C:/Users/josue/Documents/breveteFB.JPG"
+									],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/request/60bb11be4543df4a6412e908/servicio_creado",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"request",
+								"60bb11be4543df4a6412e908",
+								"servicio_creado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "driverCancelService",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "whoseProblem",
+									"value": "user",
+									"description": "[\"user\",\"driver\"]",
+									"type": "text"
+								},
+								{
+									"key": "reason",
+									"value": "accident",
+									"description": "driver => [\"accident\",\"breakdown\",\"robbery\"] \nuser =>[\"notfound\", \"withdrawal\"]",
+									"type": "text"
+								},
+								{
+									"key": "resume",
+									"value": "Cancelacion del envío ...etc",
+									"type": "text"
+								},
+								{
+									"key": "coordinates",
+									"value": "-12.1771741,-76.9955442",
+									"description": "Coordenadas del motorizado",
+									"type": "text"
+								},
+								{
+									"key": "cancelationCaptures",
+									"description": "max:2 captures",
+									"type": "file",
+									"src": "/C:/Users/josue/Documents/178738244_1062674624256531_94806729029419826_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/request/cancel/service/60c2d4d1e1eef01b848c5eb3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"request",
+								"cancel",
+								"service",
+								"60c2d4d1e1eef01b848c5eb3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "driverCancelService",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "whoseProblem",
+											"value": "user",
+											"description": "[\"user\",\"driver\"]",
+											"type": "text"
+										},
+										{
+											"key": "reason",
+											"value": "accident",
+											"description": "[\"accident\",\"breakdown\",\"robbery\", \"notfound\", \"withdrawal\"]",
+											"type": "text"
+										},
+										{
+											"key": "resume",
+											"value": "Cancelacion del envío ...etc",
+											"type": "text"
+										},
+										{
+											"key": "coordinates",
+											"value": "-12.1771741,-76.9955442",
+											"type": "text"
+										},
+										{
+											"key": "cancelationCaptures",
+											"description": "max:2 captures",
+											"type": "file",
+											"src": "/C:/Users/josue/Documents/178738244_1062674624256531_94806729029419826_n.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseURL}}/request/cancel/service/60c2d4d1e1eef01b848c5eb3",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"request",
+										"cancel",
+										"service",
+										"60c2d4d1e1eef01b848c5eb3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d-BFMG89WWa4sCiBMNy1WGIWCLCHg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jun 2021 03:17:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {},\n    \"message\": \"El servicio fue correctamente reportado como cancelado\"\n}"
+						}
+					]
 				}
 			]
 		}
