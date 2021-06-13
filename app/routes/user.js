@@ -7,37 +7,60 @@ const requireAuth = passport.authenticate("jwt", {
 });
 
 const {
-    updateMe,
-    createService,
-    saveDetailsService,
-    getPaymentMethods,
-    getGlobalDataServices,
-    getDetailDataFromService,
-    getDriverFromService,
-    cancelService
-  } = require("../controllers/users");
+  updateMe,
+  createService,
+  saveDetailsService,
+  getPaymentMethods,
+  getGlobalDataServices,
+  getDetailDataFromService,
+  getDriverFromService,
+  cancelService,
+  savePaymentService,
+} = require("../controllers/users");
 
-  const {
-    validateUpdatedUser,
-    validateCoordinates,
-    validateDetailsfromService
-  } = require("../controllers/users/validators");
+const {
+  validateUpdatedUser,
+  validateCoordinates,
+  validateDetailsfromService,
+} = require("../controllers/users/validators");
 
 /**
  * Updating user data route
  */
-router.patch("/updateMe", trimRequest.all, requireAuth, validateUpdatedUser, updateMe);
+router.patch(
+  "/updateMe",
+  trimRequest.all,
+  requireAuth,
+  validateUpdatedUser,
+  updateMe
+);
 
 /**
  * Create a New Service
  */
- router.post("/createService", trimRequest.all, requireAuth, validateCoordinates, createService);
-
+router.post(
+  "/createService",
+  trimRequest.all,
+  requireAuth,
+  validateCoordinates,
+  createService
+);
 
 /**
  * Save details from a created service
  */
-router.post("/saveDetailsService", trimRequest.all, requireAuth, validateDetailsfromService, saveDetailsService);
+router.post(
+  "/saveDetailsService",
+  trimRequest.all,
+  requireAuth,
+  validateDetailsfromService,
+  saveDetailsService
+);
+
+/**
+ * Get the driver from a service
+ */
+router.post("/savePayment", trimRequest.all, requireAuth, savePaymentService);
 
 /**
  * Get all the payment methods exists
@@ -52,12 +75,22 @@ router.get("/getServices", trimRequest.all, requireAuth, getGlobalDataServices);
 /**
  * Get the Detail Data from service
  */
- router.get("/getService/:id", trimRequest.all, requireAuth, getDetailDataFromService);
+router.get(
+  "/getService/:id",
+  trimRequest.all,
+  requireAuth,
+  getDetailDataFromService
+);
 
 /**
  * Get the driver from a service
  */
- router.get("/getService/:id/driver", trimRequest.all, requireAuth, getDriverFromService);
+router.get(
+  "/getService/:id/driver",
+  trimRequest.all,
+  requireAuth,
+  getDriverFromService
+);
 
 /**
  * Cancel the Service request
