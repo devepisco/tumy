@@ -7,6 +7,7 @@ const { getDetailDataFromService } = require("./getDetailDataFromService");
 const { getDriverFromService } = require("./getDriverFromService");
 const { cancelService } = require("./cancelService");
 const { savePaymentService } = require("./savePaymentService");
+const { getDetailStates } = require("./getDetailStates");
 
 module.exports = {
   updateMe,
@@ -18,4 +19,5 @@ module.exports = {
   getDriverFromService,
   cancelService,
   savePaymentService,
+  getDetailStates
 };

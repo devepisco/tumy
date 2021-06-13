@@ -37,6 +37,8 @@ const editDetailState = structure(async (req, res) => {
       return handleError(res, 400, "El servicio ya ha sido asignado.");
     }
     requestService.detail.driverUser = req.user._id;
+    const foundGlobalState = await findGlobalState("en_proceso");
+    requestService.globalState = foundGlobalState._id;
     clientService.get("infoDriver", function (err, reply) {
       const infoDriver = editInfoDriver(reply, {
         id: req.user._id,
@@ -61,7 +63,7 @@ const editDetailState = structure(async (req, res) => {
   requestService.detailState.push({ _id: foundDetailState._id });
   await requestService.save();
   const updatedService = await RequestService.findOne({ _id: id })
-    .populate("detailState._id", { _id: 0, IdName: 0, __v: 0 })
+    .populate("detailState._id", { _id: 0, IdName: 0, __v: 0 }).populate("globalState",{ _id: 0, IdName: 0, __v: 0 })
     .exec();
   emitToUpdateService(
     updatedService.detail.driverUser,
