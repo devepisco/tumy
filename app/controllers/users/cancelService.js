@@ -11,16 +11,16 @@ const cancelService = structure( async (req, res) =>{
         const estadoDetalle = await findDetailState("cancelado");
         let cancelado = null;
 
-        for(estado in foundService.estadoDetalle){
-            if(foundService.estadoDetalle[estado]._id.toString() == estadoDetalle._id.toString()) cancelado = 1;
+        for(estado in foundService.detailState){
+            if(foundService.detailState[estado]._id.toString() == estadoDetalle._id.toString()) cancelado = 1;
         }
         if(cancelado) return handleError(res, 404,"El servicio ya fue cancelado");
 
         let updatedEstadoDetalle = null
-        const countDetailStates = foundService.estadoDetalle.length;
-        foundService.estadoDetalle.push(estadoDetalle._id)
+        const countDetailStates = foundService.detailState.length;
+        foundService.detailState.push(estadoDetalle._id)
         await foundService.save();
-        if(foundService.estadoDetalle.length>countDetailStates) updatedEstadoDetalle=1;
+        if(foundService.detailState.length>countDetailStates) updatedEstadoDetalle=1;
 
          const globalState = await findGlobalState("cancelado");
         

@@ -22,5 +22,9 @@ module.exports = [
     {
         IdName:"cancelado",
         stateName:"Cancelado"
+    },
+    {
+        IdName:"reasignado",
+        stateName:"reasignado"
     }
 ];
