@@ -65,27 +65,6 @@ const saveDetailsService = structure(async (req, res) => {
 
   /* Se crea preferencia en mercado pago */
 
-  const item = {
-    title: "Servicio de Courier",
-    quantity: 1,
-    currency_id: "PEN",
-    unit_price: updatedService.costo,
-  };
-
-  const payer = {
-    email: req.user.email,
-    identification: {
-      number: req.user.IDNumber,
-      type: req.user.IDType,
-    },
-    name: req.user.firstname,
-    surname: req.user.lastname,
-  };
-
-  const { id } = await createNewPreference(item, payer);
-  updatedService.preferenceId = id;
-
-  await updatedService.save();
   
   /* Se pobla los datos */
   const data = await RequestService.aggregate([
