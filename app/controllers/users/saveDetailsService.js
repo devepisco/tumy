@@ -7,8 +7,6 @@ const {
 
 const { findPaymentMethod, findGlobalState, findDetailState } = require("../users/helpers");
 
-const { createNewPreference } = require("../paymentCheckout/helpers");
-
 const {
   RequestService,
   GlobalState,
