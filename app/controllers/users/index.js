@@ -6,6 +6,7 @@ const { getGlobalDataServices } = require('./getGlobalDataServices');
 const { getDetailDataFromService } = require('./getDetailDataFromService');
 const { getDriverFromService } = require('./getDriverFromService');
 const { cancelService } = require('./cancelService');
+const { getDetailStates } =require('./getDetailStates');
 
 module.exports = {
     updateMe,
@@ -15,5 +16,6 @@ module.exports = {
     getGlobalDataServices,
     getDetailDataFromService,
     getDriverFromService,
-    cancelService
+    cancelService,
+    getDetailStates
 }
