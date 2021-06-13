@@ -16,7 +16,7 @@ const { clientService } = require("../../../config/redis");
 const { editInfoDriver } = require("../../../config/helpers/editInfoDriver");
 
 const editDetailState = structure(async (req, res) => {
-  const { id, detailstate, paymentCaptures, serviceCaptures } =
+  const { id, detailstate } =
     matchedData(req);
   const foundDetailState = await findDetailState(detailstate);
   const requestService = await RequestService.findById(id);
