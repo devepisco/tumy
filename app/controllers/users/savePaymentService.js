@@ -8,7 +8,7 @@ const savePaymentService = structure(async (req, res) => {
   const { info } = req.body;
   const data = JSON.parse(info);
   console.log(data)
-  const token = await createToken(data, metadata);
+  const token = await createToken(data);
   console.log(token);
   const service = await getItem(data._id, RequestService);
   const charge = await createCharge({
