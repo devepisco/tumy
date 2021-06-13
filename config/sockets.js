@@ -10,7 +10,7 @@ const socketIO = (io) => {
 
     on(socket, "driver:init", (data) =>{
       socket.join(data);
-      console.log("driver asignado", data)
+      console.log("driver conectado", data)
     });
 
     on(socket, "driver:service", async (data) =>{
@@ -20,16 +20,15 @@ const socketIO = (io) => {
        }else {
         socket.emit("driver:service", false)
        }
-      // clientService.get("infoDriver", function(err, reply){
-      //   const infoDriver = editInfoDriver(reply, data)
-      //   console.log("Actualizando estado del conductor", infoDriver)
-      //   clientService.set("infoDriver", infoDriver)
-      // });
+       clientService.get("infoDriver", function(err, reply){
+        data.isAvaliable = true;
+        const infoDriver = editInfoDriver(reply, data)
+        clientService.set("infoDriver", infoDriver)
+      });
     }); 
 
     on(socket, "driver:location", async(data) => {
       clientService.get("infoDriver", function(err, reply){
-        data.isAvaliable = true;
         const infoDriver = editInfoDriver(reply, data)
         clientService.set("infoDriver", infoDriver)
         socket.emit("driver:location", data)
@@ -47,14 +46,15 @@ const socketIO = (io) => {
     on(socket,"driver:end", async(data)=>{
       clientService.get("infoDriver", function(err, reply){
         const infoDriver = finishServiceDriver(reply, data)
+        console.log("infoDriver:",infoDriver)
         clientService.set("infoDriver", infoDriver)
       });
     })
 
-    on(socket, "disconnect", () => {
-        console.log("disconnect");
-      });
+    on(socket, "disconnect", (data) => {
+      console.log("disconnect");
     });
-  };
+  });
+};
 
-  module.exports = { socketIO };
+module.exports = { socketIO };

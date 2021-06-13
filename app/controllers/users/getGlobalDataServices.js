@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const { structure, objSuccess } = require("../../middlewares/utils");
 const { RequestService, GlobalState }  = require("../../models/NewServices");
 
@@ -31,6 +32,16 @@ const getGlobalDataServices = structure (async(req, res) =>{
                 }
             },
             {
+                $match:{
+                    createdAt:{
+                        $gte: new Date(beginDate),
+                        $lt: new Date(endDate)
+                    },
+                    IdName:globalState,
+                    creatorUser: mongoose.Types.ObjectId(req.user._id)
+                }
+            },
+            {
                 $project:{
                     _id:1,
                     'origin.address':1,
@@ -38,18 +49,9 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     IdName:1,
                     stateName:1,
                     createdAt:1,
-                    updatedAt:1
+                    updatedAt:1,
                 }
             },
-            {
-                $match:{
-                    createdAt:{
-                        $gte: new Date(beginDate),
-                        $lt: new Date(endDate)
-                    },
-                    IdName:globalState
-                }
-            }
         ]);
 
     // si se ingresan solo las fechas o solo una fecha
@@ -77,6 +79,15 @@ const getGlobalDataServices = structure (async(req, res) =>{
                 }
             },
             {
+                $match:{
+                    createdAt:{
+                        $gte: new Date(beginDate),
+                        $lte: new Date(endDate)
+                    },
+                    creatorUser: mongoose.Types.ObjectId(req.user._id)
+                }
+            },
+            {
                 $project:{
                     _id:1,
                     'origin.address':1,
@@ -84,14 +95,6 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     stateName:1,
                     createdAt:1,
                     updatedAt:1
-                }
-            },
-            {
-                $match:{
-                    createdAt:{
-                        $gte: new Date(beginDate),
-                        $lte: new Date(endDate)
-                    }
                 }
             }
         ]);
@@ -119,6 +122,12 @@ const getGlobalDataServices = structure (async(req, res) =>{
                 }
             },
             {
+                $match:{
+                    IdName:globalState,
+                    creatorUser: mongoose.Types.ObjectId(req.user._id)
+                },
+            },
+            {
                 $project:{
                     _id:1,
                     'origin.address':1,
@@ -128,13 +137,7 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     createdAt:1,
                     updatedAt:1
                 }
-            },
-            {
-                $match:{
-                    IdName:globalState
-                }
             }
-
         ]);
     
     // si no mandas nada o cualquier otro parametro 
@@ -161,6 +164,11 @@ const getGlobalDataServices = structure (async(req, res) =>{
                 }
             },
             {
+                $match:{
+                    creatorUser: mongoose.Types.ObjectId(req.user._id)
+                },
+            },
+            {
                 $project:{
                     _id:1,
                     'origin.address':1,
@@ -169,8 +177,7 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     createdAt:1,
                     updatedAt:1
                 }
-            },
-
+            }
         ]);
     }
     res.status(200).json(objSuccess(data));

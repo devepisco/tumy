@@ -49,8 +49,22 @@ const requestServiceSchema = Schema(
           type: Date,
           default: Date.now,
         },
+        obs: {
+          type: String,
+          default: null
+        }
       },
     ],
+    captures:{
+      payment:[{ 
+        type: String,
+        default:null
+      }],
+      service:[{
+        type: String,
+        default:null
+      }],
+    },
     preferenceId: { type: String },
     creatorUser: { type: Schema.Types.ObjectId, ref: User },
   },

@@ -5,7 +5,7 @@ const {
   isIDGood,
 } = require("../../middlewares/utils");
 
-const { findPaymentMethod, findGlobalState } = require("../users/helpers");
+const { findPaymentMethod, findGlobalState, findDetailState } = require("../users/helpers");
 
 const { createNewPreference } = require("../paymentCheckout/helpers");
 
@@ -53,19 +53,21 @@ const saveDetailsService = structure(async (req, res) => {
 
   /* Se añade el estado global */
   const globalState = await findGlobalState("en_proceso");
+  const detailState = await findDetailState("servicio_creado")
 
   let updatedService = await RequestService.findByIdAndUpdate(
     foundService._id,
     {
       detail,
       globalState: globalState._id,
+      detailState: detailState
     },
     { new: true }
   );
 
   /* Se crea preferencia en mercado pago */
 
-  
+
   /* Se pobla los datos */
   const data = await RequestService.aggregate([
     {
