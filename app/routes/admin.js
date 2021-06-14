@@ -11,11 +11,15 @@ const {
   insertDetailState,
   getAllDetailStates,
   blockUser,
-  updateUsers
+  updateUsers,
+  getAllPricerates,
+  editPriceRate,
+  addPriceRate
 } = require("../controllers/admin");
 const {
   validateNewDetailState,
   validateUserId,
+  validatePriceRate
 } = require("../controllers/admin/validators");
 const { validateTypeUser, validateUpdatedUser } = require("../controllers/users/validators");
 
@@ -31,7 +35,7 @@ router.get(
 
 router.get("/get/userDetail/:id?", trimRequest.all, requireAuth, getUserDetail);
 
-router.put("/update/user/:id?", trimRequest.all, requireAuth, validateUpdatedUser, updateUsers);
+router.put("/edit/user/:id?", trimRequest.all, requireAuth, validateUpdatedUser, updateUsers);
 
 router.patch(
   "/block/user/:id?",
@@ -43,7 +47,7 @@ router.patch(
 
 //insert detailStates
 router.get(
-  "/insert/detailState",
+  "/add/detailstate",
   trimRequest.all,
   requireAuth,
   validateNewDetailState,
@@ -52,10 +56,19 @@ router.get(
 
 //get all detail states
 router.get(
-  "/get/all/detailStates",
+  "/get/all/detailstates",
   trimRequest.all,
   requireAuth,
   getAllDetailStates
 );
+
+/** Comissions */
+
+/** Price Rates */
+router.get("/get/all/pricerates", trimRequest.all, requireAuth, getAllPricerates );
+
+router.post("/add/pricerate", trimRequest.all, requireAuth,validatePriceRate, addPriceRate)
+
+router.put("/edit/pricerate/:IdName", trimRequest.all, requireAuth, validatePriceRate, editPriceRate);
 
 module.exports = router;
