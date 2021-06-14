@@ -1569,117 +1569,6 @@
 					]
 				},
 				{
-					"name": "getPaymentMethods",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/user/getPaymentMethods",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"user",
-								"getPaymentMethods"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "getPaymentMethods",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseURL}}/user/getPaymentMethods",
-									"host": [
-										"{{baseURL}}"
-									],
-									"path": [
-										"user",
-										"getPaymentMethods"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "117"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"75-LGIWXFcXcUMHMDdhca7/5ZVXeRc\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 11 May 2021 12:14:14 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"paymentMethods\": [\n        {\n            \"_id\": \"6099d04e97c71727541de6a8\",\n            \"nameId\": \"billetera_digital\",\n            \"nameMethod\": \"Billetera digital\"\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
 					"name": "getServices",
 					"request": {
 						"method": "GET",
@@ -1834,16 +1723,22 @@
 					"name": "cancelService/:id",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{baseURL}}/user/cancelService/60a0a914e33f930df029ac14",
+							"raw": "{{baseURL}}/user/cancelService/60c65e17fdbbff2e94fb8d4d",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"user",
 								"cancelService",
-								"60a0a914e33f930df029ac14"
+								"60c65e17fdbbff2e94fb8d4d"
 							],
 							"query": [
 								{
@@ -2545,6 +2440,382 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "getAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/get/users/:typeUser",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"get",
+								"users",
+								":typeUser"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "isBlocked",
+									"value": "false",
+									"description": "[\"true\" => No activo, \"false\" => activo]",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "typeUser",
+									"value": "user",
+									"description": "user, admin, driver"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserDetail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/get/userDetail/60b1d789728caf2bacb3ce2c",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"get",
+								"userDetail",
+								"60b1d789728caf2bacb3ce2c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Block User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin//block/user/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"",
+								"block",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60b51f77fee3753218aa0b06"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add New Detail State",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"IdName\":\"\",\r\n    \"stateName\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/add/detailstate",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"add",
+								"detailstate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUsers",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\":\"Usuario\",\r\n    \"lastname\":\"Prueba\",\r\n    \"IDType\":\"DNI\",\r\n    \"IDNumber\":\"00345920\",\r\n    \"business\":{\r\n        \"name\":\"Disrupted Ideas & Brand business\",\r\n        \"socialReason\":\"Soluciones empresariales s.a.c\",\r\n        \"ruc\":\"10222222210\"\r\n    },\r\n    \"phone\":\"900200399\",\r\n    \"email\":\"prueba@registeruser.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/edit/user/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"edit",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60b1e4054a1fb73e3871d72a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPriceRates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/get/all/pricerates",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"get",
+								"all",
+								"pricerates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editPriceRate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"IdName\": \"tarifa_estandar\",\r\n    \"rateName\": \"TARIFA ESTÁNDAR\",\r\n    \"price\": 3.5,\r\n    \"minPrice\": 8,\r\n    \"isActive\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/edit/pricerate/:IdName",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"edit",
+								"pricerate",
+								":IdName"
+							],
+							"variable": [
+								{
+									"key": "IdName",
+									"value": "tarifa_estandar",
+									"description": "getAllPriceRates()"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addPriceRate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"IdName\": \"tarifa_cercado\",\r\n    \"rateName\": \"TARIFA CERCADO\",\r\n    \"price\": 4,\r\n    \"minPrice\": 10,\r\n    \"isActive\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/add/pricerate",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"add",
+								"pricerate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "utils",
+			"item": [
+				{
+					"name": "getPaymentMethods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/user/getPaymentMethods",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"getPaymentMethods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllDetailStates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/admin/get/all/detailstates",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"get",
+								"all",
+								"detailstates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCancelationReasons",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/utils/get/cancelationReasons/:typeUser",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"utils",
+								"get",
+								"cancelationReasons",
+								":typeUser"
+							],
+							"variable": [
+								{
+									"key": "typeUser",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -2570,7 +2841,7 @@
 	"variable": [
 		{
 			"key": "baseURL",
-			"value": "http://localhost:3000/api"
+			"value": "https://prueba2.castillodetalentos.edu.pe/tumi/api"
 		},
 		{
 			"key": "tokenUser",
