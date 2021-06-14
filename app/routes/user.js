@@ -7,7 +7,7 @@ const requireAuth = passport.authenticate("jwt", {
 });
 
 const {
-  updateMe,
+  updateUser,
   createService,
   saveDetailsService,
   getPaymentMethods,
@@ -32,7 +32,7 @@ router.patch(
   trimRequest.all,
   requireAuth,
   validateUpdatedUser,
-  updateMe
+  updateUser
 );
 
 /**

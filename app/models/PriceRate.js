@@ -14,6 +14,9 @@ let pricerateSchema = new Schema(
     },
     minPrice:{
       type: Number
+    },
+    status:{
+      type:String
     }
   },
   {

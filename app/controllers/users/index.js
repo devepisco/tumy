@@ -1,4 +1,4 @@
-const { updateMe } = require("./updateMe");
+const { updateUser } = require("./updateUser");
 const { createService } = require("./createService");
 const { saveDetailsService } = require("./saveDetailsService");
 const { getPaymentMethods } = require("./getPaymentMethods");
@@ -11,7 +11,7 @@ const { getDetailStates } = require("./getDetailStates");
 const { getCancelationReasons} = require("./getCancelationReasons");
 
 module.exports = {
-  updateMe,
+  updateUser,
   createService,
   saveDetailsService,
   getPaymentMethods,
