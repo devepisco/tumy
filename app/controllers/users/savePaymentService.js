@@ -13,7 +13,7 @@ const savePaymentService = structure(async (req, res) => {
   const service = await getItem(data._id, RequestService);
   const charge = await createCharge({
     amount: `${service.costo}`.replace(".", ""),
-    email: req.user.email,
+    email: data.email,
     source_id: token.id,
     capture: true,
     antifraud_details: {
