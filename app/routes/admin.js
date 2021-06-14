@@ -9,6 +9,7 @@ const {
   getAllUsers,
   getUserDetail,
   insertDetailState,
+  getAllDetailStates
 } = require("../controllers/admin");
 const { validateNewDetailState } = require("../controllers/admin/validators");
 
@@ -26,5 +27,8 @@ router.get(
   validateNewDetailState,
   insertDetailState
 );
+
+//get all detail states
+router.get("/get/all/detailStates",trimRequest.all, requireAuth, getAllDetailStates)
 
 module.exports = router;
