@@ -16,7 +16,7 @@ const requestServiceSchema = Schema(
       address: String,
     },
     costo: {
-      type: Number,
+      type: String,
     },
     tiempoAprox: {
       type: String,
