@@ -1,1 +1,0 @@
-module.exports = ["accident","breakdown","robbery", "notfound", "withdrawal"]

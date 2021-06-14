@@ -9,15 +9,29 @@ const {
   getAllUsers,
   getUserDetail,
   insertDetailState,
-  getAllDetailStates
+  getAllDetailStates,
+  blockUser,
 } = require("../controllers/admin");
-const { validateNewDetailState } = require("../controllers/admin/validators");
+const {
+  validateNewDetailState,
+  validateUserId,
+} = require("../controllers/admin/validators");
+const { validateTypeUser }= require("../controllers/users/validators")
 
 //get list of users
-router.get("/get/users/:typeUser?", trimRequest.all, requireAuth, getAllUsers);
+router.get("/get/users/:typeUser?", trimRequest.all, requireAuth, validateTypeUser, getAllUsers);
 
 //get detail from user._id
-router.get("/get/userDetail/:id", trimRequest.all, requireAuth, getUserDetail);
+router.get("/get/userDetail/:id?", trimRequest.all, requireAuth, getUserDetail);
+
+//block user from user Model
+router.patch(
+  "/block/user/:id?",
+  trimRequest.all,
+  requireAuth,
+  validateUserId,
+  blockUser
+);
 
 //insert detailStates
 router.get(
@@ -29,6 +43,11 @@ router.get(
 );
 
 //get all detail states
-router.get("/get/all/detailStates",trimRequest.all, requireAuth, getAllDetailStates)
+router.get(
+  "/get/all/detailStates",
+  trimRequest.all,
+  requireAuth,
+  getAllDetailStates
+);
 
 module.exports = router;

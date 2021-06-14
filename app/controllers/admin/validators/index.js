@@ -1,2 +1,3 @@
 const { validateNewDetailState } = require("./validateNewDetailState");
-module.exports = { validateNewDetailState };
+const { validateUserId } = require("./validateUserId");
+module.exports = { validateNewDetailState, validateUserId };

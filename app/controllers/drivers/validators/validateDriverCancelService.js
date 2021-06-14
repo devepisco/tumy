@@ -1,7 +1,8 @@
 const { validateResult } = require("../../../middlewares/utils");
 const { check } = require("express-validator");
 const users = require("../../../../data/users");
-const cancelationServiceReasons = require("../../../../data/cancelationServiceReasons")
+const  driverReasons = require("../../../../data/driverCancelationReasons");
+const  userReasons = require("../../../../data/userCancelationReasons");
 const { images } = require("../../../middlewares/regex");
 
 const validateDriverCancelService = [
@@ -21,7 +22,7 @@ const validateDriverCancelService = [
         .not()
         .isEmpty()
         .withMessage("Debe ingresar una razon de la cancelación del servicio.")
-        .isIn(cancelationServiceReasons)
+        .isIn([...userReasons, ...driverReasons])
         .withMessage("Debe añadir una razon válida registrada."),
     check("resume")
         .not()

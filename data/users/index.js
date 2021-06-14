@@ -1,1 +1,1 @@
-module.exports = ["user", "driver"]
+module.exports = ["user", "driver","admin"]

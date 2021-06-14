@@ -8,6 +8,7 @@ const { getDriverFromService } = require("./getDriverFromService");
 const { cancelService } = require("./cancelService");
 const { savePaymentService } = require("./savePaymentService");
 const { getDetailStates } = require("./getDetailStates");
+const { getCancelationReasons} = require("./getCancelationReasons");
 
 module.exports = {
   updateMe,
@@ -19,5 +20,6 @@ module.exports = {
   getDriverFromService,
   cancelService,
   savePaymentService,
-  getDetailStates
+  getDetailStates,
+  getCancelationReasons
 };
