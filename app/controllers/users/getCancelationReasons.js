@@ -13,7 +13,7 @@ const getCancelationReasons = (req, res) => {
     res
       .status(200)
       .json(
-        objSuccess("No hay razones registrados para este tipo de usuario.")
+        objSuccess({},"No hay razones registrados para este tipo de usuario.")
       );
 };
 module.exports = { getCancelationReasons };
