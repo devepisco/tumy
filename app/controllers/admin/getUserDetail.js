@@ -3,7 +3,7 @@ const { findUserById } = require("../../controllers/users/helpers");
 const { isAdmin } = require("../admin/helpers");
 
 const getUserDetail = structure(async (req, res) => {
-  const isUserAdmin = await isAdmin(req.user.id);
+  const isUserAdmin = await isAdmin(req.user._id);
   if (!isUserAdmin) return handleError(res, 400, "Usuario no permitido.");
   const user = findUserById(req.params.id);
   res.status(200).json(objSuccess(user));
