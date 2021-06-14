@@ -177,6 +177,11 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     createdAt:1,
                     updatedAt:1
                 }
+            },
+            {
+                $sort:{
+                    _id:-1
+                }
             }
         ]);
     }

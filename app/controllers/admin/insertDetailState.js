@@ -1,3 +1,3 @@
-const insertDetailState = (req, res) => {
+const insertDetailState = async (req, res) => {
     // const details = new detailState({})
 }
