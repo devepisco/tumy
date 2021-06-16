@@ -8,7 +8,9 @@ const { getDriverFromService } = require("./getDriverFromService");
 const { cancelService } = require("./cancelService");
 const { savePaymentService } = require("./savePaymentService");
 const { getDetailStates } = require("./getDetailStates");
-const { getCancelationReasons} = require("./getCancelationReasons");
+const { getCancelationReasons } = require("./getCancelationReasons");
+const { autocompletePlace } = require("./autocompletePlace");
+const { detailPlace } = require("./detailPlace");
 
 module.exports = {
   updateUser,
@@ -21,5 +23,7 @@ module.exports = {
   cancelService,
   savePaymentService,
   getDetailStates,
-  getCancelationReasons
+  getCancelationReasons,
+  autocompletePlace,
+  detailPlace,
 };
