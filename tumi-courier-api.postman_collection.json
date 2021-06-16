@@ -2533,13 +2533,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseURL}}/admin//block/user/:id",
+							"raw": "{{baseURL}}/admin/block/user/:id",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"admin",
-								"",
 								"block",
 								"user",
 								":id"
@@ -2809,6 +2808,56 @@
 								{
 									"key": "typeUser",
 									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "autocompletePlace",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/utils/autocomplete/place?place=tacna",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"utils",
+								"autocomplete",
+								"place"
+							],
+							"query": [
+								{
+									"key": "place",
+									"value": "tacna"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detailsPlace",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/utils/details/place?place_id=EhhUYWNuYSwgTWlyYWZsb3JlcywgUGVyw7oiLiosChQKEgn_bdd2q0tCkRGntNN0R53BPRIUChIJBUUPpr5LQpERhhf6xMOl4yM",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"utils",
+								"details",
+								"place"
+							],
+							"query": [
+								{
+									"key": "place_id",
+									"value": "EhhUYWNuYSwgTWlyYWZsb3JlcywgUGVyw7oiLiosChQKEgn_bdd2q0tCkRGntNN0R53BPRIUChIJBUUPpr5LQpERhhf6xMOl4yM"
 								}
 							]
 						}
