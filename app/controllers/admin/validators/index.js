@@ -1,7 +1,7 @@
 const { validateNewDetailState } = require("./validateNewDetailState");
-const { validateUserId } = require("./validateUserId");
+const { validateUserStatus } = require("./validateUserStatus");
 const { validatePriceRate } = require("./validatePriceRate");
 module.exports = { 
     validateNewDetailState, 
-    validateUserId,
+    validateUserStatus,
     validatePriceRate };

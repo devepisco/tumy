@@ -2110,142 +2110,6 @@
 			"name": "request",
 			"item": [
 				{
-					"name": "acceptRequestDriver",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/request/accept/60a91ac87819df1b2c45cb47",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"request",
-								"accept",
-								"60a91ac87819df1b2c45cb47"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "rejectRequestDriver",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/request/reject/60a91ac87819df1b2c45cb47",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"request",
-								"reject",
-								"60a91ac87819df1b2c45cb47"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getRequestDrivers",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/request/driver",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"request",
-								"driver"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": null,
-									"disabled": true
-								},
-								{
-									"key": "limit",
-									"value": "10",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "editDetailState",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "paymentCaptures",
-									"description": "max:3, optional",
-									"type": "file",
-									"src": [
-										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
-										"/C:/Users/josue/Documents/178738244_1062674624256531_94806729029419826_n.jpg"
-									],
-									"disabled": true
-								},
-								{
-									"key": "serviceCaptures",
-									"description": "max:3, optional",
-									"type": "file",
-									"src": [
-										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
-										"/C:/Users/josue/Documents/breveteFB.JPG"
-									],
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "{{baseURL}}/request/60bb11be4543df4a6412e908/servicio_creado",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"request",
-								"60bb11be4543df4a6412e908",
-								"servicio_creado"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "driverCancelService",
 					"request": {
 						"method": "POST",
@@ -2496,6 +2360,88 @@
 					"response": []
 				},
 				{
+					"name": "getRequestDrivers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/request/driver",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"request",
+								"driver"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accept/reject RequestDriver",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reason\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/request/:action/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"request",
+								":action",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "action",
+									"value": "accept",
+									"description": "[\"accept\", \"reject\"]"
+								},
+								{
+									"key": "id",
+									"value": "60b1e27e4a1fb73e3871d71d",
+									"description": "e.g."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getUserDetail",
 					"request": {
 						"method": "GET",
@@ -2522,7 +2468,7 @@
 					"response": []
 				},
 				{
-					"name": "Block User",
+					"name": "block/unblock User",
 					"request": {
 						"method": "PATCH",
 						"header": [
@@ -2533,17 +2479,22 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseURL}}/admin/block/user/:id",
+							"raw": "{{baseURL}}/admin/:action/user/:id",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"admin",
-								"block",
+								":action",
 								"user",
 								":id"
 							],
 							"variable": [
+								{
+									"key": "action",
+									"value": "block",
+									"description": "[\"block\", \"unblock\"]"
+								},
 								{
 									"key": "id",
 									"value": "60b51f77fee3753218aa0b06"
@@ -2554,12 +2505,9 @@
 					"response": []
 				},
 				{
-					"name": "Add New Detail State",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "editDetailState",
 					"request": {
-						"method": "GET",
+						"method": "PATCH",
 						"header": [
 							{
 								"key": "Authorization",
@@ -2568,23 +2516,39 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"IdName\":\"\",\r\n    \"stateName\":\"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "paymentCaptures",
+									"description": "max:3, optional",
+									"type": "file",
+									"src": [
+										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
+										"/C:/Users/josue/Documents/178738244_1062674624256531_94806729029419826_n.jpg"
+									],
+									"disabled": true
+								},
+								{
+									"key": "serviceCaptures",
+									"description": "max:3, optional",
+									"type": "file",
+									"src": [
+										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
+										"/C:/Users/josue/Documents/breveteFB.JPG"
+									],
+									"disabled": true
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "{{baseURL}}/admin/add/detailstate",
+							"raw": "{{baseURL}}/request/60bb11be4543df4a6412e908/servicio_creado",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
-								"admin",
-								"add",
-								"detailstate"
+								"request",
+								"60bb11be4543df4a6412e908",
+								"servicio_creado"
 							]
 						}
 					},
@@ -2732,6 +2696,43 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "addDetailState",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"IdName\":\"\",\r\n    \"stateName\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/admin/add/detailstate",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"admin",
+								"add",
+								"detailstate"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -2807,7 +2808,8 @@
 							"variable": [
 								{
 									"key": "typeUser",
-									"value": "admin"
+									"value": "driver",
+									"description": "[\"user\",\"driver\"]"
 								}
 							]
 						}

@@ -1,14 +1,25 @@
-const { structure, objSuccess } = require("../../middlewares/utils");
+const { structure, objSuccess, handleError } = require("../../middlewares/utils");
 const { User } = require("../../models/User");
 const { matchedData } = require("express-validator");
 
 const blockUser = structure(async (req, res) => {
-  const { id } = matchedData(req);
+  const { id, action } = matchedData(req);
   const user = await User.findOne({ _id: id });
-  user.isBlocked = !user.isBlocked;
+  if(!user) return handleError(res, 400, "Usuario no encontrado");
+  let message ="";
+  switch(action){
+    case 'block':
+      user.isBlocked = true;
+      message = "usuario bloqueado correctamente";
+      break;
+    case 'unblock':
+      user.isBlocked = false;
+      message = "usuario activado correctamente";
+      break;
+    default:
+      break;
+  }
   await user.save();
-  if(user.isBlocked) message = "usuario bloqueado correctamente";
-  else message = "usuario activado correctamente";
   res.status(200).json(objSuccess(user,message));
 });
 module.exports = { blockUser };

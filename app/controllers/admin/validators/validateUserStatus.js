@@ -1,7 +1,13 @@
 const { validateResult } = require("../../../middlewares/utils");
 const { check } = require("express-validator");
 
-const validateUserId = [
+const validateUserStatus = [
+  check("action")
+    .not()
+    .isEmpty()
+    .withMessage("Debe ingresar la acción a realizar.")
+    .isIn(["block", "unblock"])
+    .withMessage("Debe ingresar una acción entre block/unblock"),
   check("id")
     .not()
     .isEmpty()
@@ -12,4 +18,4 @@ const validateUserId = [
     validateResult(req, res, next);
   },
 ];
-module.exports = { validateUserId };
+module.exports = { validateUserStatus };

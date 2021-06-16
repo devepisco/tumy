@@ -46,12 +46,16 @@ let driverSchema = new Schema(
     profilePicture:{
     },
     status: {
-      type: String,
-      default: "Pendiente",
+      obs:{
+        type:String,
+        default:"Pendiente"
+      },
+      reason:{
+        type: String,
+        default: null,
+      }
     },
-    reason: {
-      type: String,
-    },
+    
     role: {
       type: String,
       default: "driver",

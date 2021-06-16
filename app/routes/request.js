@@ -12,7 +12,6 @@ const { uploadServicePictures, uploadCancelationPictures } = require("../../conf
 const {
   getRequestDriver,
   acceptRequestDriver,
-  rejectRequestDriver,
   driverCancelService,
 } = require("../controllers/drivers");
 
@@ -23,21 +22,17 @@ const {
 } = require("../controllers/requestService/validators");
 const {
   validateDriverCancelService,
+  validateStatusRequestDriver
 } = require("../controllers/drivers/validators");
 /*
  * GET request drivers
  */
-router.get("/driver", trimRequest.query, requireAuth, getRequestDriver);
+router.get("/driver", trimRequest.all, requireAuth, getRequestDriver);
 
 /**
- * Accept request drivers
+ * Accept/Reject request drivers
  */
-router.get("/accept/:id", trimRequest.param, requireAuth, acceptRequestDriver);
-
-/**
- * Reject request drivers
- */
-router.get("/reject/:id", trimRequest.param, requireAuth, rejectRequestDriver);
+router.put("/:action/:id", trimRequest.all, requireAuth, validateStatusRequestDriver, acceptRequestDriver);
 
 /**
  * Update/Edit DetailStates
