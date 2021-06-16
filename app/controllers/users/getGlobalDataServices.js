@@ -46,7 +46,6 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     _id:1,
                     'origin.address':1,
                     'destination.address':1,
-                    IdName:1,
                     stateName:1,
                     createdAt:1,
                     updatedAt:1,
@@ -138,7 +137,6 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     _id:1,
                     'origin.address':1,
                     'destination.address':1,
-                    IdName:1,
                     stateName:1,
                     createdAt:1,
                     updatedAt:1
