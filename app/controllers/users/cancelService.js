@@ -30,7 +30,7 @@ const cancelService = structure( async (req, res) =>{
             new: true
         });
         
-        if(updatedEstadoDetalle==1 && updatedEstadoGlobal.globalState._id) {
+        if(updatedEstadoDetalle == 1 && updatedEstadoGlobal.globalState.toString() == globalState._id.toString()) {
             
             res.status(200).json(objSuccess(
                 data = {},
