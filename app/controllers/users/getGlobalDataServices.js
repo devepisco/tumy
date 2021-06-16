@@ -164,6 +164,9 @@ const getGlobalDataServices = structure (async(req, res) =>{
                 }
             },
             {
+                $unwind: "$globalState"
+            },
+            {
                 $match:{
                     creatorUser: mongoose.Types.ObjectId(req.user._id)
                 },

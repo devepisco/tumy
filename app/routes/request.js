@@ -22,12 +22,13 @@ const {
 } = require("../controllers/requestService/validators");
 const {
   validateDriverCancelService,
-  validateStatusRequestDriver
+  validateStatusRequestDriver,
+  validateStatus
 } = require("../controllers/drivers/validators");
 /*
  * GET request drivers
  */
-router.get("/driver", trimRequest.all, requireAuth, getRequestDriver);
+router.get("/driver/:status?", trimRequest.all, requireAuth, validateStatus, getRequestDriver);
 
 /**
  * Accept/Reject request drivers

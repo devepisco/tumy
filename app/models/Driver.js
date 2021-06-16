@@ -7,55 +7,51 @@ let driverSchema = new Schema(
   {
     firstname: {
       type: String,
-      uppercase: true
+      uppercase: true,
     },
     lastname: {
       type: String,
-      uppercase: true
+      uppercase: true,
     },
     IDType: {
       type: String,
-      uppercase: true
+      uppercase: true,
     },
     IDNumber: {
       type: String,
-      uppercase: true
+      uppercase: true,
     },
-    SOATNumber:{
-      type: String
-    },
-    VehicleRegistration:{
+    SOATNumber: {
       type: String,
-      uppercase: true
     },
-    propertyCardNumber:{
-      type: String
+    VehicleRegistration: {
+      type: String,
+      uppercase: true,
+    },
+    propertyCardNumber: {
+      type: String,
     },
     phone: {
-      type: String
+      type: String,
     },
     email: {
       type: String,
       lowercase: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
       select: false,
     },
-    profilePicture:{
-    },
+    profilePicture: {},
     status: {
-      obs:{
-        type:String,
-        default:"Pendiente"
-      },
-      reason:{
-        type: String,
-        default: null,
-      }
+      type: String,
+      default: "Pendiente",
     },
-    
+    reason: {
+      type: String,
+      default: null,
+    },
     role: {
       type: String,
       default: "driver",
