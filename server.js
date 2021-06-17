@@ -13,7 +13,7 @@ require('./config/redis')
 const http = require("http").Server(app);
 const { socketIO } = require('./config/sockets')
 const io = require("socket.io")(http, {
-    path: "/api/socket.io",
+    path: "/tumi/api/socket.io",
     cors: {
       origin: '*',
     }
