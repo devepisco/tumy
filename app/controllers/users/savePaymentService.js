@@ -7,22 +7,23 @@ const { RequestService } = require("../../models/NewServices");
 const savePaymentService = structure(async (req, res) => {
   const { info } = req.body;
   const data = JSON.parse(info);
-  console.log(data)
-  const token = await createToken(data);
-  console.log(token);
-  const service = await getItem(data._id, RequestService);
-  const charge = await createCharge({
-    amount: `${service.costo}`.replace(".", ""),
-    email: data.email,
-    source_id: token.id,
-    capture: true,
-    antifraud_details: {
-      first_name: req.user.firstname,
-      last_name: req.user.lastname,
-      phone_number: req.user.phone,
-    },
-  });
-  console.log(charge);
+  try {
+    const token = await createToken(data);
+    const service = await getItem(data._id, RequestService);
+    const charge = await createCharge({
+      amount: `${service.costo}`.replace(".", ""),
+      email: data.email,
+      source_id: token.id,
+      capture: true,
+      antifraud_details: {
+        first_name: req.user.firstname,
+        last_name: req.user.lastname,
+        phone_number: req.user.phone,
+      },
+    });
+  } catch (err) {
+    console.log(err)
+  }
   const updatedService = await updateItem(
     data._id,
     {
