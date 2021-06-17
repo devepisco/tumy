@@ -16,8 +16,8 @@ const savePaymentService = structure(async (req, res) => {
       source_id: token.id,
       capture: true,
       antifraud_details: {
-        first_name: req.user.firstname,
-        last_name: req.user.lastname,
+        first_name: data.firstname,
+        last_name: data.lastname,
         phone_number: req.user.phone,
       },
     });
