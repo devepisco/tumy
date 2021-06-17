@@ -24,6 +24,15 @@ const savePaymentService = structure(async (req, res) => {
       },
     });
     console.log(charge);
+    const updatedService = await updateItem(
+      data._id,
+      {
+        chargeId: charge.id,
+        hasPaid: true,
+        paidState: charge.state,
+      },
+      RequestService
+    );
   } catch (err) {
     throw new Exceptions(
       500,
@@ -31,15 +40,6 @@ const savePaymentService = structure(async (req, res) => {
         "Ocurrió un error interno, porfavor vuelva a intentarlo mas tarde"
     );
   }
-  const updatedService = await updateItem(
-    data._id,
-    {
-      chargeId: charge.id,
-      hasPaid: true,
-      paidState: charge.state,
-    },
-    RequestService
-  );
   return res.status(204).json();
 });
 
