@@ -46,7 +46,7 @@ router.patch(
   validateEditDetailState,
   editDetailState
 );
-
+  
 /**
  * Cancel Service with reason
  */

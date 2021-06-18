@@ -5,11 +5,11 @@ const validateCoordinates = [
     check('origin')
         .not()
         .isEmpty()
-        .withMessage('Debe añadir las coordenadas de origen'),
+        .withMessage('Debe añadir las coordenadas/place_id de origen'),
     check('destination')
         .not()
         .isEmpty()
-        .withMessage('Debe añadir las coordenadas de destino'),
+        .withMessage('Debe añadir las coordenadas/place_id de destino'),
     (req, res, next) => {
       validateResult(req, res, next)
     }

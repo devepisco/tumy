@@ -10,6 +10,7 @@ const autocompletePlace = async (req, res) => {
             types:'address',
             language:'es-419',
             components:'country:pe',
+            offset:1,
             key:process.env.GOOGLE_MAPS_API_KEY
         }
     })

@@ -15,12 +15,10 @@ const acceptRequestDriver = structure( async (req, res) => {
             const foundIDUser = await User.findOne({IDNumber: FoundRequestDriver.IDNumber})
             if(foundEmailUser || foundIDUser) return handleError(res, 400, "El Motorizado ya fue aceptado")
         
-            FoundRequestDriver.status = {
-                obs: "Aceptada",
-                reason: reason
-            };
+            FoundRequestDriver.status = "Aceptada";
+            FoundRequestDriver.reason = reason;
         
-            await new User({
+            await User.create({
                 role:FoundRequestDriver.role,
                 firstname: FoundRequestDriver.firstname,
                 lastname:FoundRequestDriver.lastname,
@@ -38,14 +36,12 @@ const acceptRequestDriver = structure( async (req, res) => {
             message = "La solicitud de motorizado fue aceptada correctamente";
             break;
         case 'reject':
-            if(FoundRequestDriver.status.obs == "Rechazada") {
+            if(FoundRequestDriver.status == "Rechazada") {
                 message = "La solicitud del motorizado ya fue rechazada."
                 break;
             }
-            FoundRequestDriver.status = {
-                obs: "Rechazada",
-                reason: reason
-            };
+            FoundRequestDriver.status = "Rechazada";
+            FoundRequestDriver.reason = reason;
             message = "La solicitud de motorizado fue rechazada correctamente";
             break
         default:
