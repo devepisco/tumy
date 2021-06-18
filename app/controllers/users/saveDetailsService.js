@@ -5,20 +5,33 @@ const {
   isIDGood,
 } = require("../../middlewares/utils");
 
-const { findPaymentMethod, findGlobalState, findDetailState } = require("../users/helpers");
+const {
+  findPaymentMethod,
+  findGlobalState,
+  findDetailState,
+} = require("../users/helpers");
 
 const {
   RequestService,
   GlobalState,
   DetailState,
 } = require("../../models/NewServices");
+const { matchedData } = require("express-validator");
 
 const saveDetailsService = structure(async (req, res) => {
-
   /* Validaciones */
-  idService = isIDGood(req.body.idServicio);
+  const {
+    idServicio,
+    descripcion,
+    nombreRemitente,
+    celularRemitente,
+    nombreDestinatario,
+    celularDestinatario,
+    montoContraEntrega,
+    nameIdPago,
+  } = matchedData(req);
   const IdNamePago = await findPaymentMethod(req.body.nameIdPago);
-  const foundService = await RequestService.findOne({ _id: idService }).lean();
+  const foundService = await RequestService.findOne({ _id: idServicio }).lean();
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
   if (foundService.detail && Object.keys(foundService.detail).length !== 0) {
@@ -28,18 +41,19 @@ const saveDetailsService = structure(async (req, res) => {
       "El servicio ya contiene un detalle existente"
     );
   }
-  
+
   /* Se crea el detalle del servicio */
   let detail = {
-    descripcion: req.body.descripcion,
-    nombreRemitente: req.body.nombreRemitente,
-    celularRemitente: req.body.celularRemitente && req.body.celularRemitente.replace('+51', ''),
-    nombreDestinatario: req.body.nombreDestinatario,
-    celularDestinatario: req.body.celularDestinatario && req.body.celularDestinatario.replace('+51', ''),
+    descripcion: descripcion,
+    nombreRemitente: nombreRemitente,
+    celularRemitente: celularRemitente && celularRemitente.replace("+51", ""),
+    nombreDestinatario: nombreDestinatario,
+    celularDestinatario:
+      celularDestinatario && celularDestinatario.replace("+51", ""),
     esDestinatario: req.body.esDestinatario == "true",
     repartidorCobra: req.body.repartidorCobra == "true",
     pagoContraEntrega: IdNamePago._id,
-    montoContraEntrega: req.body.montoContraEntrega,
+    montoContraEntrega: montoContraEntrega,
   };
   if (detail.esDestinatario) {
     detail.nombreDestinatario = `${req.user.firstname} ${req.user.lastname}`;
@@ -51,20 +65,19 @@ const saveDetailsService = structure(async (req, res) => {
 
   /* Se añade el estado global */
   const globalState = await findGlobalState("en_proceso");
-  const detailState = await findDetailState("servicio_creado")
+  const detailState = await findDetailState("servicio_creado");
 
   let updatedService = await RequestService.findByIdAndUpdate(
     foundService._id,
     {
       detail,
       globalState: globalState._id,
-      detailState: detailState
+      detailState: detailState,
     },
     { new: true }
   );
 
   /* Se crea preferencia en mercado pago */
-
 
   /* Se pobla los datos */
   const data = await RequestService.aggregate([

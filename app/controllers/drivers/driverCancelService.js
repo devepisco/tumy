@@ -17,15 +17,18 @@ const driverCancelService = structure( async (req, res) => {
     let existDetailState = foundService.detailState.find(
         (state) => state._id == `${foundDetailState._id}`
     );
-    if (existDetailState)
-    return handleError(
-      res,
-      400,
-      "La solicitud de servicio ya se encuentra en estado: " +
-        foundDetailState.stateName
-    );rs
-    foundDetailState.obs = reason;
-    foundService.detailState.push(foundDetailState)
+    if (existDetailState){
+        return handleError(
+        res,
+        400,
+        "La solicitud de servicio ya se encuentra en estado: " +
+            foundDetailState.stateName
+        );
+    }
+    foundService.reason = reason;
+    foundService.detailState.push(foundDetailState);
+    
+    //Reasignación de pedido a otro motorizado
     
     const newCanceledService = new CanceledServices({
         creatorUser: req.user._id,

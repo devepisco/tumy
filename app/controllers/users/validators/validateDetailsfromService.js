@@ -5,15 +5,11 @@ const paymentMethods = require('../../../../data/paymentMethods')
 
 const validateDetailsfromService = [
     check('idServicio')
-        .exists()
-        .withMessage("Debe añadir el Id de solicitud de servicio")
+        .isMongoId()
+        .withMessage("El Id de servicio tiene un formato incorrecto")
         .not()
         .isEmpty()
-        .withMessage('Debe añadir el Id de solicitud de servicio')
-        .isLength({
-            min:24
-        })
-        .withMessage("Formato incorrecto del Id de solicitud de servicio"),
+        .withMessage('Debe añadir el Id de solicitud de servicio'),
     check('descripcion')
         .not()
         .isEmpty()
