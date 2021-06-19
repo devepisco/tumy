@@ -1,4 +1,4 @@
-# API for IEEE CS UTP Web
+# API for Tumi courier app
 
 ## How to install
 
