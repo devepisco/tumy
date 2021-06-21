@@ -1,7 +1,7 @@
 const { matchedData } = require("express-validator");
 const Exceptions = require("../../../errors/Exceptions");
 const { structure, handleError, objSuccess } = require("../../middlewares/utils");
-const RequestDriver = require("../../models/Driver");
+const RequestDriver = require("../../models/DriverRequests");
 const { User } = require("../../models/User");
 
 const acceptRequestDriver = structure( async (req, res) => {

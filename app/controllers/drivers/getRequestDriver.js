@@ -1,7 +1,7 @@
 const { matchedData } = require("express-validator");
 const { getItemsWithPagination } = require("../../middlewares/db");
 const { structure } = require("../../middlewares/utils");
-const RequestDriver = require("../../models/Driver");
+const RequestDriver = require("../../models/DriverRequests");
 
 const getRequestDriver = structure(async (req, res) => {
   const { status } = matchedData(req);

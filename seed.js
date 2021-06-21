@@ -1,6 +1,6 @@
 const { User } = require("./app/models/User"),
   usersData = require("./data/users/users");
-const RequestDriver = require("./app/models/Driver"),
+const RequestDriver = require("./app/models/DriverRequests"),
   driversData = require("./data/drivers/drivers");
 const PriceRate = require("./app/models/PriceRate"),
   pricerateData = require("./data/pricerates/pricerates");

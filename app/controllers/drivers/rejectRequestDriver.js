@@ -1,5 +1,5 @@
 const { structure, objSuccess, isIDGood, handleError } = require("../../middlewares/utils");
-const RequestDriver = require("../../models/Driver")
+const RequestDriver = require("../../models/DriverRequests")
 
 const rejectRequestDriver = structure(async(req, res) => {
     idDriver = isIDGood(req.params.id);

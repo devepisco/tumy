@@ -1,5 +1,5 @@
 const Exceptions = require('../../../errors/Exceptions');
-const RequestDriver = require('../../models/Driver');
+const RequestDriver = require('../../models/DriverRequests');
 const { structure, objSuccess } = require('../../middlewares/utils');
 
 const registerDriver = structure(async (req , res)=> {
