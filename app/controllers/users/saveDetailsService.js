@@ -50,8 +50,8 @@ const saveDetailsService = structure(async (req, res) => {
     nombreDestinatario: nombreDestinatario,
     celularDestinatario:
       celularDestinatario && celularDestinatario.replace("+51", ""),
-    esDestinatario: req.body.esDestinatario == "true",
-    repartidorCobra: req.body.repartidorCobra == "true",
+    esDestinatario: req.body.esDestinatario,
+    repartidorCobra: req.body.repartidorCobra,
     pagoContraEntrega: IdNamePago._id,
     montoContraEntrega: montoContraEntrega,
   };

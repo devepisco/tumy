@@ -2466,7 +2466,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseURL}}/admin/get/userDetail/60b1d789728caf2bacb3ce2c",
+							"raw": "{{baseURL}}/admin/get/userDetail/60b51f77fee3753218aa0b06",
 							"host": [
 								"{{baseURL}}"
 							],
@@ -2474,7 +2474,7 @@
 								"admin",
 								"get",
 								"userDetail",
-								"60b1d789728caf2bacb3ce2c"
+								"60b51f77fee3753218aa0b06"
 							]
 						}
 					},
@@ -2835,13 +2835,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/utils/autocomplete?place=calle martin luther king",
+							"raw": "{{baseURL}}/utils/autocomplete/place?place=calle martin luther king",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"utils",
-								"autocomplete"
+								"autocomplete",
+								"place"
 							],
 							"query": [
 								{
