@@ -1,4 +1,4 @@
-const { structure, objSuccess } = require("../../middlewares/utils");
+const { structure, objSuccess, handleError } = require("../../middlewares/utils");
 const { findUserById } = require("../../controllers/users/helpers");
 const { isAdmin } = require("../admin/helpers");
 

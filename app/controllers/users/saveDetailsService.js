@@ -1,14 +1,14 @@
 const {
   structure,
   handleError,
-  objSuccess,
-  isIDGood,
+  objSuccess
 } = require("../../middlewares/utils");
 
 const {
   findPaymentMethod,
   findGlobalState,
   findDetailState,
+  asignDriverToService
 } = require("../users/helpers");
 
 const {
@@ -30,7 +30,7 @@ const saveDetailsService = structure(async (req, res) => {
     montoContraEntrega,
     nameIdPago,
   } = matchedData(req);
-  const IdNamePago = await findPaymentMethod(req.body.nameIdPago);
+  const IdNamePago = await findPaymentMethod(nameIdPago);
   const foundService = await RequestService.findOne({ _id: idServicio }).lean();
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
@@ -78,6 +78,9 @@ const saveDetailsService = structure(async (req, res) => {
   );
 
   /* Se crea preferencia en mercado pago */
+
+  /* Se emite el servicio -> motorizado disponible*/
+  asignDriverToService(updatedService);
 
   /* Se pobla los datos */
   const data = await RequestService.aggregate([

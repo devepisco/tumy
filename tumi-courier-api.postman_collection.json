@@ -1299,7 +1299,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"origin\":\"-12.1771741,-76.9955442\",\r\n    \"destination\":\"-12.1741806,-76.9998204\"\r\n}",
+							"raw": "{\r\n    \"origin\":\"-12.1771741, -76.9955442\",\r\n    \"destination\":\"-12.1741806, -76.9998204\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1440,7 +1440,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idServicio\":\"60bbecbfbd28aa45acb87eb3\",\r\n    \"descripcion\":\"5 unidades de polos\",\r\n    \"nombreRemitente\":\"Lorenzo Lima\",\r\n    \"celularRemitente\":\"917450095\",\r\n    \"nombreDestinatario\":\"Edward Polo\",\r\n    \"celularDestinatario\":\"995679039\",\r\n    \"montoContraEntrega\":0,\r\n    \"esDestinatario\":\"true\",\r\n    \"repartidorCobra\":\"true\",\r\n    \"nameIdPago\":\"billetera_digital\"\r\n}",
+							"raw": "{\r\n    \"idServicio\":\"60ccfb976a7242401c7335f8\",\r\n    \"descripcion\":\"5 unidades de polos\",\r\n    \"nombreRemitente\":\"Lorenzo Lima\",\r\n    \"celularRemitente\":\"917450095\",\r\n    \"nombreDestinatario\":\"Edward Polo\",\r\n    \"celularDestinatario\":\"995679039\",\r\n    \"montoContraEntrega\":0,\r\n    \"esDestinatario\":\"true\",\r\n    \"repartidorCobra\":\"true\",\r\n    \"nameIdPago\":\"billetera_digital\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1601,7 +1601,7 @@
 								},
 								{
 									"key": "fechaFin",
-									"value": "2021-05-25",
+									"value": "2021-06-15",
 									"disabled": true
 								}
 							]
@@ -1731,14 +1731,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseURL}}/user/cancelService/60c65e17fdbbff2e94fb8d4d",
+							"raw": "{{baseURL}}/user/cancelService/60c97f8139986867eea0dd6b",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"user",
 								"cancelService",
-								"60c65e17fdbbff2e94fb8d4d"
+								"60c97f8139986867eea0dd6b"
 							],
 							"query": [
 								{
@@ -2371,13 +2371,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseURL}}/request/driver",
+							"raw": "{{baseURL}}/request/driver/:status",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"request",
-								"driver"
+								"driver",
+								":status"
 							],
 							"query": [
 								{
@@ -2389,6 +2390,18 @@
 									"key": "limit",
 									"value": "10",
 									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "status",
+									"value": "",
+									"description": "[\"Pendiente\", \"Aceptada\",\"Rechazada\"]"
 								}
 							]
 						}
@@ -2822,19 +2835,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/utils/autocomplete/place?place=tacna",
+							"raw": "{{baseURL}}/utils/autocomplete?place=calle martin luther king",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"utils",
-								"autocomplete",
-								"place"
+								"autocomplete"
 							],
 							"query": [
 								{
 									"key": "place",
-									"value": "tacna"
+									"value": "calle martin luther king"
 								}
 							]
 						}

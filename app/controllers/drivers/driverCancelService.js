@@ -2,7 +2,7 @@ const { matchedData } = require("express-validator");
 const { structure, objSuccess, handleError } = require("../../middlewares/utils");
 const { CanceledServices } = require("../../models/CanceledServices");
 const { RequestService } = require("../../models/NewServices");
-const { findDetailState } = require("../users/helpers");
+const { findDetailState, asignDriverToService } = require("../users/helpers");
 
 const driverCancelService = structure( async (req, res) => {
     const { id, whoseProblem, reason, resume, coordinates } = matchedData(req);
@@ -28,8 +28,6 @@ const driverCancelService = structure( async (req, res) => {
     foundService.reason = reason;
     foundService.detailState.push(foundDetailState);
     
-    //Reasignación de pedido a otro motorizado
-    
     const newCanceledService = new CanceledServices({
         creatorUser: req.user._id,
         whoseProblem: whoseProblem,
@@ -37,6 +35,10 @@ const driverCancelService = structure( async (req, res) => {
         coordinates: coordinates, 
         service:id
     });
+    
+    /* Reasignación de pedido a otro motorizado */
+    asignDriverToService(foundService);
+
     if (req.files) {
         for (i in req.files.cancelationCaptures) {
             newCanceledService.captures.push(req.files.cancelationCaptures[i].filename);

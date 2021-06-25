@@ -42,7 +42,7 @@ const socketIO = (io) => {
       emitTo(data, "client:getDetailService", detailService)
     });
 
-    //on para remover de redis "driver:end"
+    /* on para remover de redis "driver:end" */
     on(socket,"driver:end", async(data)=>{
       clientService.get("infoDriver", function(err, reply){
         const infoDriver = finishServiceDriver(reply, data)
@@ -50,6 +50,15 @@ const socketIO = (io) => {
         clientService.set("infoDriver", infoDriver)
       });
     })
+    /* socket para listar los motorizados */
+    on(socket, "admin:drivers", async(data) =>{
+      socket.join(data);
+      console.log("Solicitud del usuario: ", data)
+      clientService.get("infoDriver", function(err, reply){
+        const infoDriver = JSON.parse(reply);
+        emitTo(data, "admin:getAllDrivers", infoDriver);
+      });
+    });
 
     on(socket, "disconnect", (data) => {
       console.log("disconnect");
