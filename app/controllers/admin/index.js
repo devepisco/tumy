@@ -7,6 +7,9 @@ const { updateUsers } = require("./updateUsers");
 const { getAllPricerates } = require("./getAllPricerates");
 const { editPriceRate } = require("./editPriceRate");
 const { addPriceRate } = require("./addPriceRate");
+const { addComission } = require("./addComission");
+const { getComissions } = require("./getComissions");
+const { editComission } = require("./editComission");
 
 module.exports = {
   getAllUsers,
@@ -18,4 +21,7 @@ module.exports = {
   getAllPricerates,
   editPriceRate,
   addPriceRate,
+  addComission,
+  getComissions,
+  editComission,
 };

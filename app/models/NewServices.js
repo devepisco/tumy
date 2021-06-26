@@ -32,6 +32,10 @@ const requestServiceSchema = Schema(
       pagoContraEntrega: Schema.Types.ObjectId,
       montoContraEntrega: Number,
       driverUser: { type: Schema.Types.ObjectId, ref: User },
+      comission:{
+        _id: {type: Schema.Types.ObjectId, ref: "Comissions"},
+        amount: Number
+      }
     },
     globalState: {
       type: Schema.Types.ObjectId,
@@ -99,6 +103,25 @@ const paymentMethodSchema = new Schema({
   },
 });
 
+const ComissionsSchema = new Schema(
+  {
+    comissionName: {
+      type: String,
+      uppercase: true
+    },
+    amount: {
+      type: Number,
+    },
+    isActive: {
+      type: Boolean,
+      default: false
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 requestServiceSchema.plugin(mongoosePaginateV2);
 requestServiceSchema.plugin(mongoose_delete, {
   deletedAt: true,
@@ -115,5 +138,6 @@ const RequestService = model("RequestService", requestServiceSchema);
 const DetailState = model("DetailState", detailStateSchema);
 const GlobalState = model("GlobalState", globalStateSchema);
 const PaymentMethod = model("PaymentMethod", paymentMethodSchema);
+const Comissions = model("Comissions", ComissionsSchema);
 
-module.exports = { RequestService, PaymentMethod, DetailState, GlobalState };
+module.exports = { RequestService, PaymentMethod, DetailState, GlobalState, Comissions };

@@ -15,11 +15,16 @@ const {
   getAllPricerates,
   editPriceRate,
   addPriceRate,
+  addComission,
+  getComissions,
+  editComission
 } = require("../controllers/admin");
 const {
   validateNewDetailState,
   validateUserStatus,
   validatePriceRate,
+  validateComission,
+  validateEditComission
 } = require("../controllers/admin/validators");
 const {
   validateTypeUser,
@@ -71,7 +76,10 @@ router.get(
   getAllDetailStates
 );
 
-/** Comissions */
+/** Comissions  Model*/
+router.post("/add/comission", trimRequest.all, requireAuth,  validateComission, addComission);
+router.get("/get/comissions", trimRequest.all, requireAuth, getComissions);
+router.put("/edit/comission/:id", trimRequest.all, requireAuth, validateEditComission, editComission);
 
 /** Price Rates */
 router.get(

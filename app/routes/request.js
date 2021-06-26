@@ -48,7 +48,7 @@ router.patch(
 );
   
 /**
- * Cancel Service with reason
+ * Driver Cancels Service with reason
  */
 router.post(
   "/cancel/service/:id",

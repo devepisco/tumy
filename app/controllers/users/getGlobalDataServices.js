@@ -51,6 +51,11 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     updatedAt:1,
                 }
             },
+            {
+                $sort:{
+                    _id:-1
+                }
+            }
         ]);
 
     // si se ingresan solo las fechas o solo una fecha
@@ -98,6 +103,11 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     createdAt:1,
                     updatedAt:1
                 }
+            },
+            {
+                $sort:{
+                    _id:-1
+                }
             }
         ]);
 
@@ -140,6 +150,11 @@ const getGlobalDataServices = structure (async(req, res) =>{
                     stateName:1,
                     createdAt:1,
                     updatedAt:1
+                }
+            },
+            {
+                $sort:{
+                    _id:-1
                 }
             }
         ]);

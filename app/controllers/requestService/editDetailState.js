@@ -5,7 +5,7 @@ const {
   objSuccess,
 } = require("../../middlewares/utils");
 const { findDetailState, findGlobalState} = require("../users/helpers");
-const { RequestService } = require("../../models/NewServices");
+const { RequestService, Comissions } = require("../../models/NewServices");
 const {
   emitToUpdateService,
   emitServiceToDriver,
@@ -59,6 +59,9 @@ const editDetailState = structure(async (req, res) => {
         requestService.captures.service.push(req.files.serviceCaptures[i].filename);
       }
     }
+    /* Se asigna el valor de la comisión */
+    const comission = await Comissions.findOne({isActive:true});
+    requestService.detail.comission.amount = comission.amount * requestService.costo;
   }
   requestService.detailState.push({ _id: foundDetailState._id });
   await requestService.save();

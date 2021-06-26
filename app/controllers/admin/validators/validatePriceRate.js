@@ -5,7 +5,7 @@ const validatePriceRate = [
     check("IdName")
         .not()
         .isEmpty()
-        .withMessage("Debe ingresar el IdName de la tarifa a editar."),
+        .withMessage("Debe ingresar el IdName de la tarifa."),
     check("rateName")
         .not()
         .isEmpty()
