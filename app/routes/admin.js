@@ -17,14 +17,16 @@ const {
   addPriceRate,
   addComission,
   getComissions,
-  editComission
+  editComission,
+  getComissionsDriver,
 } = require("../controllers/admin");
 const {
   validateNewDetailState,
   validateUserStatus,
   validatePriceRate,
   validateComission,
-  validateEditComission
+  validateEditComission,
+  validateIdDriver,
 } = require("../controllers/admin/validators");
 const {
   validateTypeUser,
@@ -80,6 +82,7 @@ router.get(
 router.post("/add/comission", trimRequest.all, requireAuth,  validateComission, addComission);
 router.get("/get/comissions", trimRequest.all, requireAuth, getComissions);
 router.put("/edit/comission/:id", trimRequest.all, requireAuth, validateEditComission, editComission);
+router.get("/get/comissions/driver/:id?", trimRequest.all, requireAuth,validateIdDriver, getComissionsDriver);
 
 /** Price Rates */
 router.get(

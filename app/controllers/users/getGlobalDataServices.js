@@ -32,6 +32,9 @@ const getGlobalDataServices = structure (async(req, res) =>{
                 }
             },
             {
+                $unwind: "$globalState"
+            },
+            {
                 $match:{
                     createdAt:{
                         $gte: new Date(beginDate),

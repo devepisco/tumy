@@ -1,2 +1,4 @@
 const { isAdmin } = require("./isAdmin");
-module.exports = { isAdmin };
+module.exports = { 
+    isAdmin,
+};

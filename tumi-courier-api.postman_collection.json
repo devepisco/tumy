@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
+							"raw": "{\r\n    \"email\":\"josuee.amc@gmail.com\",\r\n    \"password\":\"Repartidor1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1440,7 +1440,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idServicio\":\"60ccfb976a7242401c7335f8\",\r\n    \"descripcion\":\"5 unidades de polos\",\r\n    \"nombreRemitente\":\"Lorenzo Lima\",\r\n    \"celularRemitente\":\"917450095\",\r\n    \"nombreDestinatario\":\"Edward Polo\",\r\n    \"celularDestinatario\":\"995679039\",\r\n    \"montoContraEntrega\":0,\r\n    \"esDestinatario\":\"true\",\r\n    \"repartidorCobra\":\"true\",\r\n    \"nameIdPago\":\"billetera_digital\"\r\n}",
+							"raw": "{\r\n    \"idServicio\":\"60d556a8c27b883ae499fc80\",\r\n    \"descripcion\":\"5 unidades de polos\",\r\n    \"nombreRemitente\":\"Lorenzo Lima\",\r\n    \"celularRemitente\":\"917450095\",\r\n    \"nombreDestinatario\":\"Edward Polo\",\r\n    \"celularDestinatario\":\"995679039\",\r\n    \"montoContraEntrega\":100,\r\n    \"esDestinatario\":\"false\",\r\n    \"repartidorCobra\":\"false\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1853,131 +1853,6 @@
 					]
 				},
 				{
-					"name": "getDetailDataFromService",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/user/getService/60ad4a512824eb37b461771d",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"user",
-								"getService",
-								"60ad4a512824eb37b461771d"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "getDetailDataFromService",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{tokenUser}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseURL}}/user/getService/60adbd2bdf1cb43320818bca",
-									"host": [
-										"{{baseURL}}"
-									],
-									"path": [
-										"user",
-										"getService",
-										"60adbd2bdf1cb43320818bca"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								},
-								{
-									"key": "Content-Security-Policy",
-									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-								},
-								{
-									"key": "X-DNS-Prefetch-Control",
-									"value": "off"
-								},
-								{
-									"key": "Expect-CT",
-									"value": "max-age=0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "SAMEORIGIN"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=15552000; includeSubDomains"
-								},
-								{
-									"key": "X-Download-Options",
-									"value": "noopen"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Permitted-Cross-Domain-Policies",
-									"value": "none"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "912"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"390-dYNIZ4iMuw/TLvsOpbTmX0kC47Y\""
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 26 May 2021 03:45:27 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"origin\": {\n            \"coordinates\": \"-12.064115, -77.035826\",\n            \"address\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\"\n        },\n        \"destination\": {\n            \"coordinates\": \"-12.047165, -77.134434\",\n            \"address\": \"Av. Contralmirante Ernesto de Mora 412, Callao 07021, Peru\"\n        },\n        \"detail\": {\n            \"descripcion\": \"5 unidades de polos\",\n            \"nombreRemitente\": \"Lorenzo Lima\",\n            \"celularRemitente\": \"917450095\",\n            \"nombreDestinatario\": \"Edward Polo\",\n            \"celularDestinatario\": \"995679039\",\n            \"esDestinatario\": false,\n            \"repartidorCobra\": true,\n            \"pagoContraEntrega\": \"60ad4a0e2824eb37b4617712\",\n            \"montoContraEntrega\": 48.65\n        },\n        \"globalState\": {\n            \"stateName\": \"En proceso\"\n        },\n        \"deleted\": false,\n        \"_id\": \"60adbd2bdf1cb43320818bca\",\n        \"costo\": 48.65,\n        \"tiempoAprox\": \"37 mins\",\n        \"creatorUser\": \"60ad4a382824eb37b461771c\",\n        \"detailState\": [\n            {\n                \"_id\": {\n                    \"stateName\": \"Servicio creado\"\n                },\n                \"date\": \"2021-05-26T03:41:20.946Z\"\n            }\n        ],\n        \"createdAt\": \"2021-05-26T03:14:51.078Z\",\n        \"updatedAt\": \"2021-05-26T03:41:20.948Z\"\n    },\n    \"message\": \"\"\n}"
-						}
-					]
-				},
-				{
 					"name": "getDriverFromService",
 					"request": {
 						"method": "GET",
@@ -2107,8 +1982,68 @@
 			]
 		},
 		{
-			"name": "request",
+			"name": "driver",
 			"item": [
+				{
+					"name": "editDetailState",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "paymentCaptures",
+									"description": "max:3, optional",
+									"type": "file",
+									"src": [
+										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
+										"/C:/Users/josue/Documents/178738244_1062674624256531_94806729029419826_n.jpg"
+									],
+									"disabled": true
+								},
+								{
+									"key": "serviceCaptures",
+									"description": "max:3, optional",
+									"type": "file",
+									"src": [
+										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
+										"/C:/Users/josue/Documents/breveteFB.JPG"
+									],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/request/:id/:detailstate",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"request",
+								":id",
+								":detailstate"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60d695971c9dc46a9035e68c"
+								},
+								{
+									"key": "detailstate",
+									"value": "pendiente_recojo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "driverCancelService",
 					"request": {
@@ -2131,8 +2066,8 @@
 								},
 								{
 									"key": "reason",
-									"value": "accident",
-									"description": "driver => [\"accident\",\"breakdown\",\"robbery\"] \nuser =>[\"notfound\", \"withdrawal\"]",
+									"value": "Accidente",
+									"description": "driver => [\"Accidente\",\"Averia\",\"Robo\"] \nuser =>[\"No encontrado\", \"No quiere recibir el pedido\"]",
 									"type": "text"
 								},
 								{
@@ -2155,7 +2090,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{baseURL}}/request/cancel/service/60c2d4d1e1eef01b848c5eb3",
+							"raw": "{{baseURL}}/request/cancel/service/:id",
 							"host": [
 								"{{baseURL}}"
 							],
@@ -2163,7 +2098,14 @@
 								"request",
 								"cancel",
 								"service",
-								"60c2d4d1e1eef01b848c5eb3"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "IdService"
+								}
 							]
 						}
 					},
@@ -2309,443 +2251,669 @@
 			"name": "admin",
 			"item": [
 				{
-					"name": "getAllUsers",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/admin/get/users/:typeUser",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								"get",
-								"users",
-								":typeUser"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "limit",
-									"value": "5",
-									"disabled": true
-								},
-								{
-									"key": "isBlocked",
-									"value": "false",
-									"description": "[\"true\" => No activo, \"false\" => activo]",
-									"disabled": true
-								}
-							],
-							"variable": [
-								{
-									"key": "typeUser",
-									"value": "user",
-									"description": "user, admin, driver"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getRequestDrivers",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/request/driver/:status",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"request",
-								"driver",
-								":status"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "limit",
-									"value": "10",
-									"disabled": true
-								},
-								{
-									"key": "date",
-									"value": null,
-									"disabled": true
-								}
-							],
-							"variable": [
-								{
-									"key": "status",
-									"value": "",
-									"description": "[\"Pendiente\", \"Aceptada\",\"Rechazada\"]"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "accept/reject RequestDriver",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"reason\":\"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/request/:action/:id",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"request",
-								":action",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "action",
-									"value": "accept",
-									"description": "[\"accept\", \"reject\"]"
-								},
-								{
-									"key": "id",
-									"value": "60b1e27e4a1fb73e3871d71d",
-									"description": "e.g."
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getUserDetail",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/admin/get/userDetail/60b51f77fee3753218aa0b06",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								"get",
-								"userDetail",
-								"60b51f77fee3753218aa0b06"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "block/unblock User",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/admin/:action/user/:id",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								":action",
-								"user",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "action",
-									"value": "block",
-									"description": "[\"block\", \"unblock\"]"
-								},
-								{
-									"key": "id",
-									"value": "60b51f77fee3753218aa0b06"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "editDetailState",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "paymentCaptures",
-									"description": "max:3, optional",
-									"type": "file",
-									"src": [
-										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
-										"/C:/Users/josue/Documents/178738244_1062674624256531_94806729029419826_n.jpg"
+					"name": "user",
+					"item": [
+						{
+							"name": "getAllUsers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/get/users/:typeUser",
+									"host": [
+										"{{baseURL}}"
 									],
-									"disabled": true
-								},
-								{
-									"key": "serviceCaptures",
-									"description": "max:3, optional",
-									"type": "file",
-									"src": [
-										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
-										"/C:/Users/josue/Documents/breveteFB.JPG"
+									"path": [
+										"admin",
+										"get",
+										"users",
+										":typeUser"
 									],
-									"disabled": true
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "isBlocked",
+											"value": "false",
+											"description": "[\"true\" => No activo, \"false\" => activo]",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "typeUser",
+											"value": "user",
+											"description": "user, admin, driver"
+										}
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{baseURL}}/request/60bb11be4543df4a6412e908/servicio_creado",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"request",
-								"60bb11be4543df4a6412e908",
-								"servicio_creado"
-							]
+						{
+							"name": "getRequestDrivers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/request/driver/:status",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"request",
+										"driver",
+										":status"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "date",
+											"value": null,
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "status",
+											"value": "",
+											"description": "[\"Pendiente\", \"Aceptada\",\"Rechazada\"]"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accept/reject RequestDriver",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"reason\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/request/:action/:id",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"request",
+										":action",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "action",
+											"value": "accept",
+											"description": "[\"accept\", \"reject\"]"
+										},
+										{
+											"key": "id",
+											"value": "60b1e27e4a1fb73e3871d71d",
+											"description": "e.g."
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUserDetail",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/get/userDetail/60b51f77fee3753218aa0b06",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"get",
+										"userDetail",
+										"60b51f77fee3753218aa0b06"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "block/unblock User",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/:action/user/:id",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										":action",
+										"user",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "action",
+											"value": "block",
+											"description": "[\"block\", \"unblock\"]"
+										},
+										{
+											"key": "id",
+											"value": "60b51f77fee3753218aa0b06"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateUsers",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstname\":\"Usuario\",\r\n    \"lastname\":\"Prueba\",\r\n    \"IDType\":\"DNI\",\r\n    \"IDNumber\":\"00345920\",\r\n    \"business\":{\r\n        \"name\":\"Disrupted Ideas & Brand business\",\r\n        \"socialReason\":\"Soluciones empresariales s.a.c\",\r\n        \"ruc\":\"10222222210\"\r\n    },\r\n    \"phone\":\"900200399\",\r\n    \"email\":\"prueba@registeruser.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/edit/user/:id",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"edit",
+										"user",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60b1e4054a1fb73e3871d72a"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "updateUsers",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstname\":\"Usuario\",\r\n    \"lastname\":\"Prueba\",\r\n    \"IDType\":\"DNI\",\r\n    \"IDNumber\":\"00345920\",\r\n    \"business\":{\r\n        \"name\":\"Disrupted Ideas & Brand business\",\r\n        \"socialReason\":\"Soluciones empresariales s.a.c\",\r\n        \"ruc\":\"10222222210\"\r\n    },\r\n    \"phone\":\"900200399\",\r\n    \"email\":\"prueba@registeruser.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "Price rates",
+					"item": [
+						{
+							"name": "getAllPriceRates",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/get/all/pricerates",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"get",
+										"all",
+										"pricerates"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{baseURL}}/admin/edit/user/:id",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								"edit",
-								"user",
-								":id"
-							],
-							"variable": [
+						{
+							"name": "editPriceRate",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"IdName\": \"tarifa_estandar\",\r\n    \"rateName\": \"TARIFA ESTÁNDAR\",\r\n    \"price\": 3.5,\r\n    \"minPrice\": 8,\r\n    \"isActive\":true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/edit/pricerate/:IdName",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"edit",
+										"pricerate",
+										":IdName"
+									],
+									"variable": [
+										{
+											"key": "IdName",
+											"value": "tarifa_estandar",
+											"description": "getAllPriceRates()"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addPriceRate",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"IdName\": \"tarifa_cercado\",\r\n    \"rateName\": \"TARIFA CERCADO\",\r\n    \"price\": 4,\r\n    \"minPrice\": 10,\r\n    \"isActive\":true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/add/pricerate",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"add",
+										"pricerate"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Comissions",
+					"item": [
+						{
+							"name": "addComissions",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comissionName\":\"Basico\",\r\n    \"amount\":0.03\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/add/comission",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"add",
+										"comission"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getComissions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/get/comissions",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"get",
+										"comissions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "editComission",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\":\"0.04\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/edit/comission/:id",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"edit",
+										"comission",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60d65c36609dca0bb0ba1903"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Detail states",
+					"item": [
+						{
+							"name": "addDetailState",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"IdName\":\"\",\r\n    \"stateName\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/admin/add/detailstate",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"add",
+										"detailstate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllDetailStates",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/get/all/detailstates",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"get",
+										"all",
+										"detailstates"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Request services",
+					"item": [
+						{
+							"name": "getDetailDataFromService",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/user/getService/60ad4a512824eb37b461771d",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"user",
+										"getService",
+										"60ad4a512824eb37b461771d"
+									]
+								}
+							},
+							"response": [
 								{
-									"key": "id",
-									"value": "60b1e4054a1fb73e3871d72a"
+									"name": "getDetailDataFromService",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{tokenUser}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseURL}}/user/getService/60adbd2bdf1cb43320818bca",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"user",
+												"getService",
+												"60adbd2bdf1cb43320818bca"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Security-Policy",
+											"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+										},
+										{
+											"key": "X-DNS-Prefetch-Control",
+											"value": "off"
+										},
+										{
+											"key": "Expect-CT",
+											"value": "max-age=0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "X-Download-Options",
+											"value": "noopen"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Permitted-Cross-Domain-Policies",
+											"value": "none"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "no-referrer"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "912"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"390-dYNIZ4iMuw/TLvsOpbTmX0kC47Y\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 26 May 2021 03:45:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"data\": {\n        \"origin\": {\n            \"coordinates\": \"-12.064115, -77.035826\",\n            \"address\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\"\n        },\n        \"destination\": {\n            \"coordinates\": \"-12.047165, -77.134434\",\n            \"address\": \"Av. Contralmirante Ernesto de Mora 412, Callao 07021, Peru\"\n        },\n        \"detail\": {\n            \"descripcion\": \"5 unidades de polos\",\n            \"nombreRemitente\": \"Lorenzo Lima\",\n            \"celularRemitente\": \"917450095\",\n            \"nombreDestinatario\": \"Edward Polo\",\n            \"celularDestinatario\": \"995679039\",\n            \"esDestinatario\": false,\n            \"repartidorCobra\": true,\n            \"pagoContraEntrega\": \"60ad4a0e2824eb37b4617712\",\n            \"montoContraEntrega\": 48.65\n        },\n        \"globalState\": {\n            \"stateName\": \"En proceso\"\n        },\n        \"deleted\": false,\n        \"_id\": \"60adbd2bdf1cb43320818bca\",\n        \"costo\": 48.65,\n        \"tiempoAprox\": \"37 mins\",\n        \"creatorUser\": \"60ad4a382824eb37b461771c\",\n        \"detailState\": [\n            {\n                \"_id\": {\n                    \"stateName\": \"Servicio creado\"\n                },\n                \"date\": \"2021-05-26T03:41:20.946Z\"\n            }\n        ],\n        \"createdAt\": \"2021-05-26T03:14:51.078Z\",\n        \"updatedAt\": \"2021-05-26T03:41:20.948Z\"\n    },\n    \"message\": \"\"\n}"
 								}
 							]
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "getAllPriceRates",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/admin/get/all/pricerates",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								"get",
-								"all",
-								"pricerates"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "editPriceRate",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"IdName\": \"tarifa_estandar\",\r\n    \"rateName\": \"TARIFA ESTÁNDAR\",\r\n    \"price\": 3.5,\r\n    \"minPrice\": 8,\r\n    \"isActive\":true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/admin/edit/pricerate/:IdName",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								"edit",
-								"pricerate",
-								":IdName"
-							],
-							"variable": [
-								{
-									"key": "IdName",
-									"value": "tarifa_estandar",
-									"description": "getAllPriceRates()"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "addPriceRate",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"IdName\": \"tarifa_cercado\",\r\n    \"rateName\": \"TARIFA CERCADO\",\r\n    \"price\": 4,\r\n    \"minPrice\": 10,\r\n    \"isActive\":true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/admin/add/pricerate",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								"add",
-								"pricerate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "addDetailState",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"IdName\":\"\",\r\n    \"stateName\":\"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/admin/add/detailstate",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								"add",
-								"detailstate"
-							]
-						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -2765,32 +2933,6 @@
 							"path": [
 								"user",
 								"getPaymentMethods"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getAllDetailStates",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL}}/admin/get/all/detailstates",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"admin",
-								"get",
-								"all",
-								"detailstates"
 							]
 						}
 					},
@@ -2821,7 +2963,7 @@
 							"variable": [
 								{
 									"key": "typeUser",
-									"value": "driver",
+									"value": "user",
 									"description": "[\"user\",\"driver\"]"
 								}
 							]
