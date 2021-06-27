@@ -11,7 +11,9 @@ const setComissions = async(req, res) => {
             _id : Comission._id,
             amount : `${amount.toFixed(2)}`
         }
+        await services[i].save();
     }
+    
     res.status(200).json(objSuccess(services,"Registros actualizados correctamente"));
 }
 module.exports = {setComissions}
