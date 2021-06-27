@@ -156,6 +156,9 @@ const getComissionsDriver = structure(async (req, res) => {
         $unwind: "$GlobalState",
       },
       {
+        $unwind: "$detail.comission.amount",
+      },
+      {
         $match: {
             "detail.driverUser": mongoose.Types.ObjectId(id),
         },

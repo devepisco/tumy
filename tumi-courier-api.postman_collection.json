@@ -2714,6 +2714,59 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "getComissionsDriver",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/get/comissions/driver/:id",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"get",
+										"comissions",
+										"driver",
+										":id"
+									],
+									"query": [
+										{
+											"key": "globalState",
+											"value": "entregado",
+											"description": "[\"entregado\",\"cancelado\"]",
+											"disabled": true
+										},
+										{
+											"key": "beginDate",
+											"value": "2021-06-20",
+											"description": "format: 'YYYY-MM-DD'",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2021-06-27",
+											"description": "format: 'YYYY-MM-DD'",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -2800,14 +2853,20 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseURL}}/user/getService/60ad4a512824eb37b461771d",
+									"raw": "{{baseURL}}/user/getService/:id",
 									"host": [
 										"{{baseURL}}"
 									],
 									"path": [
 										"user",
 										"getService",
-										"60ad4a512824eb37b461771d"
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60d7dc75898f7830b48dd1d2"
+										}
 									]
 								}
 							},
