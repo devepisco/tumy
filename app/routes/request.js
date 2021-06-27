@@ -15,7 +15,7 @@ const {
   driverCancelService,
 } = require("../controllers/drivers");
 
-const { editDetailState } = require("../controllers/requestService");
+const { editDetailState,setComissions } = require("../controllers/requestService");
 
 const {
   validateEditDetailState,
@@ -59,4 +59,6 @@ router.post(
   driverCancelService
 );
 
+/* Set comissions */
+router.get("/setcomissions", trimRequest.all, requireAuth, setComissions);
 module.exports = router;

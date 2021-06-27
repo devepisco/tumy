@@ -1,3 +1,7 @@
-const { editDetailState } = require("./editDetailState")
+const { editDetailState } = require("./editDetailState");
+const { setComissions } = require("./setComissions");
 
-module.exports = { editDetailState }
+module.exports = {
+  editDetailState,
+  setComissions,
+};
