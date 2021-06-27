@@ -26,14 +26,7 @@ const getComissionsDriver = structure(async (req, res) => {
         $unwind: "$GlobalState",
       },
       {
-        $match: {
-          createdAt: {
-            $gte: new Date(beginDate),
-            $lt: new Date(endDate),
-          },
-          "detail.driverUser": mongoose.Types.ObjectId(id),
-          "GlobalState.IdName": globalState,
-        },
+        $unwind: "$detail.comission.amount",
       },
       {
         $match: {
@@ -41,8 +34,8 @@ const getComissionsDriver = structure(async (req, res) => {
             $gte: new Date(beginDate),
             $lt: new Date(endDate),
           },
-          "GlobalState.IdName": globalState,
           "detail.driverUser": mongoose.Types.ObjectId(id),
+          "GlobalState.IdName": globalState,
         },
       },
       {
@@ -78,6 +71,9 @@ const getComissionsDriver = structure(async (req, res) => {
       },
       {
         $unwind: "$GlobalState",
+      },
+      {
+        $unwind: "$detail.comission.amount",
       },
       {
         $match: {
@@ -117,6 +113,9 @@ const getComissionsDriver = structure(async (req, res) => {
       },
       {
         $unwind: "$GlobalState",
+      },
+      {
+        $unwind: "$detail.comission.amount",
       },
       {
         $match: {
