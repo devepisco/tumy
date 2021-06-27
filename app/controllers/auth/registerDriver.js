@@ -22,7 +22,7 @@ const registerDriver = structure(async (req , res)=> {
         password:req.body.password,
         profilePicture:req.file.filename,
     })
-
+    console.log(req.file);
     await registeredDriver.save()
 
     return res.status(200).json(objSuccess(

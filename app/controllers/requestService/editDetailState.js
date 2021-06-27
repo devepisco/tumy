@@ -75,6 +75,6 @@ const editDetailState = structure(async (req, res) => {
   );
   res
     .status(200)
-    .json(objSuccess({}, "El estado Detalle se actualizó correctamente"));
+    .json(objSuccess(updatedService, "El estado Detalle se actualizó correctamente"));
 });
 module.exports = { editDetailState };
