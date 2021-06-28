@@ -6,6 +6,7 @@ const { RequestService } = require("../../models/NewServices");
 const Exceptions = require("../../../errors/Exceptions");
 
 const savePaymentService = structure(async (req, res) => {
+console.log(req.body)
   const data = req.body;
   try {
     const token = await createToken(data);
