@@ -61,7 +61,8 @@ const editDetailState = structure(async (req, res) => {
     }
     /* Se asigna el valor de la comisión */
     const comission = await Comissions.findOne({isActive:true});
-    requestService.detail.comission.amount = comission.amount * requestService.costo;
+    const amount = comission.amount * requestService.costo;
+    requestService.detail.comission.amount = `${amount.toFixed(2)}`;
   }
   requestService.detailState.push({ _id: foundDetailState._id });
   await requestService.save();
