@@ -41,7 +41,7 @@ const savePaymentService = structure(async (req, res) => {
         "Ocurrió un error interno, porfavor vuelva a intentarlo mas tarde"
     );
   }
-  return res.status(200).json(objSuccess(null, "El pago se resolvió con exito"));
+  return res.status(200).json({message: "El pago se efectuó de manera correcta"});
 });
 
 module.exports = { savePaymentService };
