@@ -1,13 +1,13 @@
 const { matchedData } = require("express-validator");
-const { structure } = require("../../middlewares/utils");
+const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const { updateItem, getItem } = require("../../middlewares/db");
 const { createToken, createCharge } = require("../culqi/helpers");
 const { RequestService } = require("../../models/NewServices");
 const Exceptions = require("../../../errors/Exceptions");
 
 const savePaymentService = structure(async (req, res) => {
-  const { info } = req.body;
-  const data = JSON.parse(info);
+console.log(req.body)
+  const data = req.body;
   try {
     const token = await createToken(data);
     console.log(token);
@@ -34,13 +34,15 @@ const savePaymentService = structure(async (req, res) => {
       RequestService
     );
   } catch (err) {
-    throw new Exceptions(
+    console.log(err)
+    handleError(
+      res,
       500,
       err.user_message ||
         "Ocurrió un error interno, porfavor vuelva a intentarlo mas tarde"
     );
   }
-  return res.status(204).json();
+  return res.status(200).json({message: "El pago se efectuó de manera correcta"});
 });
 
 module.exports = { savePaymentService };
