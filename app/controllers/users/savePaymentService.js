@@ -1,5 +1,5 @@
 const { matchedData } = require("express-validator");
-const { structure, handleError } = require("../../middlewares/utils");
+const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const { updateItem, getItem } = require("../../middlewares/db");
 const { createToken, createCharge } = require("../culqi/helpers");
 const { RequestService } = require("../../models/NewServices");
@@ -42,7 +42,7 @@ console.log(req.body)
         "Ocurrió un error interno, porfavor vuelva a intentarlo mas tarde"
     );
   }
-  return res.status(204).json();
+  return res.status(200).json(objSuccess(null, "El pago se resolvió con exito"));
 });
 
 module.exports = { savePaymentService };
