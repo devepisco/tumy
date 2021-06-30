@@ -9,11 +9,23 @@ const getDriverFromService = structure( async (req, res) => {
         {
             $lookup:{
                 from: User.collection.name,
-                localField:'driverUser',
+                localField:'detail.driverUser',
                 foreignField:'_id',
                 as:'driverUser'
             }
         },
+        {
+            $replaceRoot: {
+              newRoot: {
+                $mergeObjects: [
+                  {
+                    $arrayElemAt: ["$driverUser", 0],
+                  },
+                  "$$ROOT",
+                ],
+              },
+            },
+          },
         {
             $match:{
                 _id: mongoose.Types.ObjectId(IdService)
@@ -21,7 +33,18 @@ const getDriverFromService = structure( async (req, res) => {
         },
         {
             $project:{
-                driverUser:1
+                firstname:1,
+                lastname:1,
+                role:1,
+                IDType:1,
+                IDNumber:1,
+                SOATNumber:1,
+                VehicleRegistration:1,
+                propertyCardNumber:1,
+                phone:1,
+                email:1,
+                createdAt:1,
+                updatedAt:1
             }
         }
     ]);

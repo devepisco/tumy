@@ -1,0 +1,1 @@
+module.exports = ["en_proceso","entregado", "cancelado"];

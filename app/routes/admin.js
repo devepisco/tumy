@@ -19,6 +19,7 @@ const {
   getComissions,
   editComission,
   getComissionsDriver,
+  getAllServices
 } = require("../controllers/admin");
 const {
   validateNewDetailState,
@@ -27,6 +28,7 @@ const {
   validateComission,
   validateEditComission,
   validateIdDriver,
+  validateParamsGetAllServices,
 } = require("../controllers/admin/validators");
 const {
   validateTypeUser,
@@ -108,4 +110,6 @@ router.put(
   editPriceRate
 );
 
+/* Get All Request Services */
+router.get("/get/all/services", trimRequest.all, requireAuth, validateParamsGetAllServices, getAllServices);
 module.exports = router;

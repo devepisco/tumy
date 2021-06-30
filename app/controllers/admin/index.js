@@ -10,7 +10,8 @@ const { addPriceRate } = require("./addPriceRate");
 const { addComission } = require("./addComission");
 const { getComissions } = require("./getComissions");
 const { editComission } = require("./editComission");
-const { getComissionsDriver } =require("./getComissionsDriver");
+const { getComissionsDriver } = require("./getComissionsDriver");
+const { getAllServices } = require("./getAllServices");
 
 module.exports = {
   getAllUsers,
@@ -26,4 +27,5 @@ module.exports = {
   getComissions,
   editComission,
   getComissionsDriver,
+  getAllServices,
 };
