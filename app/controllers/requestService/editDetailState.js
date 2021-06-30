@@ -4,7 +4,7 @@ const {
   handleError,
   objSuccess,
 } = require("../../middlewares/utils");
-const { findDetailState, findGlobalState} = require("../users/helpers");
+const { findDetailState, findGlobalState } = require("../users/helpers");
 const { RequestService, Comissions } = require("../../models/NewServices");
 const {
   emitToUpdateService,
@@ -16,8 +16,8 @@ const { clientService } = require("../../../config/redis");
 const { editInfoDriver } = require("../../../config/helpers/editInfoDriver");
 
 const editDetailState = structure(async (req, res) => {
-  const { id, detailstate } =
-    matchedData(req);
+  const { id, detailstate } = matchedData(req);
+  if(req.user.role !='driver' && !req.user.isBlocked) return handleError(res, 400, "Acceso denegado para realizar esta solicitud.");
   const foundDetailState = await findDetailState(detailstate);
   const requestService = await RequestService.findById(id);
   let existDetailState = requestService.detailState.find(
@@ -33,7 +33,7 @@ const editDetailState = structure(async (req, res) => {
   if (detailstate == "pendiente_recojo") {
     if (requestService.detail.driverUser) {
       const service = await getService();
-      emitServiceToDriver(req.user.id, service);
+      emitServiceToDriver(req.user._id, service);
       return handleError(res, 400, "El servicio ya ha sido asignado.");
     }
     requestService.detail.driverUser = req.user._id;
@@ -53,21 +53,27 @@ const editDetailState = structure(async (req, res) => {
     requestService.globalState = foundGlobalState._id;
     if (req.files) {
       for (i in req.files.paymentCaptures) {
-        requestService.captures.payment.push(req.files.paymentCaptures[i].filename);
+        requestService.captures.payment.push(
+          req.files.paymentCaptures[i].filename
+        );
       }
       for (i in req.files.serviceCaptures) {
-        requestService.captures.service.push(req.files.serviceCaptures[i].filename);
+        requestService.captures.service.push(
+          req.files.serviceCaptures[i].filename
+        );
       }
     }
     /* Se asigna el valor de la comisión */
-    const comission = await Comissions.findOne({isActive:true});
+    const comission = await Comissions.findOne({ isActive: true });
     const amount = comission.amount * requestService.costo;
     requestService.detail.comission.amount = `${amount.toFixed(2)}`;
   }
   requestService.detailState.push({ _id: foundDetailState._id });
   await requestService.save();
   const updatedService = await RequestService.findOne({ _id: id })
-    .populate("detailState._id", { _id: 0, IdName: 0, __v: 0 }).populate("globalState",{ _id: 0, IdName: 0, __v: 0 })
+    .populate("detailState._id", { _id: 0, IdName: 0, __v: 0 })
+    .populate("globalState", { _id: 0, IdName: 0, __v: 0 })
+    .populate("detail.driverUser", { firstname: 1, lastname: 1 })
     .exec();
   emitToUpdateService(
     updatedService.detail.driverUser,
@@ -76,6 +82,8 @@ const editDetailState = structure(async (req, res) => {
   );
   res
     .status(200)
-    .json(objSuccess(updatedService, "El estado Detalle se actualizó correctamente"));
+    .json(
+      objSuccess(updatedService, "El estado Detalle se actualizó correctamente")
+    );
 });
 module.exports = { editDetailState };
