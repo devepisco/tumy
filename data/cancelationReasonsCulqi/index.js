@@ -1,0 +1,1 @@
+module.exports= ["duplicado", "fraudulento","solicitud_comprador"];

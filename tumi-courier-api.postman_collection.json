@@ -1864,15 +1864,21 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseURL}}/user/getService/60ad6d0903923627f0a35359/driver",
+							"raw": "{{baseURL}}/user/getService/:id/driver",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"user",
 								"getService",
-								"60ad6d0903923627f0a35359",
+								":id",
 								"driver"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60d93f94d9465c025a12e2ff"
+								}
 							]
 						}
 					},
@@ -2002,21 +2008,13 @@
 									"key": "paymentCaptures",
 									"description": "max:3, optional",
 									"type": "file",
-									"src": [
-										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
-										"/C:/Users/josue/Documents/178738244_1062674624256531_94806729029419826_n.jpg"
-									],
-									"disabled": true
+									"src": "/C:/Users/josue/Desktop/test fotos entregado/pago_de_servicio.png"
 								},
 								{
 									"key": "serviceCaptures",
 									"description": "max:3, optional",
 									"type": "file",
-									"src": [
-										"/C:/Users/josue/Documents/foto de perfil driver.jpg",
-										"/C:/Users/josue/Documents/breveteFB.JPG"
-									],
-									"disabled": true
+									"src": "/C:/Users/josue/Desktop/test fotos entregado/entrega_de_pedido.png"
 								}
 							]
 						},
@@ -2033,11 +2031,11 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "60d695971c9dc46a9035e68c"
+									"value": "60d8fc48bb18fe77db244431"
 								},
 								{
 									"key": "detailstate",
-									"value": "pendiente_recojo"
+									"value": "entregado"
 								}
 							]
 						}
@@ -2616,7 +2614,7 @@
 					"name": "Comissions",
 					"item": [
 						{
-							"name": "addComissions",
+							"name": "addComission",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2741,7 +2739,7 @@
 									"query": [
 										{
 											"key": "globalState",
-											"value": "entregado",
+											"value": "cancelado",
 											"description": "[\"entregado\",\"cancelado\"]",
 											"disabled": true
 										},
@@ -2761,8 +2759,32 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "60b1d789728caf2bacb3ce2f"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "setComissionsToDrivers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/request/setcomissions",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"request",
+										"setcomissions"
 									]
 								}
 							},
@@ -2971,6 +2993,52 @@
 									"body": "{\n    \"success\": true,\n    \"data\": {\n        \"origin\": {\n            \"coordinates\": \"-12.064115, -77.035826\",\n            \"address\": \"Av. 28 de Julio 952, Cercado de Lima 15046, Peru\"\n        },\n        \"destination\": {\n            \"coordinates\": \"-12.047165, -77.134434\",\n            \"address\": \"Av. Contralmirante Ernesto de Mora 412, Callao 07021, Peru\"\n        },\n        \"detail\": {\n            \"descripcion\": \"5 unidades de polos\",\n            \"nombreRemitente\": \"Lorenzo Lima\",\n            \"celularRemitente\": \"917450095\",\n            \"nombreDestinatario\": \"Edward Polo\",\n            \"celularDestinatario\": \"995679039\",\n            \"esDestinatario\": false,\n            \"repartidorCobra\": true,\n            \"pagoContraEntrega\": \"60ad4a0e2824eb37b4617712\",\n            \"montoContraEntrega\": 48.65\n        },\n        \"globalState\": {\n            \"stateName\": \"En proceso\"\n        },\n        \"deleted\": false,\n        \"_id\": \"60adbd2bdf1cb43320818bca\",\n        \"costo\": 48.65,\n        \"tiempoAprox\": \"37 mins\",\n        \"creatorUser\": \"60ad4a382824eb37b461771c\",\n        \"detailState\": [\n            {\n                \"_id\": {\n                    \"stateName\": \"Servicio creado\"\n                },\n                \"date\": \"2021-05-26T03:41:20.946Z\"\n            }\n        ],\n        \"createdAt\": \"2021-05-26T03:14:51.078Z\",\n        \"updatedAt\": \"2021-05-26T03:41:20.948Z\"\n    },\n    \"message\": \"\"\n}"
 								}
 							]
+						},
+						{
+							"name": "getAllRequestServices",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/get/all/services",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"get",
+										"all",
+										"services"
+									],
+									"query": [
+										{
+											"key": "globalState",
+											"value": "en_proceso",
+											"description": "[\"en_proceso\",\"entregado\",\"cancelado\"]",
+											"disabled": true
+										},
+										{
+											"key": "beginDate",
+											"value": "2021-06-27",
+											"description": "format: 'YYYY-MM-DD'",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2021-06-30",
+											"description": "format: 'YYYY-MM-DD'",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -3110,7 +3178,7 @@
 		},
 		{
 			"key": "tokenUser",
-			"value": "Bearer 4ba861681518bf87ebde51be170e4c7cbba81a2386ea7d5f50254204ee3d96cf75bf50971d9e88abaafd3bcb75c90828b57d721dc3082ac7e163bfd8c2095e56ceade068bd75e5b988a7dc0c6f0283b756edd21bd24f4950cbb4733215d4b97136bf8bf1f184805bb5a0425361db6a90dc965a2532510f15e9c04606ce98db78e88ee50afef9878314d1e27d216459e00daddfed67416ca0485cc72ecc086f620c2011e66d8531da8668809af8e26ccc6cd4289d6f64a400f3e839ec8bcb9a25"
+			"value": "Bearer 4cd6fe153b59e8c4fedc337df5ad07c7649256947a396484a4f6166bd9cd7ffe3881f75fb81d7c4fff447eba471ebbe6f408f1c0cbb49fbcdf460c8d0e5d0092a09f0c2768de1909adaff47e9569201e395a2eea1df1307cb0b72f3372386737e0e19e1243640e39cb5abe30147df009cf886ac7c9697a9fdb163ad0d7042f7287947257bab613754331861b778517000cc881f8764927b301f7f2c5232196f051d9495556bd39784d5bafeac91e6c9927ac3b6739562ba0ef6d002d71427314"
 		},
 		{
 			"key": "tokenAdmin",

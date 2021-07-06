@@ -22,6 +22,7 @@ const {
   validateUpdatedUser,
   validateCoordinates,
   validateDetailsfromService,
+  validateCancelService
 } = require("../controllers/users/validators");
 
 /**
@@ -95,6 +96,6 @@ router.get(
 /**
  * Cancel the Service request
  */
-router.get("/cancelService/:id", trimRequest.all, requireAuth, cancelService);
+router.get("/cancelService/:id", trimRequest.all, requireAuth, validateCancelService, cancelService);
 
 module.exports = router;

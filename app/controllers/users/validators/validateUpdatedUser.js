@@ -37,9 +37,17 @@ const validateUpdatedUser = [
         .isObject()
         .withMessage('La empresa debe ser un objeto'),
     check('business.name')
-        .optional(),
+        .optional()
+        .not()
+        .isEmpty()
+        .withMessage('Debe añadir un nombre como mínimo')
+        .matches(names)
+        .withMessage('El nombre debe contener caracteres alfabéticos'),
     check('business.socialReason')
-        .optional(),
+        .optional()
+        .not()
+        .isEmpty()
+        .withMessage('Debe añadir el nombre de la Razon Social'),
     check('business.ruc')
         .optional()
         .isNumeric()
