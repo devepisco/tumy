@@ -7,9 +7,10 @@ const {
 } = require("../../middlewares/utils");
 const { findDetailState, findGlobalState } = require("../users/helpers");
 const { matchedData } = require("express-validator");
+const { createRefund } = require("../culqi/helpers/createRefund");
 
 const cancelService = structure(async (req, res) => {
-  const { reason } = matchedData(req);
+  //const { reason } = matchedData(req);
   const foundService = await RequestService.findOne({ _id: req.params.id });
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
@@ -31,15 +32,17 @@ const cancelService = structure(async (req, res) => {
   //     404,
   //     "El servicio ya fue aceptado, no puede ser cancelado"
   //   );
-  foundService.detailState.push({_id:estadoDetalle._id, obs: reason});
+  foundService.detailState.push({
+    _id: estadoDetalle._id,
+    obs: "solicitud_comprador",
+  });
   await foundService.save();
 
   const globalState = await findGlobalState("cancelado");
 
-  const dataGlobalState = { globalState: globalState._id };
   const updatedEstadoGlobal = await RequestService.findByIdAndUpdate(
     IdServicio,
-    dataGlobalState,
+    { globalState: globalState._id },
     {
       new: true,
     }
@@ -50,11 +53,7 @@ const cancelService = structure(async (req, res) => {
   ) {
     /** Devolución de dinero : estado => servicio_creado*/
     if (foundService.hasPaid && foundService.detailState.length == 1) {
-      culqi.refunds.createRefund({
-        amount: foundService.costo * 100,
-        charge_id: foundService.chargeId,
-        reason: reason,
-      });
+      await createRefund(foundService);
     }
 
     res

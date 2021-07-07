@@ -8,6 +8,7 @@ const validateCancelService = [
     .isEmpty()
     .withMessage("Debe ingresar un Id de servicio"),
   check("reason")
+    .optional()
     .not()
     .isEmpty()
     .withMessage("Debe ingresar una razon de la devolución del dinero")
