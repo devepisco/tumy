@@ -69,7 +69,7 @@ const saveDetailsService = structure(async (req, res) => {
   const detailState = await findDetailState("servicio_creado");
   /* Se asigna Tipo de comision */
   const comissionId = await Comissions.findOne({isActive: true});
-  detail.comission = { _id: comissionId };
+  detail.comission = { _id: comissionId._id };
 
   let updatedService = await RequestService.findByIdAndUpdate(
     foundService._id,

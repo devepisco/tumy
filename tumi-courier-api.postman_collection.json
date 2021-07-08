@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"josuee.amc@gmail.com\",\r\n    \"password\":\"Repartidor1234*\"\r\n}",
+							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1731,20 +1731,19 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseURL}}/user/cancelService/60c97f8139986867eea0dd6b",
+							"raw": "{{baseURL}}/user/cancelService/:id",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"user",
 								"cancelService",
-								"60c97f8139986867eea0dd6b"
+								":id"
 							],
-							"query": [
+							"variable": [
 								{
 									"key": "id",
-									"value": null,
-									"disabled": true
+									"value": "60e4e3e9093a7324a45fed3a"
 								}
 							]
 						}
@@ -2389,7 +2388,7 @@
 										},
 										{
 											"key": "id",
-											"value": "60b1e27e4a1fb73e3871d71d",
+											"value": "60cc250e76b9f90b24a95309",
 											"description": "e.g."
 										}
 									]

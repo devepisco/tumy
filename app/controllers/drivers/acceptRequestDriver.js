@@ -6,6 +6,7 @@ const { User } = require("../../models/User");
 const acceptRequestDriver = structure( async (req, res) => {
     const { id, action, reason } = matchedData(req);
     let message = "";
+    let newUser = {};
     const FoundRequestDriver = await RequestDriver.findById(id);
     if(!FoundRequestDriver) return handleError(res,400, "No se encontró la solicitud del motorizado.")
     switch(action){
@@ -29,9 +30,9 @@ const acceptRequestDriver = structure( async (req, res) => {
                 business:FoundRequestDriver.business,
                 phone:FoundRequestDriver.phone,
                 email:FoundRequestDriver.email,
-                password:FoundRequestDriver.password,
+                password:`${FoundRequestDriver.password}`,
                 profilePicture:FoundRequestDriver.profilePicture
-            })
+            });
             message = "La solicitud de motorizado fue aceptada correctamente";
             break;
         case 'reject':
