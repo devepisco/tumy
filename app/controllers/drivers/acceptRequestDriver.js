@@ -39,6 +39,7 @@ const acceptRequestDriver = structure( async (req, res) => {
             break;
     
     }
+    await foundUser.save();
     await FoundRequestDriver.save();
     res.status(200).json(objSuccess({},message));
 });
