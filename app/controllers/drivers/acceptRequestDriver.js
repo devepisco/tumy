@@ -19,19 +19,19 @@ const acceptRequestDriver = structure( async (req, res) => {
             /* Activar Usuario Motorizado */
             foundUser.isBlocked = false;
 
-            FoundRequestDriver.status = "Aceptado";
+            FoundRequestDriver.status = "Aceptada";
             FoundRequestDriver.reason = reason;
 
             
             message = "La solicitud de motorizado fue aceptada correctamente";
             break;
         case 'reject':
-            if(FoundRequestDriver.status == "Rechazado") {
+            if(FoundRequestDriver.status == "Rechazada") {
                 message = "La solicitud del motorizado ya fue rechazada."
                 break;
             }
             await User.remove({email: FoundRequestDriver.email});
-            FoundRequestDriver.status = "Rechazado";
+            FoundRequestDriver.status = "Rechazada";
             FoundRequestDriver.reason = reason;
             message = "La solicitud de motorizado fue rechazada correctamente";
             break
