@@ -23,7 +23,7 @@ const createService = structure(async (req, res) => {
       "No ha encontrado la distancia entre el origen y destino."
     );
   else {
-    const distancia = parseFloat(getdistance.rows[0].elements[0].distance.text);
+    const distancia = Math.round(getdistance.rows[0].elements[0].distance.value /100)/10;
     const tarifa_estandar = await findPriceRate("tarifa_estandar");
     let costo = Math.round(distancia * tarifa_estandar.price * 10) / 10;
     if (costo < tarifa_estandar.minPrice) costo = tarifa_estandar.minPrice;
