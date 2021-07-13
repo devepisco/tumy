@@ -55,9 +55,8 @@ const driverCancelService = structure(async (req, res) => {
     service: id,
   });
 
-  /* Reasignación de pedido a otro motorizado */
-  asignDriverToService(foundService);
-
+  foundService.origin.coordinates = coordinates;
+  
   if (req.files) {
     for (i in req.files.cancelationCaptures) {
       newCanceledService.captures.push(
@@ -67,6 +66,10 @@ const driverCancelService = structure(async (req, res) => {
   }
   await newCanceledService.save();
   await foundService.save();
+
+  /* Reasignación de pedido a otro motorizado */
+  asignDriverToService(foundService);
+
   res
     .status(200)
     .json(
