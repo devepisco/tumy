@@ -1,5 +1,6 @@
 const Exceptions = require("../../../errors/Exceptions");
 const RequestDriver = require("../../models/DriverRequests");
+const { encrypt } = require("../../middlewares/crypto");
 const { User } = require("../../models/User");
 const { structure, objSuccess } = require("../../middlewares/utils");
 
@@ -20,27 +21,10 @@ const registerDriver = structure(async (req, res) => {
     propertyCardNumber: req.body.numTarjetaPropiedad,
     phone: req.body.phone,
     email: req.body.email,
-    password: req.body.password,
+    password: encrypt(req.body.password),
     profilePicture: req.file.filename,
   });
   await registeredDriver.save();
-
-  const USER = new User({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    IDType: req.body.typeID,
-    IDNumber: req.body.numID,
-    SOATNumber: req.body.numSOAT,
-    VehicleRegistration: req.body.numPlaca,
-    propertyCardNumber: req.body.numTarjetaPropiedad,
-    phone: req.body.phone,
-    email: req.body.email,
-    password: req.body.password,
-    profilePicture: req.file.filename,
-    isBlocked: true,
-  });
-  await USER.save();
-
   return res
     .status(200)
     .json(
