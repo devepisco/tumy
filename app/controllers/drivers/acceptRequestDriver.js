@@ -2,13 +2,11 @@ const { matchedData } = require("express-validator");
 const { structure, handleError, objSuccess } = require("../../middlewares/utils");
 const RequestDriver = require("../../models/DriverRequests");
 const { User } = require("../../models/User");
-const { decrypt } = require("../../middlewares/crypto");
 
 const acceptRequestDriver = structure( async (req, res) => {
     const { id, action, reason } = matchedData(req);
     let message = "";
     const FoundRequestDriver = await RequestDriver.findById(id);
-    console.log(decrypt(FoundRequestDriver.password));
     if(!FoundRequestDriver) return handleError(res,400, "No se encontró la solicitud del motorizado.")
     switch(action){
         case 'accept':
@@ -18,8 +16,7 @@ const acceptRequestDriver = structure( async (req, res) => {
             FoundRequestDriver.status = "Aceptada";
             FoundRequestDriver.reason = reason;
 
-        
-            const USER = new User({
+            await User.create({ 
                 role:FoundRequestDriver.role,
                 firstname: FoundRequestDriver.firstname,
                 lastname:FoundRequestDriver.lastname,
@@ -31,10 +28,9 @@ const acceptRequestDriver = structure( async (req, res) => {
                 business:FoundRequestDriver.business,
                 phone:FoundRequestDriver.phone,
                 email:FoundRequestDriver.email,
-                password:decrypt(FoundRequestDriver.password),
+                password:FoundRequestDriver.password,
                 profilePicture:FoundRequestDriver.profilePicture
             });
-            await USER.save();
             message = "La solicitud de motorizado fue aceptada correctamente";
             break;
         case 'reject':

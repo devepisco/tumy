@@ -114,7 +114,7 @@ const genSalt = function (user, SALT_FACTOR, next) {
 userSchema.pre("save", function (next) {
   const that = this;
   const SALT_FACTOR = 5;
-  if (!that.isModified("password")) {
+  if (!that.isModified("password") || that.password.length == 60) {
     return next();
   }
   return genSalt(that, SALT_FACTOR, next);

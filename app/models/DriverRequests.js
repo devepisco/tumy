@@ -40,7 +40,7 @@ let driverSchema = new Schema(
       unique: true,
     },
     password: {
-      type: String,
+      type: String
     },
     profilePicture: {},
     status: {
@@ -60,6 +60,38 @@ let driverSchema = new Schema(
     timestamps: true,
   }
 );
+
+const hash = function (driver, salt, next) {
+  bcrypt.hash(driver.password, salt, (error, newHash) => {
+    if (error) {
+      return next(error);
+    }
+    driver.password = newHash;
+    return next();
+  });
+};
+
+const genSalt = function (driver, SALT_FACTOR, next) {
+  bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
+    if (err) {
+      return next(err);
+    }
+    return hash(driver, salt, next);
+  });
+};
+
+driverSchema.pre("save", function (next) {
+  const that = this;
+  const SALT_FACTOR = 5;
+  if (!that.isModified("password")) {
+    return next();
+  }
+  return genSalt(that, SALT_FACTOR, next);
+});
+
+driverSchema.statics.comparePassword = async (password, recivedPasword) => {
+  return await bcrypt.compare(password, recivedPasword);
+};
 
 driverSchema.plugin(mongoosePaginateV2);
 driverSchema.plugin(mongoose_delete, {

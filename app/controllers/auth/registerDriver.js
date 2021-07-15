@@ -1,7 +1,5 @@
 const Exceptions = require("../../../errors/Exceptions");
 const RequestDriver = require("../../models/DriverRequests");
-const { encrypt } = require("../../middlewares/crypto");
-const { User } = require("../../models/User");
 const { structure, objSuccess } = require("../../middlewares/utils");
 
 const registerDriver = structure(async (req, res) => {
@@ -21,7 +19,7 @@ const registerDriver = structure(async (req, res) => {
     propertyCardNumber: req.body.numTarjetaPropiedad,
     phone: req.body.phone,
     email: req.body.email,
-    password: encrypt(req.body.password),
+    password: req.body.password,
     profilePicture: req.file.filename,
   });
   await registeredDriver.save();
