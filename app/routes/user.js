@@ -16,15 +16,20 @@ const {
   getDriverFromService,
   cancelService,
   savePaymentService,
+  updateProfilePicture,
 } = require("../controllers/users");
 
 const {
   validateUpdatedUser,
   validateCoordinates,
   validateDetailsfromService,
-  validateCancelService
+  validateCancelService,
+  validateProfilePicture
 } = require("../controllers/users/validators");
 
+const {
+  uploadProfilePicture
+} = require("../../config/multer");
 /**
  * Updating user data route
  */
@@ -34,6 +39,15 @@ router.patch(
   requireAuth,
   validateUpdatedUser,
   updateUser
+);
+/* Update profile picture */
+router.put(
+  "/update/profilePicture",
+  trimRequest.all,
+  requireAuth,
+  uploadProfilePicture,
+  validateProfilePicture,
+  updateProfilePicture
 );
 
 /**
@@ -59,7 +73,7 @@ router.post(
 );
 
 /**
- * Get the driver from a service
+ * Save payment service's
  */
 router.post("/savePayment", trimRequest.all, requireAuth, savePaymentService);
 
@@ -96,6 +110,12 @@ router.get(
 /**
  * Cancel the Service request
  */
-router.get("/cancelService/:id", trimRequest.all, requireAuth, validateCancelService, cancelService);
+router.get(
+  "/cancelService/:id",
+  trimRequest.all,
+  requireAuth,
+  validateCancelService,
+  cancelService
+);
 
 module.exports = router;

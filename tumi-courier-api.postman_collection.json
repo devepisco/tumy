@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"Admin1234*\"\r\n}",
+							"raw": "{\r\n    \"email\":\"prueba@driver.com\",\r\n    \"password\":\"Driver1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1983,6 +1983,41 @@
 							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"60adbd2bdf1cb43320818bca\",\n            \"driverUser\": []\n        }\n    ],\n    \"message\": \"\"\n}"
 						}
 					]
+				},
+				{
+					"name": "updateProfilePicture",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/josue/Downloads/iconos-adobe/github.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/update/profilePicture",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"update",
+								"profilePicture"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -2322,23 +2357,6 @@
 										"driver",
 										":status"
 									],
-									"query": [
-										{
-											"key": "page",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "limit",
-											"value": "10",
-											"disabled": true
-										},
-										{
-											"key": "date",
-											"value": null,
-											"disabled": true
-										}
-									],
 									"variable": [
 										{
 											"key": "status",
@@ -2388,7 +2406,7 @@
 										},
 										{
 											"key": "id",
-											"value": "60cc250e76b9f90b24a95309",
+											"value": "60ecd89d4993d91f6c805cc4",
 											"description": "e.g."
 										}
 									]
@@ -3177,7 +3195,7 @@
 		},
 		{
 			"key": "tokenUser",
-			"value": "Bearer 4cd6fe153b59e8c4fedc337df5ad07c7649256947a396484a4f6166bd9cd7ffe3881f75fb81d7c4fff447eba471ebbe6f408f1c0cbb49fbcdf460c8d0e5d0092a09f0c2768de1909adaff47e9569201e395a2eea1df1307cb0b72f3372386737e0e19e1243640e39cb5abe30147df009cf886ac7c9697a9fdb163ad0d7042f7287947257bab613754331861b778517000cc881f8764927b301f7f2c5232196f051d9495556bd39784d5bafeac91e6c9927ac3b6739562ba0ef6d002d71427314"
+			"value": "Bearer 4f842ca6e2d0c7cfc5e1dc15210814715941741c3b0ebe0175f199fa686091a7ce8171eb95c250310d379b3f99958fb7102e8a7676d9ce1d8a509be8089d10fdc0e0f57a9279d86a3b58a5fdddb6c2c487c80e1bb9ba7b50b9b329e5994055642de87bf48dce5c8acc3cf78f6dac3b5903d1f8cbed2ed77498263d3269a5c1d67096b4cbe200598f9234f192d3f6cd633dade0664eb1469b64f37c0770092b3c49571acbec87c259eda18d093b7dde8c9e798cbdef4566972ad6dbcb18829427"
 		},
 		{
 			"key": "tokenAdmin",

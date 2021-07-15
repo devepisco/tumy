@@ -5,6 +5,7 @@ const { validateTypeUser } = require("./validateTypeUser");
 const { validateAutocompletePlace } = require("./validateAutocompletePlace");
 const { validateAutocompleteDetailPlace } = require("./validateAutocompleteDetailPlace");
 const { validateCancelService } = require("./validateCancelService");
+const { validateProfilePicture } = require("./validateProfilePicture");
 
 module.exports = {
   validateUpdatedUser,
@@ -14,4 +15,5 @@ module.exports = {
   validateAutocompletePlace,
   validateAutocompleteDetailPlace,
   validateCancelService,
+  validateProfilePicture,
 };

@@ -3,18 +3,18 @@ const { Schema } = require("mongoose");
 const mongoosePaginateV2 = require("mongoose-paginate-v2");
 const bcrypt = require("bcrypt");
 const mongoose_delete = require("mongoose-delete");
-const crypto = require('crypto');
-const typeDocument = require("../../data/typeDocument")
+const crypto = require("crypto");
+const typeDocument = require("../../data/typeDocument");
 
 let userSchema = new Schema(
   {
     firstname: {
       type: String,
-      uppercase: true
+      uppercase: true,
     },
     lastname: {
       type: String,
-      uppercase: true
+      uppercase: true,
     },
     IDType: {
       type: String,
@@ -22,57 +22,61 @@ let userSchema = new Schema(
       enum: typeDocument,
     },
     IDNumber: {
-      type: String
+      type: String,
     },
-    SOATNumber:{
-      type: String
+    SOATNumber: {
+      type: String,
     },
-    VehicleRegistration:{
-      type: String
+    VehicleRegistration: {
+      type: String,
     },
-    propertyCardNumber:{
-      type: String
+    propertyCardNumber: {
+      type: String,
     },
-    business:{
-      name:{
-        type: String
+    business: {
+      name: {
+        type: String,
       },
-      socialReason:{
-        type: String
+      socialReason: {
+        type: String,
       },
-      ruc:{
-        type: String
-      }
+      ruc: {
+        type: String,
+      },
     },
     phone: {
-      type: String
+      type: String,
     },
     email: {
       type: String,
       lowercase: true,
-      unique: true
+      unique: true,
     },
     password: {
       type: String,
       select: false,
     },
     passwordChangedAt: {
-      type: Date
+      type: Date,
     },
     passwordResetToken: {
-      type: String
+      type: String,
     },
-    passwordResetExpires:{
-      type: Date
+    passwordResetExpires: {
+      type: Date,
     },
     role: {
       type: String,
-      enum: ["user", "driver" ,"admin"],
+      enum: ["user", "driver", "admin"],
       default: "user",
     },
     isBlocked: {
       type: Boolean,
       default: false,
+    },
+    profilePicture: {
+      type: String,
+      default: null,
     },
   },
   {
@@ -80,18 +84,21 @@ let userSchema = new Schema(
   }
 );
 
-userSchema.pre('save', function(next){
-  if(!this.isModified('password') || this.isNew) return next();
-  this.passwordChangedAt = Date.now()-1000;
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000;
   next();
 });
 
-userSchema.methods.createPasswordResetToken = function (){
-  const resetToken = crypto.randomBytes(32).toString('hex');
-  this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+userSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
   return resetToken;
-}
+};
 const hash = function (user, salt, next) {
   bcrypt.hash(user.password, salt, (error, newHash) => {
     if (error) {
@@ -137,6 +144,6 @@ userSchema.plugin(mongoose_delete, {
   ],
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = { User }
+module.exports = { User };

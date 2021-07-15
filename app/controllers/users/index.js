@@ -10,6 +10,7 @@ const { savePaymentService } = require("./savePaymentService");
 const { getCancelationReasons } = require("./getCancelationReasons");
 const { autocompletePlace } = require("./autocompletePlace");
 const { detailPlace } = require("./detailPlace");
+const { updateProfilePicture }= require("./updateProfilePicture");
 
 module.exports = {
   updateUser,
@@ -24,4 +25,5 @@ module.exports = {
   getCancelationReasons,
   autocompletePlace,
   detailPlace,
+  updateProfilePicture,
 };
