@@ -19,8 +19,9 @@ const {
   getComissions,
   editComission,
   getComissionsDriver,
-  getAllServices
+  getAllServices,
 } = require("../controllers/admin");
+const { getRequestDriverDetail } = require("../controllers/drivers");
 const {
   validateNewDetailState,
   validateUserStatus,
@@ -34,7 +35,9 @@ const {
   validateTypeUser,
   validateUpdatedUser,
 } = require("../controllers/users/validators");
-
+const {
+  validateIdRequestDriver,
+} = require("../controllers/drivers/validators");
 /** Users */
 
 router.get(
@@ -81,10 +84,28 @@ router.get(
 );
 
 /** Comissions  Model*/
-router.post("/add/comission", trimRequest.all, requireAuth,  validateComission, addComission);
+router.post(
+  "/add/comission",
+  trimRequest.all,
+  requireAuth,
+  validateComission,
+  addComission
+);
 router.get("/get/comissions", trimRequest.all, requireAuth, getComissions);
-router.put("/edit/comission/:id", trimRequest.all, requireAuth, validateEditComission, editComission);
-router.get("/get/comissions/driver/:id?", trimRequest.all, requireAuth,validateIdDriver, getComissionsDriver);
+router.put(
+  "/edit/comission/:id",
+  trimRequest.all,
+  requireAuth,
+  validateEditComission,
+  editComission
+);
+router.get(
+  "/get/comissions/driver/:id?",
+  trimRequest.all,
+  requireAuth,
+  validateIdDriver,
+  getComissionsDriver
+);
 
 /** Price Rates */
 router.get(
@@ -111,5 +132,21 @@ router.put(
 );
 
 /* Get All Request Services */
-router.get("/get/all/services", trimRequest.all, requireAuth, validateParamsGetAllServices, getAllServices);
+router.get(
+  "/get/all/services",
+  trimRequest.all,
+  requireAuth,
+  validateParamsGetAllServices,
+  getAllServices
+);
+
+/* Get request driver detail */
+router.get(
+  "/get/requestDriver/:id",
+  trimRequest.all,
+  requireAuth,
+  validateIdRequestDriver,
+  getRequestDriverDetail
+);
+
 module.exports = router;
