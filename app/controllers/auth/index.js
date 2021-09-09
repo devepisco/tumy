@@ -5,6 +5,7 @@ const { getProfile } = require('./getProfile')
 const { refreshToken } = require('./refreshToken')
 const { forgotPassword } = require('./forgotPassword')
 const { resetPassword } = require('./resetPassword')
+const { validateToken } = require('./validateToken')
 
 module.exports = {
     login,
@@ -13,5 +14,6 @@ module.exports = {
     getProfile,
     refreshToken,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    validateToken
 }

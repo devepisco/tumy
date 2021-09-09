@@ -14,7 +14,8 @@ const {
   getProfile,
   refreshToken,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  validateToken
 } = require("../controllers/auth");
 
 const {
@@ -24,6 +25,11 @@ const {
 } = require("../controllers/auth/validators");
 
 const { upload } = require("../../config/multer")
+
+/** 
+ * Validate Token from User
+ */
+router.get("/validate_token", trimRequest.all, validateToken);
   
 /*
  * Register User route

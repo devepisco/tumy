@@ -499,7 +499,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstname\": \"USUARIO\",\r\n    \"lastname\": \"PRUEBA\",\r\n    \"typeID\": \"DNI\",\r\n    \"numID\": \"00345920\",\r\n    \"business\":{\r\n        \"name\":\"Business & Solutions s.a\",\r\n        \"socialReason\":\"Prueba Empresa\",\r\n        \"ruc\":\"10000000001\" \r\n    },\r\n    \"phone\": \"990328945\",\r\n    \"email\": \"prueba@registeruser.com\",\r\n    \"password\": \"Usuario1234*\"\r\n}",
+							"raw": "{\r\n    \"firstname\": \"JOSUE\",\r\n    \"lastname\": \"MAMANI CARIAPAZA\",\r\n    \"typeID\": \"DNI\",\r\n    \"numID\": \"75896055\",\r\n    \"business\":{\r\n        \"name\":\"Business & Solutions s.a\",\r\n        \"socialReason\":\"Prueba Empresa\",\r\n        \"ruc\":\"10000000001\" \r\n    },\r\n    \"phone\": \"917450095\",\r\n    \"email\": \"asdfghj@gmail.com\",\r\n    \"password\": \"Josue1234*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -634,59 +634,59 @@
 							"formdata": [
 								{
 									"key": "firstname",
-									"value": "Prueba dos",
+									"value": "Leandro",
 									"contentType": "application/json",
 									"type": "text"
 								},
 								{
 									"key": "lastname",
-									"value": "Repartidor",
+									"value": "Garcia Rojas",
 									"type": "text"
 								},
 								{
 									"key": "typeID",
-									"value": "DNI",
+									"value": "CE",
 									"type": "text"
 								},
 								{
 									"key": "numID",
-									"value": "73838311",
+									"value": "04239871",
 									"type": "text"
 								},
 								{
 									"key": "numSOAT",
-									"value": "0405050505",
+									"value": "183991430",
 									"type": "text"
 								},
 								{
 									"key": "numPlaca",
-									"value": "B5-2201",
+									"value": "1896-AB",
 									"type": "text"
 								},
 								{
 									"key": "numTarjetaPropiedad",
-									"value": "92839fec4c",
+									"value": "LD3PCK4J6K2020860",
 									"type": "text"
 								},
 								{
 									"key": "phone",
-									"value": "990345690",
+									"value": "902861954",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "prueba@driver.com",
+									"value": "leandro.nejere@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "Driver1234*",
+									"value": "Leandro1896*",
 									"type": "text"
 								},
 								{
 									"key": "profilePicture",
 									"type": "file",
-									"src": []
+									"src": "/C:/Users/josue/Desktop/male_avatar_driver.jpg"
 								}
 							],
 							"options": {
@@ -2362,6 +2362,38 @@
 											"key": "status",
 											"value": "",
 											"description": "[\"Pendiente\", \"Aceptada\",\"Rechazada\"]"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRequestDriverDetail",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{tokenUser}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/admin/get/requestDriver/:id",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"admin",
+										"get",
+										"requestDriver",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60b1e27e4a1fb73e3871d71c"
 										}
 									]
 								}
