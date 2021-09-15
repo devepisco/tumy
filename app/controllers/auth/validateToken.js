@@ -11,10 +11,9 @@ const validateToken = structure(async (req, res) => {
     .replace("Bearer ", "")
     .trim();
   let userId = getUserIdFromToken(tokenEncrypted);
-  if (!userId) return handleError(res, 401, "El token es inválido");
   userId = isIDGood(userId);
   if (!userId) return handleError(res, 401, "El token es inválido");
-  return res.status(200).json(
+  res.status(200).json(
     objSuccess({isValidate: true })
     );
 });
