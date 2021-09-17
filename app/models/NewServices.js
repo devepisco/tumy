@@ -106,8 +106,7 @@ const paymentMethodSchema = new Schema({
 const ComissionsSchema = new Schema(
   {
     comissionName: {
-      type: String,
-      uppercase: true
+      type: String
     },
     amount: {
       type: Number,

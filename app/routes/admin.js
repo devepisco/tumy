@@ -93,7 +93,7 @@ router.post(
 );
 router.get("/get/comissions", trimRequest.all, requireAuth, getComissions);
 router.put(
-  "/edit/comission/:id",
+  "/edit/comission/:comissionName",
   trimRequest.all,
   requireAuth,
   validateEditComission,
