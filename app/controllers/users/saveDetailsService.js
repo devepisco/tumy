@@ -35,7 +35,8 @@ const saveDetailsService = structure(async (req, res) => {
   const foundService = await RequestService.findOne({ _id: idServicio }).lean();
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
-  if (foundService.detail && Object.keys(foundService.detail).length !== 0) {
+  if (foundService.detail && Object.keys(foundService.detail).length > 1) {
+    // length > 1 , it always will have 1 key for the driverUser as null
     return handleError(
       res,
       404,
