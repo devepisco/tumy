@@ -32,10 +32,10 @@ const requestServiceSchema = Schema(
       pagoContraEntrega: Schema.Types.ObjectId,
       montoContraEntrega: Number,
       driverUser: { type: Schema.Types.ObjectId, ref: User, default: null },
-      comission:{
-        _id: {type: Schema.Types.ObjectId, ref: "Comissions"},
-        amount: Number
-      }
+      comission: {
+        _id: { type: Schema.Types.ObjectId, ref: "Comissions" },
+        amount: Number,
+      },
     },
     globalState: {
       type: Schema.Types.ObjectId,
@@ -106,14 +106,14 @@ const paymentMethodSchema = new Schema({
 const ComissionsSchema = new Schema(
   {
     comissionName: {
-      type: String
+      type: String,
     },
     amount: {
       type: Number,
     },
     isActive: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
   {
@@ -139,4 +139,10 @@ const GlobalState = model("GlobalState", globalStateSchema);
 const PaymentMethod = model("PaymentMethod", paymentMethodSchema);
 const Comissions = model("Comissions", ComissionsSchema);
 
-module.exports = { RequestService, PaymentMethod, DetailState, GlobalState, Comissions };
+module.exports = {
+  RequestService,
+  PaymentMethod,
+  DetailState,
+  GlobalState,
+  Comissions,
+};
