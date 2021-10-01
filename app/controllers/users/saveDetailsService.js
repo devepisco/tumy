@@ -1,21 +1,21 @@
 const {
   structure,
   handleError,
-  objSuccess
+  objSuccess,
 } = require("../../middlewares/utils");
 
 const {
   findPaymentMethod,
   findGlobalState,
   findDetailState,
-  asignDriverToService
+  asignDriverToService,
 } = require("../users/helpers");
 
 const {
   RequestService,
   GlobalState,
   DetailState,
-  Comissions
+  Comissions,
 } = require("../../models/NewServices");
 const { matchedData } = require("express-validator");
 
@@ -55,7 +55,8 @@ const saveDetailsService = structure(async (req, res) => {
     esDestinatario: req.body.esDestinatario,
     repartidorCobra: req.body.repartidorCobra,
     pagoContraEntrega: IdNamePago._id,
-    montoContraEntrega: montoContraEntrega
+    montoContraEntrega: montoContraEntrega,
+    driverUser: null,
   };
   if (detail.esDestinatario) {
     detail.nombreDestinatario = `${req.user.firstname} ${req.user.lastname}`;
@@ -69,7 +70,7 @@ const saveDetailsService = structure(async (req, res) => {
   const globalState = await findGlobalState("en_proceso");
   const detailState = await findDetailState("servicio_creado");
   /* Se asigna Tipo de comision */
-  const comissionId = await Comissions.findOne({isActive: true});
+  const comissionId = await Comissions.findOne({ isActive: true });
   detail.comission = { _id: comissionId._id };
 
   let updatedService = await RequestService.findByIdAndUpdate(
