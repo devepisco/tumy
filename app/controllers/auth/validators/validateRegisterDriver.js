@@ -46,8 +46,7 @@ const validateRegisterDriver = [
         .not()
         .isEmpty()
         .withMessage('Debe añadir el número de tarjeta de propiedad')
-        .isAlphanumeric()
-        .withMessage('El número de Tarjeta de propiedad debe contener caracteres alfanuméricos')
+        .isString()
         .isLength({
             max: 17
           })
