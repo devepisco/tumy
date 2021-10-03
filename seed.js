@@ -4,13 +4,13 @@ const RequestDriver = require("./app/models/DriverRequests"),
   driversData = require("./data/drivers/drivers");
 const PriceRate = require("./app/models/PriceRate"),
   pricerateData = require("./data/pricerates/pricerates");
-const { PaymentMethod, DetailState, GlobalState }  = require("./app/models/NewServices"),
+const { PaymentMethod, DetailState, GlobalState, Comissions }  = require("./app/models/NewServices"),
   paymentMethodData = require("./data/paymentMethods/paymentMethods"),
   estadoDetalleData = require("./data/detailStates/detailstates"),
-  globalStateData = require("./data/globalStates/globalstates");
+  globalStateData = require("./data/globalStates/globalstates"),
+  comissionsPriceRateData = require("./data/comissionPriceRate/comissionPriceRate");
 const {maxReachDriver} = require("./app/models/maxReachDriver"),
-  maxReachDriverData = require("./data/maxReachDriver/maxReachDriver")
-
+  maxReachDriverData = require("./data/maxReachDriver/maxReachDriver");
 
 const seedDB = async () => {
   //Usuarios
@@ -43,6 +43,18 @@ const seedDB = async () => {
     const promises = await Promise.all(priceratesPromises);
     console.log(promises);
   }
+
+    //Comission Price rates
+    const comissionPriceRateCount = await Comissions.countDocuments();
+    if (comissionPriceRateCount < 1) {
+      const comissionsPromises = comissionsPriceRateData.map(async (comissionPriceRate) => {
+        return new Comissions(comissionPriceRate).save();
+      });
+  
+      const promises = await Promise.all(comissionsPromises);
+      console.log(promises);
+    }
+
   //Payment Methods
   const paymentMethodCount = await PaymentMethod.countDocuments();
   if (paymentMethodCount < 1) {
