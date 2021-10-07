@@ -41,7 +41,7 @@ router.patch(
   updateUser
 );
 /* Update profile picture */
-router.put(
+router.patch(
   "/update/profilePicture",
   trimRequest.all,
   requireAuth,
