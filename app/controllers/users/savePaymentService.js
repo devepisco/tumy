@@ -1,12 +1,16 @@
 const { matchedData } = require("express-validator");
-const { structure, handleError, objSuccess } = require("../../middlewares/utils");
+const {
+  structure,
+  handleError,
+  objSuccess,
+} = require("../../middlewares/utils");
 const { updateItem, getItem } = require("../../middlewares/db");
 const { createToken, createCharge } = require("../culqi/helpers");
 const { RequestService } = require("../../models/NewServices");
-const Exceptions = require("../../../errors/Exceptions");
+const { asignDriverToService } = require("../users/helpers");
 
 const savePaymentService = structure(async (req, res) => {
-console.log(req.body)
+  console.log(req.body);
   const data = req.body;
   try {
     const token = await createToken(data);
@@ -33,8 +37,10 @@ console.log(req.body)
       },
       RequestService
     );
+    /* Se emite el servicio -> motorizado disponible*/
+    asignDriverToService(updatedService);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     handleError(
       res,
       500,
@@ -42,7 +48,9 @@ console.log(req.body)
         "Ocurrió un error interno, porfavor vuelva a intentarlo mas tarde"
     );
   }
-  return res.status(200).json({message: "El pago se efectuó de manera correcta"});
+  return res
+    .status(200)
+    .json({ message: "El pago se efectuó de manera correcta" });
 });
 
 module.exports = { savePaymentService };

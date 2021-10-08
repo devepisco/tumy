@@ -8,7 +8,6 @@ const {
   findPaymentMethod,
   findGlobalState,
   findDetailState,
-  asignDriverToService,
 } = require("../users/helpers");
 
 const {
@@ -82,11 +81,6 @@ const saveDetailsService = structure(async (req, res) => {
     },
     { new: true }
   );
-
-  /* Se crea preferencia en mercado pago */
-
-  /* Se emite el servicio -> motorizado disponible*/
-  asignDriverToService(updatedService);
 
   /* Se pobla los datos */
   const data = await RequestService.aggregate([

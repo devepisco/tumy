@@ -26,12 +26,6 @@ const cancelService = structure(async (req, res) => {
       return handleError(res, 404, "El servicio ya fue cancelado");
   }
 
-  // if (foundService.detailState.length > 1)
-  //   return handleError(
-  //     res,
-  //     404,
-  //     "El servicio ya fue aceptado, no puede ser cancelado"
-  //   );
   foundService.detailState.push({
     _id: estadoDetalle._id,
     obs: "solicitud_comprador",
