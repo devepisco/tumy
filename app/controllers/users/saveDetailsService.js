@@ -1,21 +1,20 @@
 const {
   structure,
   handleError,
-  objSuccess
+  objSuccess,
 } = require("../../middlewares/utils");
 
 const {
   findPaymentMethod,
   findGlobalState,
   findDetailState,
-  asignDriverToService
 } = require("../users/helpers");
 
 const {
   RequestService,
   GlobalState,
   DetailState,
-  Comissions
+  Comissions,
 } = require("../../models/NewServices");
 const { matchedData } = require("express-validator");
 
@@ -35,7 +34,8 @@ const saveDetailsService = structure(async (req, res) => {
   const foundService = await RequestService.findOne({ _id: idServicio }).lean();
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
-  if (foundService.detail && Object.keys(foundService.detail).length !== 0) {
+  if (foundService.detail && Object.keys(foundService.detail).length > 1) {
+    // length > 1 , it always will have 1 key for the driverUser as null
     return handleError(
       res,
       404,
@@ -54,7 +54,8 @@ const saveDetailsService = structure(async (req, res) => {
     esDestinatario: req.body.esDestinatario,
     repartidorCobra: req.body.repartidorCobra,
     pagoContraEntrega: IdNamePago._id,
-    montoContraEntrega: montoContraEntrega
+    montoContraEntrega: montoContraEntrega,
+    driverUser: null,
   };
   if (detail.esDestinatario) {
     detail.nombreDestinatario = `${req.user.firstname} ${req.user.lastname}`;
@@ -68,7 +69,7 @@ const saveDetailsService = structure(async (req, res) => {
   const globalState = await findGlobalState("en_proceso");
   const detailState = await findDetailState("servicio_creado");
   /* Se asigna Tipo de comision */
-  const comissionId = await Comissions.findOne({isActive: true});
+  const comissionId = await Comissions.findOne({ isActive: true });
   detail.comission = { _id: comissionId._id };
 
   let updatedService = await RequestService.findByIdAndUpdate(
@@ -80,11 +81,6 @@ const saveDetailsService = structure(async (req, res) => {
     },
     { new: true }
   );
-
-  /* Se crea preferencia en mercado pago */
-
-  /* Se emite el servicio -> motorizado disponible*/
-  asignDriverToService(updatedService);
 
   /* Se pobla los datos */
   const data = await RequestService.aggregate([
