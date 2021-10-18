@@ -58,7 +58,7 @@ const cancelService = structure(async (req, res) => {
       foundService.detail.comission.amount = `${amount.toFixed(2)}`;
       await foundService.save();
       /** Devolución parcial */
-      refundData.amount = 1 - comission.amount * refundData.amount; // Descuento por el porcentaje de la comision del driver
+      refundData.amount = (1 - comission.amount) * refundData.amount; // Descuento por el porcentaje de la comision del driver
     }
     await createRefund({ refundData });
     res
