@@ -49,7 +49,7 @@ const cancelService = structure(async (req, res) => {
     if (foundService.detail.DriverUser) {
       /* Se asigna el valor de la comisión */
       const comission = await Comissions.findOne({ _id: foundService._id });
-      const amount = comission.amount * foundService.costo;
+      const amount = comission.amount * `${foundService.costo}`;
       foundService.detail.comission.amount = `${amount.toFixed(2)}`;
       /** Devolución parcial */
       newBalance -= comission.amount; // Descuento por el porcentaje de la comision del driver
