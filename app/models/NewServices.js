@@ -31,15 +31,11 @@ const requestServiceSchema = Schema(
       repartidorCobra: Boolean,
       pagoContraEntrega: Schema.Types.ObjectId,
       montoContraEntrega: Number,
-<<<<<<< HEAD
-      driverUser: { type: Schema.Types.ObjectId, ref: User, default: null },
-=======
       driverUser: {
         type: Schema.Types.ObjectId,
         ref: User,
         default: null,
       },
->>>>>>> eea032ba5d109faeb124c0749923db600bf73070
       comission: {
         _id: { type: Schema.Types.ObjectId, ref: "Comissions" },
         amount: Number,
