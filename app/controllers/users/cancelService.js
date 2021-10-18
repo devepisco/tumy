@@ -12,7 +12,6 @@ const cancelService = structure(async (req, res) => {
   //const { reason } = matchedData(req);
   const reason = "solicitud_comprador";
   const foundService = await RequestService.findOne({ _id: req.params.id });
-  console.log("foundService", foundService);
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
 
@@ -31,6 +30,7 @@ const cancelService = structure(async (req, res) => {
     _id: estadoDetalle._id,
     obs: reason,
   });
+  await foundService.save();
 
   const globalState = await findGlobalState("cancelado");
 
@@ -42,20 +42,27 @@ const cancelService = structure(async (req, res) => {
     }
   );
 
+  let newBalance = 1; // Indica la devolución total
+  const refundData = {
+    amount: foundService.costo,
+    chargeId: foundService.chargeId,
+    reason,
+    newBalance,
+  };
   if (
-    updatedEstadoGlobal.globalState.toString() == globalState._id.toString() && foundService.hasPaid
+    updatedEstadoGlobal.globalState.toString() == globalState._id.toString() &&
+    foundService.hasPaid
   ) {
-    let newBalance = 1; // Indica la devolución total
-    if (foundService.detail.DriverUser) {
+    if (foundService.detail?.driverUser) {
       /* Se asigna el valor de la comisión */
       const comission = await Comissions.findOne({ _id: foundService._id });
-      const amount = comission.amount * `${foundService.costo}`;
+      const amount = comission.amount * foundService.costo;
       foundService.detail.comission.amount = `${amount.toFixed(2)}`;
+      await foundService.save();
       /** Devolución parcial */
-      newBalance -= comission.amount; // Descuento por el porcentaje de la comision del driver
+      refundData.newBalance -=  comission.amount; // Descuento por el porcentaje de la comision del driver
     }
-    await createRefund(foundService, newBalance, reason);
-    await foundService.save();
+    await createRefund({ refundData });
     res
       .status(200)
       .json(
