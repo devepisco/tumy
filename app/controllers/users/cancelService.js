@@ -12,6 +12,7 @@ const cancelService = structure(async (req, res) => {
   //const { reason } = matchedData(req);
   const reason = "solicitud_comprador";
   const foundService = await RequestService.findOne({ _id: req.params.id });
+  console.log("foundService", foundService);
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
 
