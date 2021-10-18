@@ -9,7 +9,7 @@ const createRefund = async ({
   },
 }) => {
   const refund = await culqi.refunds.createRefund({
-    amount: `${refundData.costo}` * `${refundData.newBalance}` * 100, // monto calculado en céntimos
+    amount: `${refundData.costo}`.replace(".", ""), // monto calculado en céntimos
     charge_id: refundData.chargeId,
     reason: refundData.reason,
   });

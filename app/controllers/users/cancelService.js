@@ -41,13 +41,11 @@ const cancelService = structure(async (req, res) => {
       new: true,
     }
   );
-
-  let newBalance = 1; // Indica la devolución total
+  /** devolución total */
   const refundData = {
     amount: foundService.costo,
     chargeId: foundService.chargeId,
     reason,
-    newBalance,
   };
   if (
     updatedEstadoGlobal.globalState.toString() == globalState._id.toString() &&
@@ -60,7 +58,7 @@ const cancelService = structure(async (req, res) => {
       foundService.detail.comission.amount = `${amount.toFixed(2)}`;
       await foundService.save();
       /** Devolución parcial */
-      refundData.newBalance -=  comission.amount; // Descuento por el porcentaje de la comision del driver
+      refundData.amount = 1 - comission.amount * refundData.amount; // Descuento por el porcentaje de la comision del driver
     }
     await createRefund({ refundData });
     res
