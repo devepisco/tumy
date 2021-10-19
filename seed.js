@@ -25,7 +25,7 @@ const seedDB = async () => {
   }
   //Drivers
   const driversCount = await RequestDriver.countDocuments();
-  if (driversCount < 2) {
+  if (driversCount < 1) {
     const driversPromises = driversData.map(async (driver) => {
       return new RequestDriver(driver).save();
     });

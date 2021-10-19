@@ -1,5 +1,4 @@
-const { RequestService } = require("../../models/NewServices");
-const { culqi } = require("../../../config/culqi");
+const { RequestService, Comissions } = require("../../models/NewServices");
 const {
   structure,
   handleError,
@@ -11,6 +10,7 @@ const { createRefund } = require("../culqi/helpers/createRefund");
 
 const cancelService = structure(async (req, res) => {
   //const { reason } = matchedData(req);
+  const reason = "solicitud_comprador";
   const foundService = await RequestService.findOne({ _id: req.params.id });
   if (!foundService)
     return handleError(res, 404, "No se encontró la solicitud de servicio");
@@ -28,7 +28,7 @@ const cancelService = structure(async (req, res) => {
 
   foundService.detailState.push({
     _id: estadoDetalle._id,
-    obs: "solicitud_comprador",
+    obs: reason,
   });
   await foundService.save();
 
@@ -41,15 +41,26 @@ const cancelService = structure(async (req, res) => {
       new: true,
     }
   );
-
+  /** devolución total */
+  const refundData = {
+    amount: foundService.costo,
+    chargeId: foundService.chargeId,
+    reason,
+  };
   if (
-    updatedEstadoGlobal.globalState.toString() == globalState._id.toString()
+    updatedEstadoGlobal.globalState.toString() == globalState._id.toString() &&
+    foundService.hasPaid
   ) {
-    /** Devolución de dinero : estado => servicio_creado*/
-    if (foundService.hasPaid && foundService.detailState.length == 1) {
-      await createRefund(foundService);
+    if (foundService.detail?.driverUser) {
+      /* Se asigna el valor de la comisión */
+      const comission = await Comissions.findOne({ _id: foundService._id });
+      const amount = comission.amount * foundService.costo;
+      foundService.detail.comission.amount = `${amount.toFixed(2)}`;
+      await foundService.save();
+      /** Devolución parcial */
+      refundData.amount = (1 - comission.amount) * refundData.amount; // Descuento por el porcentaje de la comision del driver
     }
-
+    await createRefund({ refundData });
     res
       .status(200)
       .json(
