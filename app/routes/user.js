@@ -17,6 +17,7 @@ const {
   cancelService,
   savePaymentService,
   updateProfilePicture,
+  getMostSearchedAdresses,
 } = require("../controllers/users");
 
 const {
@@ -24,12 +25,10 @@ const {
   validateCoordinates,
   validateDetailsfromService,
   validateCancelService,
-  validateProfilePicture
+  validateProfilePicture,
 } = require("../controllers/users/validators");
 
-const {
-  uploadProfilePicture
-} = require("../../config/multer");
+const { uploadProfilePicture } = require("../../config/multer");
 /**
  * Updating user data route
  */
@@ -116,6 +115,14 @@ router.get(
   requireAuth,
   validateCancelService,
   cancelService
+);
+
+/** Get Most Searched Adresses for a User */
+router.get(
+  "/getMostSearchedAdresses/:place",
+  trimRequest.all,
+  requireAuth,
+  getMostSearchedAdresses
 );
 
 module.exports = router;

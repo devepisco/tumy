@@ -11,6 +11,7 @@ const { getCancelationReasons } = require("./getCancelationReasons");
 const { autocompletePlace } = require("./autocompletePlace");
 const { detailPlace } = require("./detailPlace");
 const { updateProfilePicture }= require("./updateProfilePicture");
+const { getMostSearchedAdresses }= require("./getMostSearchedAdresses");
 
 module.exports = {
   updateUser,
@@ -26,4 +27,5 @@ module.exports = {
   autocompletePlace,
   detailPlace,
   updateProfilePicture,
+  getMostSearchedAdresses
 };

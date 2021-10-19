@@ -6,6 +6,7 @@ const {
 const Exceptions = require("../../../errors/Exceptions");
 const { findPriceRate } = require("./helpers");
 const { RequestService } = require("../../models/NewServices");
+const { maxReachDriver } = require("../../models/maxReachDriver");
 const {
   distanceMatrix,
 } = require("../../middlewares/googlemapsapi/distanceMatrix");
@@ -14,7 +15,7 @@ const { matchedData } = require("express-validator");
 const createService = structure(async (req, res) => {
   const { origin, destination } = matchedData(req);
   const userId = req.user._id;
-
+  const MaxReachDriver = await maxReachDriver.find();
   const getdistance = await distanceMatrix(origin, destination);
   if (getdistance.rows[0].elements[0].status == "NOT_FOUND")
     return handleError(
@@ -23,7 +24,15 @@ const createService = structure(async (req, res) => {
       "No ha encontrado la distancia entre el origen y destino."
     );
   else {
-    const distancia = Math.round(getdistance.rows[0].elements[0].distance.value /100)/10;
+    const distancia =
+      Math.round(getdistance.rows[0].elements[0].distance.value / 100) / 10;
+    if (distancia > MaxReachDriver[0].number)
+      return handleError(
+        res,
+        400,
+        "El pedido supera la distancia máxima del servicio."
+      );
+
     const tarifa_estandar = await findPriceRate("tarifa_estandar");
     let costo = Math.round(distancia * tarifa_estandar.price * 10) / 10;
     if (costo < tarifa_estandar.minPrice) costo = tarifa_estandar.minPrice;
