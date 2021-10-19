@@ -19,14 +19,14 @@ const generateToken = (userId = "") => {
           {
             data: {
               _id: userId,
-            },
-            exp: expiration,
+            }/* ,
+            exp: expiration, */
           },
           process.env.JWT_SECRET
         )
       ),
-      expired_in: millisExpiredTime,
-      expired_date: expiredDate,
+     /*  expired_in: millisExpiredTime,
+      expired_date: expiredDate, */
     };
     return tokenObj;
   } catch (error) {
