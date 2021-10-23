@@ -47,6 +47,7 @@ const cancelService = structure(async (req, res) => {
       refundData.amount = (1 - comission.amount) * refundData.amount; // Descuento por el porcentaje de la comision del driver
     }
     const isRefunded = await createRefund({ refundData });
+    console.log("response Refund",isRefunded);
     if (isRefunded.object == "error")
       return handleError(res, 400, "Error al realizar la devolución del monto pagado.")
   }

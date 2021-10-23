@@ -7,7 +7,6 @@ const createRefund = async ({
     reason: "",
   },
 }) => {
-  console.log("refundData: ",refundData);
   const refund = await culqi.refunds.createRefund({
     amount: `${refundData.costo}`*100, // monto calculado en céntimos
     charge_id: refundData.chargeId,
