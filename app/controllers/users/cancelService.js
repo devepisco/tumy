@@ -58,16 +58,17 @@ const cancelService = structure(async (req, res) => {
       refundData.amount = (1 - comission.amount) * refundData.amount; // Descuento por el porcentaje de la comision del driver
     }
     const isRefunded = await createRefund({ refundData });
-    console.log(isRefunded);
-    await foundService.save();
-    res
-      .status(200)
-      .json(
-        objSuccess(
-          (data = {}),
-          (message = "El servicio  " + IdServicio + " fue cancelado")
-        )
-      );
+    if(isRefunded.objetc !== 'error'){
+      await foundService.save();
+      res
+        .status(200)
+        .json(
+          objSuccess(
+            (data = {}),
+            (message = "El servicio  " + IdServicio + " fue cancelado")
+          )
+        );
+    }
   }
 });
 
