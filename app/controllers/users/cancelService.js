@@ -16,6 +16,7 @@ const cancelService = structure(async (req, res) => {
 
   const IdServicio = req.params.id;
   const estadoDetalle = await findDetailState("cancelado");
+  const globalState = await findGlobalState("cancelado");
 
   for (estado in foundService.detailState) {
     if (
@@ -30,25 +31,13 @@ const cancelService = structure(async (req, res) => {
     obs: reason,
   });
 
-  const globalState = await findGlobalState("cancelado");
-
-  const updatedEstadoGlobal = await RequestService.findByIdAndUpdate(
-    IdServicio,
-    { globalState: globalState._id },
-    {
-      new: true,
-    }
-  );
   /** devolución total */
   const refundData = {
     amount: foundService.costo,
     chargeId: foundService.chargeId,
     reason,
   };
-  if (
-    updatedEstadoGlobal.globalState.toString() == globalState._id.toString() &&
-    foundService.hasPaid
-  ) {
+  if (foundService.hasPaid) {
     if (foundService.detail?.driverUser) {
       /* Se asigna el valor de la comisión */
       const comission = await Comissions.findOne({ _id: foundService._id });
@@ -58,18 +47,25 @@ const cancelService = structure(async (req, res) => {
       refundData.amount = (1 - comission.amount) * refundData.amount; // Descuento por el porcentaje de la comision del driver
     }
     const isRefunded = await createRefund({ refundData });
-    if(isRefunded.objetc !== 'error'){
-      await foundService.save();
-      res
-        .status(200)
-        .json(
-          objSuccess(
-            (data = {}),
-            (message = "El servicio  " + IdServicio + " fue cancelado")
-          )
-        );
-    }
+    if (isRefunded.object == "error")
+      return handleError(res, 400, "Error al realizar la devolución del monto pagado.")
   }
+  await RequestService.findByIdAndUpdate(
+    IdServicio,
+    { globalState: globalState._id },
+    {
+      new: true,
+    }
+  );
+  await foundService.save();
+  res
+    .status(200)
+    .json(
+      objSuccess(
+        (data = {}),
+        (message = "El servicio  " + IdServicio + " fue cancelado")
+      )
+    );
 });
 
 module.exports = { cancelService };
