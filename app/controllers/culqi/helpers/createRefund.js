@@ -3,12 +3,13 @@ const { culqi } = require("../../../../config/culqi");
 const createRefund = async ({
   refundData = {
     chargeId: "",
-    costo: "",
+    amount: "",
     reason: "",
   },
 }) => {
+  console.log("refund Data:",refundData);
   const refund = await culqi.refunds.createRefund({
-    amount: refundData.costo, // monto calculado en céntimos
+    amount: refundData.amount, // monto calculado en céntimos
     charge_id: refundData.chargeId,
     reason: refundData.reason,
   });

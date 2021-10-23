@@ -33,8 +33,8 @@ const cancelService = structure(async (req, res) => {
 
   /** devolución total */
   let refundData = {
-    amount: foundService.costo,
     chargeId: foundService.chargeId,
+    amount: foundService.costo,
     reason,
   };
   if (foundService.hasPaid) {
