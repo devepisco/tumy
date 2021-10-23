@@ -5,7 +5,6 @@ const {
   objSuccess,
 } = require("../../middlewares/utils");
 const { findDetailState, findGlobalState } = require("../users/helpers");
-const { matchedData } = require("express-validator");
 const { createRefund } = require("../culqi/helpers/createRefund");
 
 const cancelService = structure(async (req, res) => {
@@ -30,7 +29,6 @@ const cancelService = structure(async (req, res) => {
     _id: estadoDetalle._id,
     obs: reason,
   });
-  await foundService.save();
 
   const globalState = await findGlobalState("cancelado");
 
@@ -56,11 +54,12 @@ const cancelService = structure(async (req, res) => {
       const comission = await Comissions.findOne({ _id: foundService._id });
       const amount = comission.amount * foundService.costo;
       foundService.detail.comission.amount = `${amount.toFixed(2)}`;
-      await foundService.save();
       /** Devolución parcial */
       refundData.amount = (1 - comission.amount) * refundData.amount; // Descuento por el porcentaje de la comision del driver
     }
-    await createRefund({ refundData });
+    const isRefunded = await createRefund({ refundData });
+    console.log(isRefunded);
+    await foundService.save();
     res
       .status(200)
       .json(

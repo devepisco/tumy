@@ -24,6 +24,7 @@ const getMostSearchedAdresses = structure(async (req, res) => {
     },
     { $limit: 5 },
   ]);
+  
   res.status(200).json(objSuccess(data));
 });
 module.exports = { getMostSearchedAdresses };
