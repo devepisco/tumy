@@ -32,7 +32,7 @@ const cancelService = structure(async (req, res) => {
   });
 
   /** devolución total */
-  const refundData = {
+  let refundData = {
     amount: foundService.costo,
     chargeId: foundService.chargeId,
     reason,
@@ -46,6 +46,7 @@ const cancelService = structure(async (req, res) => {
       /** Devolución parcial */
       refundData.amount = (1 - comission.amount) * refundData.amount; // Descuento por el porcentaje de la comision del driver
     }
+    refundData.amount = refundData.amount * 100;
     const isRefunded = await createRefund({ refundData });
     console.log("response Refund",isRefunded);
     if (isRefunded.object == "error")
