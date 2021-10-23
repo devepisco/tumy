@@ -12,6 +12,8 @@ const { getComissions } = require("./getComissions");
 const { editComission } = require("./editComission");
 const { getComissionsDriver } = require("./getComissionsDriver");
 const { getAllServices } = require("./getAllServices");
+const { editMaxReachService } = require("./editMaxReachService");
+const { getMaxReachService } = require("./getMaxReachService");
 
 module.exports = {
   getAllUsers,
@@ -28,4 +30,6 @@ module.exports = {
   editComission,
   getComissionsDriver,
   getAllServices,
+  editMaxReachService,
+  getMaxReachService,
 };

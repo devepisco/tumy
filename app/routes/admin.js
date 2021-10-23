@@ -20,6 +20,8 @@ const {
   editComission,
   getComissionsDriver,
   getAllServices,
+  getMaxReachService,
+  editMaxReachService,
 } = require("../controllers/admin");
 const { getRequestDriverDetail } = require("../controllers/drivers");
 const {
@@ -149,4 +151,16 @@ router.get(
   getRequestDriverDetail
 );
 
+router.get(
+  "/get/maxreachservice",
+  trimRequest.all,
+  requireAuth,
+  getMaxReachService
+);
+router.get(
+  "/edit/maxreachservice/:value",
+  trimRequest.all,
+  requireAuth,
+  editMaxReachService
+);
 module.exports = router;
