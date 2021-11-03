@@ -40,7 +40,7 @@ const cancelService = structure(async (req, res) => {
   if (foundService.hasPaid) {
     if (foundService.detail?.driverUser) {
       /* Se asigna el valor de la comisión */
-      const comission = await Comissions.findOne({ _id: foundService._id });
+      const comission = await Comissions.findOne({ _id: foundService.detail.comission._id });
       const amount = comission.amount * foundService.costo;
       foundService.detail.comission.amount = `${amount.toFixed(2)}`;
       /** Devolución parcial */
