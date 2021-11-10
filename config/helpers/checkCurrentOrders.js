@@ -10,8 +10,8 @@ const checkCurrentOrders = async (id) => {
     globalState: GlobalStateId,
   })
     .sort({ _id: -1 })
-    .populate("detailState._id", { _id: 0, IdName: 0, __v: 0 })
-    .populate("globalState", { _id: 0, IdName: 0, __v: 0 })
+    .populate("detailState._id", { _id: 0, __v: 0 })
+    .populate("globalState", { _id: 0, __v: 0 })
     .populate("detail.driverUser", { firstname: 1, lastname: 1 })
     .exec();
   return data;
