@@ -42,7 +42,7 @@ const getService = async () => {
     },
     {
       $match: {
-        $and: [{ lastDetailState: detailStateModel._id }],
+        $and: [{ "lastDetailState._id": detailStateModel._id }],
       },
     },
     {
