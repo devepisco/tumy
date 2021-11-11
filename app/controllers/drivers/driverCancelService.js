@@ -70,8 +70,6 @@ const driverCancelService = structure(async (req, res) => {
     service: id,
   });
 
-  foundService.origin.coordinates = coordinates;
-
   if (req.files) {
     for (i in req.files.cancelationCaptures) {
       newCanceledService.captures.push(
