@@ -17,12 +17,18 @@ const { editInfoDriver } = require("../../../config/helpers/editInfoDriver");
 
 const editDetailState = structure(async (req, res) => {
   const { id, detailstate } = matchedData(req);
-  if(req.user.role !='driver' && !req.user.isBlocked) return handleError(res, 400, "Acceso denegado para realizar esta solicitud.");
+  if (req.user.role != "driver" && !req.user.isBlocked)
+    return handleError(
+      res,
+      400,
+      "Acceso denegado para realizar esta solicitud."
+    );
   const foundDetailState = await findDetailState(detailstate);
   const requestService = await RequestService.findById(id);
-  let existDetailState = requestService.detailState.find(
-    (state) => state._id == `${foundDetailState._id}`
-  );
+
+  let existDetailState =
+    requestService.detailState[requestService.detailState.length - 1] ==
+      `${foundDetailState._id}` ?? true;
   if (existDetailState)
     return handleError(
       res,
@@ -75,10 +81,17 @@ const editDetailState = structure(async (req, res) => {
     .populate("globalState", { _id: 0, IdName: 0, __v: 0 })
     .populate("detail.driverUser", { firstname: 1, lastname: 1 })
     .exec();
+  let requestServiceToDriver = updatedService;
+  //Si existe newOrigin significa que se trata de un pedido reasignado
+  if (updatedService.newOrigin) {
+    //reemplazamos origin por newOrigin (evitará modificar el front) y solo cambiará la vista del motorizado
+    requestServiceToDriver.origin = updatedService.newOrigin;
+  }
   emitToUpdateService(
     updatedService.detail.driverUser,
     updatedService._id,
-    updatedService
+    updatedService,
+    requestServiceToDriver,
   );
   res
     .status(200)

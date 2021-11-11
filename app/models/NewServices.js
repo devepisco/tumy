@@ -11,6 +11,10 @@ const requestServiceSchema = Schema(
       coordinates: String,
       address: String,
     },
+    newOrigin:{
+      coordinates: String,
+      address: String,
+    },
     destination: {
       coordinates: String,
       address: String,

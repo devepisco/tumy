@@ -7,6 +7,7 @@ const {
 const { CanceledServices } = require("../../models/CanceledServices");
 const { RequestService, Comissions } = require("../../models/NewServices");
 const { findDetailState, asignDriverToService } = require("../users/helpers");
+const { searchAddressByCoordinates } = require("./helpers")
 
 const driverCancelService = structure(async (req, res) => {
   const { id, whoseProblem, reason, resume, coordinates } = matchedData(req);
@@ -23,6 +24,20 @@ const driverCancelService = structure(async (req, res) => {
   if (whoseProblem == "driver") {
     foundDetailState = await findDetailState("reasignado");
     //no calcular comision
+    foundService.detailState.push({
+      _id: foundDetailState._id,
+      obs: reason,
+    });
+    foundDetailState = await findDetailState("servicio_creado");
+    //Resetear el driverUser
+    foundService.detail.driverUser = null;
+    //Setear el nuevo campo origin_report
+    const newAddress = await searchAddressByCoordinates(coordinates);
+    console.log("............NEW ADDRESS........  =>  ",newAddress);
+    foundService.newOrigin = {
+      coordinates: coordinates,
+      address: newAddress,
+    };
   } else if (whoseProblem == "user") {
     foundDetailState = await findDetailState("entregado");
     //calcular comision
@@ -30,9 +45,9 @@ const driverCancelService = structure(async (req, res) => {
     const amount = comission.amount * requestService.costo;
     foundService.detail.comission.amount = `${amount.toFixed(2)}`;
   }
-  let existDetailState = foundService.detailState.find(
-    (state) => state._id == `${foundDetailState._id}`
-  );
+  let existDetailState =
+    foundService.detailState[foundService.detailState.length - 1] ==
+      `${foundDetailState._id}` ?? true;
   if (existDetailState) {
     return handleError(
       res,
@@ -56,7 +71,7 @@ const driverCancelService = structure(async (req, res) => {
   });
 
   foundService.origin.coordinates = coordinates;
-  
+
   if (req.files) {
     for (i in req.files.cancelationCaptures) {
       newCanceledService.captures.push(
