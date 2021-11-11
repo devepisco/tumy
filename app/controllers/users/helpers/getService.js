@@ -45,7 +45,7 @@ const getService = async () => {
       $match:{
         $and: [
           {"detailState._id": detailStateModel._id},
-          {"detailStateSize":{ $lt:2, $gte:1}}
+          // {"detailStateSize":{ $lt:2, $gte:1}}
         ]
       }
     },
