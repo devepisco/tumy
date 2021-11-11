@@ -16,7 +16,7 @@ const getService = async () => {
         localField: "globalState",
         foreignField: "_id",
         as: "globalState",
-      }
+      },
     },
     {
       $lookup: {
@@ -26,42 +26,38 @@ const getService = async () => {
         as: "detailState",
       },
     },
+    { $addFields: { lastDetailState: { $last: "$detailState" } } },
     {
       $project: {
-        "_id":1,
-        "origin":1,
-        "destination":1,
-        "detail":1,
-        "globalState":1,
-        "costo":1,
-        "tiempoAprox":1,
-        "detailState":1,
-        "lastDetailState":{
-          $last:"$detailState"
-        }
-      }
+        _id: 1,
+        origin: 1,
+        destination: 1,
+        detail: 1,
+        globalState: 1,
+        costo: 1,
+        tiempoAprox: 1,
+        detailState: 1,
+        lastDetailState: 1,
+      },
     },
     {
-      $match:{
-        $and: [
-          {"lastDetailState": detailStateModel._id}
-        ]
-      }
+      $match: {
+        $and: [{ lastDetailState: detailStateModel._id }],
+      },
     },
     {
       $project: {
-        "globalState._id":0,
-        "globalState.IdName":0,
-        "globalState.__v":0,
-        "detailState._id":0,
-        "detailState.IdName":0,
-        "detailState.__v":0,
-      }
+        "globalState._id": 0,
+        "globalState.IdName": 0,
+        "globalState.__v": 0,
+        "detailState._id": 0,
+        "detailState.IdName": 0,
+        "detailState.__v": 0,
+      },
     },
     {
-      $limit:1
-    }
-
+      $limit: 1,
+    },
   ]);
   if (service.length < 1) return false;
   else return service;
