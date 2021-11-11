@@ -36,16 +36,15 @@ const getService = async () => {
         "costo":1,
         "tiempoAprox":1,
         "detailState":1,
-        "detailStateSize":{
-          $size:"$detailState"
+        "lastDetailState":{
+          $last:"$detailState"
         }
       }
     },
     {
       $match:{
         $and: [
-          {"detailState._id": detailStateModel._id},
-          {"detailStateSize":{ $lt:2, $gte:1}}
+          {"lastDetailState": detailStateModel._id}
         ]
       }
     },
