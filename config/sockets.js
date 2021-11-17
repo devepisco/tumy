@@ -74,6 +74,11 @@ const socketIO = (io) => {
 
     on(socket, "disconnect", () => {
       console.log("disconnect");
+      var self = this;
+      var rooms = Object.keys(self.rooms);
+      rooms.forEach(function (room) {
+        console.log("user left", self.id + "left");
+      });
     });
   });
 };
