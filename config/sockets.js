@@ -51,6 +51,7 @@ const socketIO = (io) => {
       clientService.get("infoDriver", function (err, reply) {
         const infoDriver = finishServiceDriver(reply, data);
         console.log("infoDriver:", infoDriver);
+        r;
         clientService.set("infoDriver", infoDriver);
       });
     });
@@ -72,13 +73,13 @@ const socketIO = (io) => {
       emitTo(data, "driver:CurrentOrders", currentOrder);
     });
 
-    on(socket, "disconnect", () => {
+    on(socket, "disconnect", function(){
       console.log("disconnect");
-      var self = this;
-      var rooms = Object.keys(self.rooms);
-      rooms.forEach(function (room) {
-        console.log("user left", self.id + "left");
-      });
+      // const self = this;
+      // const rooms = Object.keys(self.rooms);
+      // rooms.forEach(function (room) {
+      //   console.log("user left", self.id + "left");
+      // });
     });
   });
 };
