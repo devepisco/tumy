@@ -51,7 +51,6 @@ const socketIO = (io) => {
       clientService.get("infoDriver", function (err, reply) {
         const infoDriver = finishServiceDriver(reply, data);
         console.log("infoDriver:", infoDriver);
-        r;
         clientService.set("infoDriver", infoDriver);
       });
     });
