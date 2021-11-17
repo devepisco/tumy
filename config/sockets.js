@@ -72,11 +72,8 @@ const socketIO = (io) => {
       emitTo(data, "driver:CurrentOrders", currentOrder);
     });
 
-    on(socket, "disconnect", (data) => {
-      socket.join(data);
+    on(socket, "disconnect", () => {
       console.log("disconnect");
-      const message="disconnection completed";
-      emitTo(data, "disconnection",message);
     });
   });
 };
