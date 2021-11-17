@@ -75,7 +75,8 @@ const socketIO = (io) => {
     on(socket, "disconnect", (data) => {
       socket.join(data);
       console.log("disconnect");
-      emitTo(data, "disconnection completed!");
+      const message="disconnection completed";
+      emitTo(data, "disconnection",message);
     });
   });
 };
