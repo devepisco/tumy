@@ -26,6 +26,7 @@ const socketIO = (io) => {
       }
       clientService.get("infoDriver", function (err, reply) {
         data.isAvaliable = true;
+        data.connID = socket.client.conn.id;
         const infoDriver = editInfoDriver(reply, data);
         clientService.set("infoDriver", infoDriver);
       });
@@ -72,13 +73,18 @@ const socketIO = (io) => {
       emitTo(data, "driver:CurrentOrders", currentOrder);
     });
 
-    on(socket, "disconnect", function(){
+    on(socket, "disconnect", function () {
+      const self = this;
       console.log("disconnect");
-      // const self = this;
-      // const rooms = Object.keys(self.rooms);
-      // rooms.forEach(function (room) {
-      //   console.log("user left", self.id + "left");
-      // });
+      clientService.get("infoDriver", function (err, reply) {
+        let data = JSON.parse(reply);
+        data = data.find((driver) => driver.connID == self.client.conn.id);
+        if (data) {
+          const infoDriver = finishServiceDriver(reply, data.id);
+          clientService.set("infoDriver", infoDriver);
+          console.log("infoDriver =>", infoDriver);
+        }
+      });
     });
   });
 };
