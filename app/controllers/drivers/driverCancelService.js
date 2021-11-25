@@ -13,7 +13,7 @@ const {
 const { findDetailState, asignDriverToService } = require("../users/helpers");
 const { searchAddressByCoordinates } = require("./helpers");
 
-const ReassignService = (foundService) => {
+const ReassignService = async (foundService) => {
   const foundDetailState1 = await findDetailState("reasignado");
   foundService.detailState.push({
     _id: foundDetailState1._id,
@@ -27,7 +27,7 @@ const ReassignService = (foundService) => {
   foundService.detail.driverUser = null;
 };
 
-const AddCoordinates = (coordinates) => {
+const AddCoordinates = async (coordinates) => {
   const newAddress = await searchAddressByCoordinates(coordinates);
   console.log("............NEW ADDRESS........  =>  ", newAddress);
   foundService.newOrigin = {
@@ -54,15 +54,15 @@ const driverCancelService = structure(async (req, res) => {
     const detailState = await DetailState.findById(lastDetailState._id);
     switch (detailState.IdName) {
       case "pendiente_recojo":
-        ReassignService(foundService);
+        await ReassignService(foundService);
         break;
       case "recogido":
-        ReassignService(foundService);
-        AddCoordinates(coordinates);
+        await ReassignService(foundService);
+        await AddCoordinates(coordinates);
         break;
       case "proceso_entrega":
-        ReassignService(foundService);
-        AddCoordinates(coordinates);
+        await ReassignService(foundService);
+        await AddCoordinates(coordinates);
         break;
       default:
         break;
