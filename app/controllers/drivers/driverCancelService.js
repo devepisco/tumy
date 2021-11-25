@@ -27,7 +27,7 @@ const ReassignService = async (foundService, reason) => {
   foundService.detail.driverUser = null;
 };
 
-const AddCoordinates = async (coordinates) => {
+const AddCoordinates = async (foundService, coordinates) => {
   const newAddress = await searchAddressByCoordinates(coordinates);
   console.log("............NEW ADDRESS........  =>  ", newAddress);
   foundService.newOrigin = {
@@ -50,7 +50,7 @@ const driverCancelService = structure(async (req, res) => {
   const sizeDetailState = foundService.detailState.length;
   const lastDetailState = foundService.detailState[sizeDetailState - 1];
   const detailState = await DetailState.findById(lastDetailState._id);
-  
+
   if (whoseProblem == "driver") {
     switch (detailState.IdName) {
       case "pendiente_recojo":
@@ -58,11 +58,11 @@ const driverCancelService = structure(async (req, res) => {
         break;
       case "recogido":
         await ReassignService(foundService, reason);
-        await AddCoordinates(coordinates);
+        await AddCoordinates(foundService, coordinates);
         break;
       case "proceso_entrega":
         await ReassignService(foundService, reason);
-        await AddCoordinates(coordinates);
+        await AddCoordinates(foundService, coordinates);
         break;
       default:
         break;
