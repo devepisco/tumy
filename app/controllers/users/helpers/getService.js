@@ -4,11 +4,11 @@ const {
   DetailState,
 } = require("../../../models/NewServices");
 const {
-  findDetailState,
-} = require("../../../controllers/users/helpers/findDetailState");
+  findGlobalState,
+} = require("../../../controllers/users/helpers/findGlobalState");
 
 const getService = async () => {
-  const detailStateModel = await findDetailState("servicio_creado");
+  const globalStateCreated = await findGlobalState("en_proceso");
   const service = await RequestService.aggregate([
     {
       $lookup: {
@@ -26,7 +26,7 @@ const getService = async () => {
         as: "detailState",
       },
     },
-    { $addFields: { lastDetailState: { $last: "$detailState" } } },
+    { $addFields: { lastGlobalState: { $arrayElemAt: ["$globalState",0] } } },
     {
       $project: {
         _id: 1,
@@ -37,12 +37,17 @@ const getService = async () => {
         costo: 1,
         tiempoAprox: 1,
         detailState: 1,
-        lastDetailState: 1,
+        lastGlobalState: 1,
       },
     },
     {
       $match: {
-        $and: [{ "lastDetailState._id": detailStateModel._id }],
+        "lastGlobalState._id": globalStateCreated._id,
+      },
+    },
+    {
+      $match: {
+        "detail.driverUser": null,
       },
     },
     {
