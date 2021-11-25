@@ -49,7 +49,7 @@ const driverCancelService = structure(async (req, res) => {
   let foundDetailState;
   if (whoseProblem == "driver") {
     // Definir el estado de detalle actual:
-    const sizeDetailState = foundService.detailState.lenght;
+    const sizeDetailState = foundService.detailState.length;
     const lastDetailState = foundService.detailState[sizeDetailState - 1];
     const detailState = await DetailState.findById(lastDetailState._id);
     switch (detailState.IdName) {
