@@ -5,10 +5,36 @@ const {
   handleError,
 } = require("../../middlewares/utils");
 const { CanceledServices } = require("../../models/CanceledServices");
-const { RequestService, Comissions } = require("../../models/NewServices");
+const {
+  RequestService,
+  Comissions,
+  DetailState,
+} = require("../../models/NewServices");
 const { findDetailState, asignDriverToService } = require("../users/helpers");
-const { searchAddressByCoordinates } = require("./helpers")
+const { searchAddressByCoordinates } = require("./helpers");
 
+const ReassignService = (foundService) => {
+  const foundDetailState1 = await findDetailState("reasignado");
+  foundService.detailState.push({
+    _id: foundDetailState1._id,
+    obs: reason,
+  });
+  const foundDetailState2 = await findDetailState("servicio_creado");
+  foundService.detailState.push({
+    _id: foundDetailState2._id,
+    obs: reason,
+  });
+  foundService.detail.driverUser = null;
+};
+
+const AddCoordinates = (coordinates) => {
+  const newAddress = await searchAddressByCoordinates(coordinates);
+  console.log("............NEW ADDRESS........  =>  ", newAddress);
+  foundService.newOrigin = {
+    coordinates: coordinates,
+    address: newAddress,
+  };
+};
 const driverCancelService = structure(async (req, res) => {
   const { id, whoseProblem, reason, resume, coordinates } = matchedData(req);
   const foundService = await RequestService.findById(id);
@@ -22,28 +48,35 @@ const driverCancelService = structure(async (req, res) => {
     );
   let foundDetailState;
   if (whoseProblem == "driver") {
-    foundDetailState = await findDetailState("reasignado");
-    //no calcular comision
-    foundService.detailState.push({
-      _id: foundDetailState._id,
-      obs: reason,
-    });
-    foundDetailState = await findDetailState("servicio_creado");
-    //Resetear el driverUser
-    foundService.detail.driverUser = null;
-    //Setear el nuevo campo origin_report
-    const newAddress = await searchAddressByCoordinates(coordinates);
-    console.log("............NEW ADDRESS........  =>  ",newAddress);
-    foundService.newOrigin = {
-      coordinates: coordinates,
-      address: newAddress,
-    };
+    // Definir el estado de detalle actual:
+    const sizeDetailState = foundService.detailState.lenght;
+    const lastDetailState = foundService.detailState[sizeDetailState - 1];
+    const detailState = await DetailState.findById(lastDetailState._id);
+    switch (detailState.IdName) {
+      case "pendiente_recojo":
+        ReassignService(foundService);
+        break;
+      case "recogido":
+        ReassignService(foundService);
+        AddCoordinates(coordinates);
+        break;
+      case "proceso_entrega":
+        ReassignService(foundService);
+        AddCoordinates(coordinates);
+        break;
+      default:
+        break;
+    }
   } else if (whoseProblem == "user") {
     foundDetailState = await findDetailState("entregado");
     //calcular comision
     const comission = await Comissions.findOne({ isActive: true });
-    const amount = comission.amount * requestService.costo;
+    const amount = comission.amount * foundService.costo;
     foundService.detail.comission.amount = `${amount.toFixed(2)}`;
+    foundService.detailState.push({
+      _id: foundDetailState._id,
+      obs: reason,
+    });
   }
   let existDetailState =
     foundService.detailState[foundService.detailState.length - 1] ==
@@ -56,11 +89,6 @@ const driverCancelService = structure(async (req, res) => {
         foundDetailState.stateName
     );
   }
-
-  foundService.detailState.push({
-    _id: foundDetailState._id,
-    obs: reason,
-  });
 
   const newCanceledService = new CanceledServices({
     creatorUser: req.user._id,
