@@ -46,12 +46,12 @@ const driverCancelService = structure(async (req, res) => {
       404,
       "El Id de repartidor no coincide con el repartidor asignado."
     );
-  let foundDetailState;
+  // Definir el estado de detalle actual:
+  const sizeDetailState = foundService.detailState.length;
+  const lastDetailState = foundService.detailState[sizeDetailState - 1];
+  const detailState = await DetailState.findById(lastDetailState._id);
+  
   if (whoseProblem == "driver") {
-    // Definir el estado de detalle actual:
-    const sizeDetailState = foundService.detailState.length;
-    const lastDetailState = foundService.detailState[sizeDetailState - 1];
-    const detailState = await DetailState.findById(lastDetailState._id);
     switch (detailState.IdName) {
       case "pendiente_recojo":
         await ReassignService(foundService, reason);
@@ -80,7 +80,7 @@ const driverCancelService = structure(async (req, res) => {
   }
   let existDetailState =
     foundService.detailState[foundService.detailState.length - 1] ==
-      `${foundDetailState._id}` ?? true;
+      `${lastDetailState._id}` ?? true;
   if (existDetailState) {
     return handleError(
       res,
