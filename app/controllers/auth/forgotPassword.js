@@ -1,6 +1,6 @@
 const Exceptions = require('../../../errors/Exceptions');
 const { User } = require('../../models/User');
-const { structure, sendEmail } = require('../../middlewares/utils');
+const { structure, sendEmail, objSuccess } = require('../../middlewares/utils');
 
 
 const forgotPassword = structure(async (req, res, next) => {
@@ -25,10 +25,7 @@ const forgotPassword = structure(async (req, res, next) => {
             message
         });
     
-        res.status(200).json({
-            success: true,
-            message: 'Token enviado al correo.'
-        });
+        res.status(200).json(objSuccess({},"Token enviado al correo"));
     }catch(err){
         user.passwordResetToken = undefined;
         user.passwordResetExpires = undefined;
