@@ -1,6 +1,10 @@
 const { User } = require("../../models/User");
 const Exceptions = require("../../../errors/Exceptions");
-const { structure, objSuccess } = require("../../middlewares/utils");
+const {
+  structure,
+  objSuccess,
+  handleError,
+} = require("../../middlewares/utils");
 const { checkPassword } = require("../../middlewares/auth");
 
 const resetPassword = structure(async (req, res) => {
@@ -26,7 +30,9 @@ const resetPassword = structure(async (req, res) => {
   await user.save();
 
   //send status success
-  res.status(200).json(objSuccess({},"La contraseña se ha actualizado correctamente"));
+  res
+    .status(200)
+    .json(objSuccess({}, "La contraseña se ha actualizado correctamente"));
 });
 
 module.exports = { resetPassword };
