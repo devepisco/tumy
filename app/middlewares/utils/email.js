@@ -25,12 +25,7 @@ const sendEmail = async (options) => {
     //actually send the email
     await transporter.sendMail(mailOptions);
   } catch (err) {
-    return next(
-      new Exceptions(
-        500,
-        "ERROR with transporter."
-      )
-    );
+    console.log(err);
   }
 };
 
