@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const Exceptions = require("../../../errors/Exceptions");
 
 const sendEmail = async (options) => {
   //create a transporter
