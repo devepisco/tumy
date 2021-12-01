@@ -62,7 +62,7 @@ router.get("/refresh_token", requireAuth, trimRequest.all, refreshToken);
 router.post("/forgot_password", forgotPassword);
 
 /**
- * Reset Password rout
+ * Reset Password route
  */
 router.patch("/reset_password/:token", resetPassword);
 
