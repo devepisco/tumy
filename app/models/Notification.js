@@ -3,7 +3,7 @@ const { User } = require("../models/User");
 
 let notificationSchema = new Schema(
   {
-    userId: { type: Schema.Types.ObjectId, ref: User },
+    userId: { type: Schema.Types.ObjectId, ref: User, default: null },
     oneSignalSessions: [
       {
         _id: {
