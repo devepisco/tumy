@@ -4,6 +4,7 @@ const {
   objSuccess,
 } = require("../../middlewares/utils");
 const Notification = require("../../models/Notification");
+const {generateAppNotification, oneSignalClients} = require("../../modules/onesignal")
 const { matchedData } = require("express-validator");
 
 const createSessionOneSignal = structure(async (req, res) => {
