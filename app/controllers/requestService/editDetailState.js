@@ -95,7 +95,7 @@ const editDetailState = structure(async (req, res) => {
     await createNotifications(
       user_client,
       "cambio de estado",
-      "Su pedido fue entregado",
+      "Tu pedido fue entregado",
       "Esperamos disfrute de su compra"
     );
 
@@ -109,8 +109,8 @@ const editDetailState = structure(async (req, res) => {
     await createNotifications(
       user_client,
       "cambio de estado",
-      "Su pedido se ha actualizado",
-      "Tu pedido ha sido recogido correctamente. Pronto llegará a su destinatario."
+      "Tu pedido ha sido recogido",
+      "Nuestro Tummer ha recogido tu pedido."
     );
   }
   if (detailstate == "reasignado") {
