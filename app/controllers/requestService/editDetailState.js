@@ -14,7 +14,9 @@ const { matchedData } = require("express-validator");
 const { getService } = require("../users/helpers");
 const { clientService } = require("../../../config/redis");
 const { editInfoDriver } = require("../../../config/helpers/editInfoDriver");
-const { createNotifications } = require("../notifications/createSessionOneSignal");
+const {
+  createNotifications,
+} = require("../notifications/createSessionOneSignal");
 
 const editDetailState = structure(async (req, res) => {
   const { id, detailstate } = matchedData(req);
@@ -30,7 +32,7 @@ const editDetailState = structure(async (req, res) => {
   let existDetailState =
     requestService.detailState[requestService.detailState.length - 1] ==
       `${foundDetailState._id}` ?? true;
-    
+
   if (existDetailState)
     return handleError(
       res,
@@ -38,9 +40,8 @@ const editDetailState = structure(async (req, res) => {
       "La solicitud de servicio ya se encuentra en estado: " +
         foundDetailState.stateName
     );
-  
-  const user_client = requestService.creatorUser;
 
+  const user_client = requestService.creatorUser;
 
   if (detailstate == "pendiente_recojo") {
     if (requestService.detail.driverUser) {
@@ -61,10 +62,15 @@ const editDetailState = structure(async (req, res) => {
     });
 
     /**
-    * @description coge el userId CREA LA NOTIFICACION
-    * @var user_client IS A CLIENT ID
-    */
-    await createNotifications(user_client,"cambio de estado","su pedido cambio a en proceso","esperemos su pedido");
+     * @description coge el userId CREA LA NOTIFICACION
+     * @var user_client IS A CLIENT ID
+     */
+    await createNotifications(
+      user_client,
+      "cambio de estado",
+      "Tu pedido ha sido asignado a un Tummer",
+      "Un motorizado está yendo a recoger tu pedido"
+    );
   }
   if (detailstate == "entregado") {
     const foundGlobalState = await findGlobalState("entregado");
@@ -81,20 +87,36 @@ const editDetailState = structure(async (req, res) => {
         );
       }
     }
-    
+
     /**
-    * @description coge el userId CREA LA NOTIFICACION
-    * @var user_client IS A CLIENT ID
-    */
-     await createNotifications(user_client,"cambio de estado","su pedido fue entregado","Esperamos disfrute de su compra");
-     
+     * @description coge el userId CREA LA NOTIFICACION
+     * @var user_client IS A CLIENT ID
+     */
+    await createNotifications(
+      user_client,
+      "cambio de estado",
+      "Su pedido fue entregado",
+      "Esperamos disfrute de su compra"
+    );
+
     /* Se asigna el valor de la comisión */
     const comission = await Comissions.findOne({ isActive: true });
     const amount = comission.amount * requestService.costo;
     requestService.detail.comission.amount = `${amount.toFixed(2)}`;
   }
+
+  if (detailstate == "recogido") {
+    await createNotifications(
+      user_client,
+      "cambio de estado",
+      "Su pedido se ha actualizado",
+      "Tu pedido ha sido recogido correctamente. Pronto llegará a su destinatario."
+    );
+  }
+
   requestService.detailState.push({ _id: foundDetailState._id });
   await requestService.save();
+
   const updatedService = await RequestService.findOne({ _id: id })
     .populate("detailState._id", { _id: 0, IdName: 0, __v: 0 })
     .populate("globalState", { _id: 0, IdName: 0, __v: 0 })
@@ -105,12 +127,22 @@ const editDetailState = structure(async (req, res) => {
   if (updatedService.newOrigin) {
     //reemplazamos origin por newOrigin (evitará modificar el front) y solo cambiará la vista del motorizado
     requestServiceToDriver.origin = updatedService.newOrigin;
+    /**
+     * @description coge el userId CREA LA NOTIFICACION
+     * @var user_client IS A CLIENT ID
+     */
+    await createNotifications(
+      user_client,
+      "cambio de estado",
+      "Ocurrió algo inesperado",
+      "Tu pedido ha sido reasignado, será atendido lo más pronto posible."
+    );
   }
   emitToUpdateService(
     updatedService.detail.driverUser,
     updatedService._id,
     updatedService,
-    requestServiceToDriver,
+    requestServiceToDriver
   );
   res
     .status(200)

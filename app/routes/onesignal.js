@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   createSessionOneSignal,
   sendNotification,
+  deleteSessionOnesignal,
 } = require("../controllers/notifications");
 
 const {
@@ -17,5 +18,7 @@ router.post(
   createSessionOneSignal
 );
 router.post("/send_notification", validateSendNotification, sendNotification);
+
+router.post("/delete_session", validateCreateSessionOnesignal, deleteSessionOnesignal);
 
 module.exports = router;
