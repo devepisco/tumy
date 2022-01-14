@@ -4,7 +4,10 @@ const {
   objSuccess,
 } = require("../../middlewares/utils");
 const Notification = require("../../models/Notification");
-const {generateAppNotification, oneSignalClients} = require("../../modules/onesignal")
+const {
+  generateAppNotification,
+  oneSignalClients,
+} = require("../../modules/onesignal");
 const { matchedData } = require("express-validator");
 
 const createSessionOneSignal = structure(async (req, res) => {
@@ -24,15 +27,17 @@ const createSessionOneSignal = structure(async (req, res) => {
         .status(200)
         .json(objSuccess(data, "Sesion One Signal creada exitosamente."));
     } else {
-      const foundOneSignalId = foundUser.oneSignalSessions.find(
-        (e) => e._id === oneSignalId
-      );
-      if (foundOneSignalId)
-        return handleError(
-          res,
-          400,
-          "El OneSignalId ya fue registrado con ese usuario"
-        );
+      let foundSession = false;
+      foundUser.oneSignalSessions.forEach((e, index) => {
+        if (e._id == oneSignalId) {
+          foundUser.oneSignalSessions[index].isActive = true;
+          foundSession = true;
+        }
+      });
+      await foundUser.save();
+      if (foundSession)
+        return handleError(res, 400, "El OneSignalId fue activado nuevamente.");
+
       foundUser.oneSignalSessions.push({ _id: oneSignalId });
       const data = await foundUser.save();
       res
@@ -45,11 +50,18 @@ const createSessionOneSignal = structure(async (req, res) => {
   }
 });
 
-const createNotifications = async (userId, typeNotification, title, message) => {
+const createNotifications = async (
+  userId,
+  typeNotification,
+  title,
+  message
+) => {
   let foundUser = await Notification.findOne({ userId });
 
   if (!foundUser) return;
-  let oneSignalIdClientsListActives = foundUser.oneSignalSessions.filter( n => n.isActive).map( n => n._id);
+  let oneSignalIdClientsListActives = foundUser.oneSignalSessions
+    .filter((n) => n.isActive)
+    .map((n) => n._id);
   if (oneSignalIdClientsListActives) {
     /***
      * @var notification { body notification}
@@ -67,4 +79,4 @@ const createNotifications = async (userId, typeNotification, title, message) => 
     await oneSignalClients.createNotification(notification);
   }
 };
-module.exports = { createSessionOneSignal , createNotifications};
+module.exports = { createSessionOneSignal, createNotifications };
