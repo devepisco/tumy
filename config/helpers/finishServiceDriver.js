@@ -1,7 +1,7 @@
 const finishServiceDriver = (data, idDriver) => {
     let infoDriver;
     infoDriver = JSON.parse(data)
-    if(infoDriver.length > 0) {
+    if(infoDriver) {
         const arr = infoDriver.filter(function(Driver){
             return Driver.id !== idDriver
         });
