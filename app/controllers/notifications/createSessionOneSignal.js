@@ -58,7 +58,7 @@ const createNotifications = async (userId, typeNotification, title, message) => 
       typeNotification,
       title,
       message,
-      oneSignalIdClientsList,
+      oneSignalIdClientsListActives,
       null
     );
     /**
