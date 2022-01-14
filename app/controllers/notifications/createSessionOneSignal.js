@@ -71,7 +71,7 @@ const createNotifications = async (
       title,
       message,
       oneSignalIdClientsListActives,
-      null
+      "https://scontent.ftcq1-1.fna.fbcdn.net/v/t39.30808-6/238137197_357159809413039_2141895608090965866_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeH0ODj4TeUpFraja1u9GLGYkqxz205U-ciSrHPbTlT5yECyYsrC1dAZGUo9VRaDXIgTwodmn8ExdXKfe9L4kgMB&_nc_ohc=JjYbTO6KddgAX9BnKFk&_nc_ht=scontent.ftcq1-1.fna&oh=00_AT9-HIRgvHWI9cX58o-ORbHwMppsSUYCQU9DlkHf3VsCZw&oe=61E62723"
     );
     /**
      * @description procedimiento asyncrono ejecuta la push

@@ -113,7 +113,14 @@ const editDetailState = structure(async (req, res) => {
       "Tu pedido ha sido recogido correctamente. Pronto llegará a su destinatario."
     );
   }
-
+  if (detailstate == "reasignado") {
+    await createNotifications(
+      user_client,
+      "cambio de estado",
+      "Ocurrió algo inesperado",
+      "Tu pedido ha sido reasignado, será atendido lo más pronto posible."
+    );
+  }
   requestService.detailState.push({ _id: foundDetailState._id });
   await requestService.save();
 
@@ -131,13 +138,9 @@ const editDetailState = structure(async (req, res) => {
      * @description coge el userId CREA LA NOTIFICACION
      * @var user_client IS A CLIENT ID
      */
-    await createNotifications(
-      user_client,
-      "cambio de estado",
-      "Ocurrió algo inesperado",
-      "Tu pedido ha sido reasignado, será atendido lo más pronto posible."
-    );
+    
   }
+  
   emitToUpdateService(
     updatedService.detail.driverUser,
     updatedService._id,
