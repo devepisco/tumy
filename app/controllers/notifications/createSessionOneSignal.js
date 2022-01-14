@@ -71,7 +71,7 @@ const createNotifications = async (
       title,
       message,
       oneSignalIdClientsListActives,
-      "https://scontent.ftcq1-1.fna.fbcdn.net/v/t39.30808-6/238137197_357159809413039_2141895608090965866_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeH0ODj4TeUpFraja1u9GLGYkqxz205U-ciSrHPbTlT5yECyYsrC1dAZGUo9VRaDXIgTwodmn8ExdXKfe9L4kgMB&_nc_ohc=JjYbTO6KddgAX9BnKFk&_nc_ht=scontent.ftcq1-1.fna&oh=00_AT9-HIRgvHWI9cX58o-ORbHwMppsSUYCQU9DlkHf3VsCZw&oe=61E62723"
+      "https://scontent.ftcq1-1.fna.fbcdn.net/v/t1.6435-9/118123824_133484671780555_6245394414513594221_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=e3f864&_nc_eui2=AeFFdTSABPsFYzC_bLX6TyeUDWseAl-8RecNax4CX7xF589UtM9Rz-QLzZGl4ZSWmlSMdVH4I74L8TW1N-h5F201&_nc_ohc=XMue5tVRk7IAX87nnYf&tn=-wHbLT7mKjxK2wz1&_nc_ht=scontent.ftcq1-1.fna&oh=00_AT-cvuwhnVew2d-NQzuisHGdkgAprPfPLWHW0mHsHfTC7Q&oe=62081DE4"
     );
     /**
      * @description procedimiento asyncrono ejecuta la push
