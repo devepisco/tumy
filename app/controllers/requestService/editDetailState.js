@@ -14,6 +14,7 @@ const { matchedData } = require("express-validator");
 const { getService } = require("../users/helpers");
 const { clientService } = require("../../../config/redis");
 const { editInfoDriver } = require("../../../config/helpers/editInfoDriver");
+const { createNotifications } = require("../notifications/createSessionOneSignal");
 
 const editDetailState = structure(async (req, res) => {
   const { id, detailstate } = matchedData(req);
@@ -29,6 +30,7 @@ const editDetailState = structure(async (req, res) => {
   let existDetailState =
     requestService.detailState[requestService.detailState.length - 1] ==
       `${foundDetailState._id}` ?? true;
+    
   if (existDetailState)
     return handleError(
       res,
@@ -36,6 +38,10 @@ const editDetailState = structure(async (req, res) => {
       "La solicitud de servicio ya se encuentra en estado: " +
         foundDetailState.stateName
     );
+  
+  const user_client = requestService.creatorUser;
+
+
   if (detailstate == "pendiente_recojo") {
     if (requestService.detail.driverUser) {
       const service = await getService();
@@ -53,6 +59,12 @@ const editDetailState = structure(async (req, res) => {
       console.log("Actualizando estado del conductor", infoDriver);
       clientService.set("infoDriver", infoDriver);
     });
+
+    /**
+    * @description coge el userId CREA LA NOTIFICACION
+    * @var user_client IS A CLIENT ID
+    */
+    await createNotifications(user_client,"cambio de estado","su pedido cambio a en proceso","esperemos su pedido");
   }
   if (detailstate == "entregado") {
     const foundGlobalState = await findGlobalState("entregado");
@@ -69,6 +81,13 @@ const editDetailState = structure(async (req, res) => {
         );
       }
     }
+    
+    /**
+    * @description coge el userId CREA LA NOTIFICACION
+    * @var user_client IS A CLIENT ID
+    */
+     await createNotifications(user_client,"cambio de estado","su pedido fue entregado","Esperamos disfrute de su compra");
+     
     /* Se asigna el valor de la comisión */
     const comission = await Comissions.findOne({ isActive: true });
     const amount = comission.amount * requestService.costo;

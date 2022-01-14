@@ -16,7 +16,6 @@ router.post(
   validateCreateSessionOnesignal,
   createSessionOneSignal
 );
-
 router.post("/send_notification", validateSendNotification, sendNotification);
 
 module.exports = router;

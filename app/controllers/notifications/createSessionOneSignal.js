@@ -43,4 +43,27 @@ const createSessionOneSignal = structure(async (req, res) => {
     console.log(error);
   }
 });
-module.exports = { createSessionOneSignal };
+
+const createNotifications = async (userId, typeNotification, title, message) => {
+  let foundUser = await Notification.findOne({ userId });
+
+  if (!foundUser) return;
+  let oneSignalIdClientsListActives = foundUser.oneSignalSessions.filter( n => n.isActive).map( n => n._id);
+  if (oneSignalIdClientsListActives) {
+    /***
+     * @var notification { body notification}
+     */
+    const notification = generateAppNotification(
+      typeNotification,
+      title,
+      message,
+      oneSignalIdClientsList,
+      null
+    );
+    /**
+     * @description procedimiento asyncrono ejecuta la push
+     */
+    await oneSignalClients.createNotification(notification);
+  }
+};
+module.exports = { createSessionOneSignal , createNotifications};
