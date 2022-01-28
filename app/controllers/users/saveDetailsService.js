@@ -16,7 +16,11 @@ const {
   DetailState,
   Comissions,
 } = require("../../models/NewServices");
+const Notification = require("../../models/Notification");
 const { matchedData } = require("express-validator");
+const {
+  createNotifications,
+} = require("../notifications/createSessionOneSignal");
 
 const saveDetailsService = structure(async (req, res) => {
   /* Validaciones */
@@ -116,6 +120,28 @@ const saveDetailsService = structure(async (req, res) => {
       },
     },
   ]);
+  /** Buscar todos los drivers disponibles */
+  const drivers = await Notification.find({}, { _id: 0 })
+    .lean()
+    .select("userId")
+    .populate("userId", { firstname: 1, lastname: 1, isBlocked: 1 })
+    .exec();
+
+  /**
+   * @description coge el userId CREA LA NOTIFICACION
+   * @var user_client IS A CLIENT ID
+   */
+  drivers.forEach(async (driver) => {
+    console.log(driver.userId._id);
+    await createNotifications(
+      driver.userId._id,
+      "pedido disponible",
+      "Hola Tummer " +
+        driver.userId.firstname +
+        ", hay un pedido disponible cerca de ti",
+      "Revisa la app de TUMI delivery y te asignaremos un pedido."
+    );
+  });
 
   res.status(200).json(objSuccess(data, "Se actualizó de manera correcta"));
 });

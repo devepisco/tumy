@@ -96,7 +96,7 @@ const editDetailState = structure(async (req, res) => {
       user_client,
       "cambio de estado",
       "Tu pedido fue entregado",
-      "Esperamos disfrute de su compra"
+      "Esperamos que estes contento con tu pedido!"
     );
 
     /* Se asigna el valor de la comisión */
